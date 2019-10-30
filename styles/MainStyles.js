@@ -8,39 +8,54 @@ var styles = StyleSheet.create({
         backgroundColor: "#863AE8",
         padding:20
     },
+
+    Logo: {
+      width:'50%',
+      height:'18%',
+      alignItems:"center",
+      justifyContent:"center",
+      position:"absolute",
+      marginTop:100,
+      marginLeft:110
+
+    }
+    ,
     LogoText: {
       fontSize:30,
       fontFamily:"Poppins-Medium",
       color:"white",
       alignItems:"center",
       justifyContent:"center",
-      top: "30%",
-      left:"35%"
+      top: "33%",
+      left:"40%",
+      position:"absolute"
     },
     LoginText: {
       fontFamily:"Poppins-SemiBold",
       alignItems:"center",
       justifyContent:"center",
+      position: "absolute",
       color: "white",
       fontSize:20,
-      paddingLeft:"40%",
+      left:"30%",
+      top: "60%",
 
     },
     BMBtn: {
       alignItems: 'center',
       justifyContent:"center",
       backgroundColor: '#863AE8',
-      padding: 12,
+      padding: 9,
       borderRadius: 25,
       borderWidth: 1,
       borderColor: 'white',
       width:'80%',
       left: '10%',
-      marginTop: 250
+      marginTop: 400,
 
     },
     BMText: {
-      color: "white",
+      //color: "white",
       fontSize:20,
       fontFamily:"Poppins-SemiBold"
 
@@ -48,12 +63,13 @@ var styles = StyleSheet.create({
     TenantBtn: {
       alignItems: 'center',
       justifyContent:"center",
+      position:"absolute",
       backgroundColor: 'white',
-      padding: 12,
+      padding: 9,
       borderRadius: 25,
       width:'80%',
       left: '10%',
-      marginTop: 20
+      top: "110%"
 
     },
     TenantText: {
