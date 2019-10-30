@@ -32,7 +32,7 @@ var styles = StyleSheet.create({
         height: 40
     },
     tabtext:{
-
+        fontSize: 14
     }
 });
 

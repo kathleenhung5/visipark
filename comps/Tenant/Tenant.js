@@ -20,21 +20,21 @@ function Tenant(){
 // conditions updating Content and tabbar
   if(cont == 'Visitors'){
     Content = <Visitors />
-    visitorimg = 'ppl-purp.png';
-    historyimg = 'history-grey.png';
-    reportimg = 'report-grey.png';
+    visitorimg = require('../../img/ppl-purp.png');
+    historyimg = require('../../img/history-grey.png');
+    reportimg = require('../../img/report-grey.png');
   }
   if(cont =='History'){
     Content = <History />
-    visitorimg = 'ppl-grey.png';
-    historyimg = 'history-purp.png';
-    reportimg = 'report-grey.png';
+    visitorimg = require('../../img/ppl-grey.png');
+    historyimg = require('../../img/history-purp.png');
+    reportimg = require('../../img/report-grey.png');
   }
   if(cont == 'Report'){
     Content = <Report />
-    visitorimg = 'ppl-grey.png';
-    historyimg = 'history-grey.png';
-    reportimg = 'report-purp.png';
+    visitorimg = require('../../img/ppl-grey.png');
+    historyimg = require('../../img/history-grey.png');
+    reportimg = require('../../img/report-purp.png');
   }
 
 
@@ -50,7 +50,7 @@ function Tenant(){
             onPress={()=> setCont('Visitors')}>
             <Image 
               style = {styles.tabimg}
-              source = {require("../../img/ppl-purp.png")}
+              source = {visitorimg}
               resizeMode = 'contain'
             />
             <Text style={styles.tabtext}>Visitors</Text>
@@ -61,7 +61,7 @@ function Tenant(){
             onPress={()=> setCont('History')}>
             <Image 
               style = {styles.tabimg}
-              source = {require("../../img/history-grey.png")}
+              source = {historyimg}
               resizeMode = 'contain'
             />
             <Text style={styles.tabtext}>History</Text>
@@ -72,7 +72,7 @@ function Tenant(){
             onPress={()=> setCont('Report')}>
             <Image 
               style = {styles.tabimg}
-              source = {require("../../img/report-grey.png")}
+              source = {reportimg}
               resizeMode = 'contain'
             />
             <Text style={styles.tabtext}>Report</Text>
