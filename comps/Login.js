@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native';
-import styles from '../styles/MainStyles';
+import styles from '../styles/LoginStyles';
 import Tform from './Tform';
 import BMform from './BMform';
 
@@ -12,31 +12,41 @@ function Login(){
 
   var TenantPage = null;
   if (showTenantPage === true){
-  TenantPage=(
-      <Tform />
-  );
+    TenantPage=(<Tform />);
   }
   var BMPage = null;
   if (showBMPage === true){
     BMPage=(<BMform/>);
-  }
+  } 
+
   return(
     <View style={styles.container}>
-    {TenantPage}
-    {BMPage}
-      <Image source={require('../img/Logo.png')}
-      style={styles.Logo}
-      />
-      <Text style={styles.LogoText}>VisiPark</Text>
-      <Text style={styles.LoginText}>
-      {showTenantPage ? "apartment unit" : "Login as"}
-      </Text>
 
-      <View>
+
+
+      <View   style={styles.Top}>
+        <Image source={require('../img/Logo.png')}
+        resizeMode="contain"
+        style={styles.Logo}
+        />
+        <Text style={styles.LogoText}>VisiPark</Text>
+      </View>
+
+
+      <View style={styles.Bottom}>
+        <Text style={[styles.LoginText,{display:showBMPage ? "none" : "flex"}]}>
+        {showTenantPage ? "apartment unit" : "Login as"}
+        </Text>
+        <Text style={[styles.LoginText,{display:showTenantPage ? "none" : ""}]}>
+        {showBMPage ? "manager password" : " "}
+        </Text>
+
+        {TenantPage}
+        {BMPage}
         <TouchableOpacity
-        style={[styles.BMBtn,{display:showTenantPage ? "none" : ""},
+          style={[styles.BMBtn,{display:showTenantPage ? "none" : ""},
           {backgroundColor:showBMPage ? "white" : "#863AE8"}]}
-        onPress={()=>{setShowBMPage(!showBMPage)}}
+          onPress={()=>{setShowBMPage(!showBMPage)}}
         >
           <Text
           style={[styles.BMText,{color:showBMPage ? "#863AE8" : "white"}]}>
@@ -50,6 +60,7 @@ function Login(){
           {showTenantPage ? "login as tenant" : "Tenant"}
           </Text>
         </TouchableOpacity>
+
       </View>
     </View>
   )
