@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 import styles from '../../styles/UnitVisitors'
@@ -12,8 +12,7 @@ function UnitVisitors(){
         <TouchableOpacity>
     <View style={styles.Box}>
         <Image source={require('../../img/add-visi.png')} style={styles.Img}/>
-        <Text>Add Visitor</Text>
-
+        <Text style={Texts.FormText}>Add Visitor</Text>
 
     </View>
     </TouchableOpacity>

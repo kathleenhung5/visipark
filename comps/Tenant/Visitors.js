@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 import styles from '../../styles/VisitorStyles';
@@ -14,6 +14,7 @@ function Visitors(){
   
   return(
     //Top part (SecHead, Desc, Policy)
+   
     <View style={styles.Top}>
 
       <Text style={Texts.SecHead}>Visitors</Text>
@@ -41,6 +42,7 @@ function Visitors(){
       <Text style={Texts.BodyBold}>Estimated spots left: {SpotCount}</Text>
       </View>
     </View>
+
   )
 }
 

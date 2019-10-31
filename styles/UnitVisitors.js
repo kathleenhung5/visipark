@@ -6,18 +6,12 @@ var styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         width: "90%",
-        height: "80%",
+        height: "75%",
         borderRadius: 30,
         backgroundColor: "#fafafa",
         borderStyle: "dashed",
         borderColor: "#863ae8",
         borderWidth: 5.5,
-
-
-
-        
-
-
     },
     Box1:{
         alignItems: "center",
@@ -30,6 +24,8 @@ var styles = StyleSheet.create({
     Img:{
         width: "30%",
         height: "50%",
+        justifyContent: "center",
+        alignItems: "center"
         
     }
 })

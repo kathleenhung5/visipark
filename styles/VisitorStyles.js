@@ -6,7 +6,7 @@ var styles = StyleSheet.create({
         flex:1,
         alignItems: "center",
         justifyContent: "center",
-        borderBottomWidth: 1,
+        bottom: "5%"
     },
 
     Middle:{
@@ -14,11 +14,12 @@ var styles = StyleSheet.create({
         borderColor: "white",
         flex:2,
 
+
     },
     Top: {
         paddingTop: 40,
         paddingLeft: 20,
-        borderTopWidth: 40,
+        top: "1%",
         borderColor: "white",
         flex: 1,
     }
