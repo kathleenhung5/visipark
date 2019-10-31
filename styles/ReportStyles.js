@@ -10,10 +10,18 @@ var styles = StyleSheet.create({
         shadowOpacity: 0.13,
         borderRadius: 23
     },
-    input:{
+    Sinput:{
         width:"100%",
         height: 45,
         padding: 10,
+        borderWidth:2,
+        borderRadius: 25,
+        marginTop: 10,
+        marginBottom: 10
+    },
+    Minput:{
+        width:"100%",
+        height: "45%",
         borderWidth:2,
         borderRadius: 25,
         marginTop: 10,
@@ -25,6 +33,18 @@ var styles = StyleSheet.create({
         height: 45,
         justifyContent:'center',
         alignItems:'center'
+    },
+    popupsBg:{
+        backgroundColor: 'rgba(0,0,0,0)',
+        
+        
+        height: "50%",
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    Head:{
+        marginTop: 40,
+        padding:30
     }
 });
 
