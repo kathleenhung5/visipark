@@ -10,8 +10,8 @@ var styles = StyleSheet.create({
         borderRadius: 30,
         backgroundColor: "#fafafa",
         borderStyle: "dashed",
-        borderColor: "#863ae8",
-        borderWidth: 5.5,
+        borderColor: "#CAB2E8",
+        borderWidth: 3.1,
     },
     Box1:{
         alignItems: "center",

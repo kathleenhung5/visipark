@@ -18,8 +18,7 @@ var styles = StyleSheet.create({
       marginTop:100,
       marginLeft:110
 
-    }
-    ,
+    },
     LogoText: {
       fontSize:30,
       fontFamily:"Poppins-Medium",
