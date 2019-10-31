@@ -7,6 +7,8 @@ function History(){
 
   return(
     <View>
+      <Text>History
+      </Text>
     </View>
   )
 }
