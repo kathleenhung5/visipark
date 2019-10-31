@@ -4,6 +4,7 @@ import Visitors from './Visitors';
 import History from './History';
 import Report from './Report';
 import styles from '../../styles/TenantStyles';
+import {Colors} from '../../styles/Colors';
 
 
 function Tenant(){
@@ -53,7 +54,9 @@ function Tenant(){
               source = {visitorimg}
               resizeMode = 'contain'
             />
-            <Text style={styles.tabtext}>Visitors</Text>
+            <Text 
+            style={[styles.tabtext,{color:(cont=='Visitors')?Colors.Purple:Colors.Darkgrey}]}>
+            Visitors</Text>
           </TouchableOpacity>
           
           <TouchableOpacity 
@@ -64,7 +67,7 @@ function Tenant(){
               source = {historyimg}
               resizeMode = 'contain'
             />
-            <Text style={styles.tabtext}>History</Text>
+            <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}>History</Text>
           </TouchableOpacity>
           
           <TouchableOpacity 
@@ -75,7 +78,7 @@ function Tenant(){
               source = {reportimg}
               resizeMode = 'contain'
             />
-            <Text style={styles.tabtext}>Report</Text>
+            <Text style={[styles.tabtext,{color:(cont=='Report')?Colors.Purple:Colors.Darkgrey}]}>Report</Text>
           </TouchableOpacity>
 
       </View>
