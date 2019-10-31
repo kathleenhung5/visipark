@@ -5,8 +5,8 @@ var styles = StyleSheet.create({
     Box:{
         alignItems: "center",
         justifyContent: "center",
-        width: 375,
-        height: 200,
+        width: "90%",
+        height: "80%",
         borderRadius: 30,
         backgroundColor: "#fafafa",
         borderStyle: "dashed",
