@@ -17,7 +17,9 @@ function Login(){
   var BMPage = null;
   if (showBMPage === true){
     BMPage=(<BMform/>);
-  } 
+  }
+
+
 
   return(
     <View style={styles.container}>
@@ -43,23 +45,25 @@ function Login(){
 
         {TenantPage}
         {BMPage}
-        <TouchableOpacity
-          style={[styles.BMBtn,{display:showTenantPage ? "none" : ""},
-          {backgroundColor:showBMPage ? "white" : "#863AE8"}]}
-          onPress={()=>{setShowBMPage(!showBMPage)}}
-        >
-          <Text
-          style={[styles.BMText,{color:showBMPage ? "#863AE8" : "white"}]}>
-          {showBMPage ? "login as manager" : "Building Manager"}
-          </Text>
-         </TouchableOpacity>
+        <View style={[styles.Buttons,{display:showBMPage ? "none" : ""}]}>
+          <TouchableOpacity
+            style={[styles.BMBtn,{display:showBMPage ? "none" : ""},{display:showTenantPage ? "none" : ""}]}
+            onPress={()=>{setShowBMPage(!showBMPage)}}>
+            <Text
+            style={styles.BMText}>
+            Building Manager
+            </Text>
+           </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.TenantBtn,{display:showBMPage ? "none" : ""}]}
-        onPress={()=>{setShowTenantPage(!showTenantPage)}}>
-          <Text style={styles.TenantText}>
-          {showTenantPage ? "login as tenant" : "Tenant"}
-          </Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.TenantBtn,{display:showTenantPage ? "none" : ""}]}
+            onPress={()=>{setShowTenantPage(!showTenantPage)}}>
+            <Text
+            style={styles.TenantText}>
+            Tenant
+            </Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
     </View>

@@ -30,12 +30,19 @@ var styles = StyleSheet.create({
     },
     Bottom:{
       justifyContent:"center",
-      alignItems:"center"
+      alignItems:"center",
+
     },
     LoginText: {
       fontFamily:"Poppins-SemiBold",
       color: "white",
       fontSize:20
+    },
+    Buttons:{
+      justifyContent:"center",
+      alignItems:"center",
+      borderWidth:2,
+
     },
     BMBtn: {
       alignItems: 'center',
@@ -51,7 +58,8 @@ var styles = StyleSheet.create({
     BMText: {
       //color: "white",
       fontSize:20,
-      fontFamily:"Poppins-SemiBold"
+      fontFamily:"Poppins-SemiBold",
+      color:"white"
 
     },
     TenantBtn: {
@@ -60,7 +68,7 @@ var styles = StyleSheet.create({
       backgroundColor: 'white',
       borderRadius: 25,
       width:'80%',
-      height: 45
+      height: 45,
     },
     TenantText: {
       color: "#863AE8",
