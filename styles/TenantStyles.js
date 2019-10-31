@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from './Colors';
 
 var styles = StyleSheet.create({
     container:{
@@ -16,7 +17,7 @@ var styles = StyleSheet.create({
         alignItems:'center',
         backgroundColor: 'white',
         // drop shadow
-        shadowColor:'#863ae8',
+        shadowColor: Colors.Purple,
         shadowOffset: {width: 0, height: 0},
         shadowOpacity: 0.13,
         shadowRadius: 13
@@ -32,7 +33,8 @@ var styles = StyleSheet.create({
         height: 40
     },
     tabtext:{
-        fontSize: 14
+        fontFamily:'OpenSans-Bold',
+        fontSize: 10
     }
 });
 

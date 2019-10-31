@@ -7,7 +7,6 @@ function Report(){
 
   return(
     <View>
-      <Text>Report</Text>
     </View>
   )
 }
