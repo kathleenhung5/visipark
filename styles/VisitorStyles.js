@@ -10,6 +10,7 @@ var styles = StyleSheet.create({
 
 
     },
+
     Middle:{
         borderTopWidth: 50,
         borderColor: "white",
@@ -17,6 +18,8 @@ var styles = StyleSheet.create({
 
     },
     Top: {
+        paddingTop: 40,
+        paddingLeft: 20,
         borderTopWidth: 40,
         borderColor: "white",
         flex: 1,

@@ -38,7 +38,7 @@ function Visitors(){
 
 
     <View style={styles.Bottom}>
-      <Text>Estimated spots left: {SpotCount}</Text>
+      <Text style={Texts.BodyBold}>Estimated spots left: {SpotCount}</Text>
       </View>
     </View>
   )
