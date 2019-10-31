@@ -7,7 +7,7 @@ import styles from '../../styles/TenantStyles';
 import {Colors} from '../../styles/Colors';
 
 
-function Tenant(){
+function Tenant(props){
   const [cont, setCont] = useState('Report');
 
 // img src variables
@@ -59,17 +59,21 @@ function Tenant(){
             Visitors</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity 
+          
+          <TouchableOpacity
             style = {styles.tabcont}
-            onPress={()=> setCont('History')}>
+            onPress={()=> setCont('History')}
+          >
             <Image 
               style = {styles.tabimg}
               source = {historyimg}
               resizeMode = 'contain'
             />
-            <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}>History</Text>
-          </TouchableOpacity>
-          
+            <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}> History </Text> 
+          </TouchableOpacity> 
+            
+      
+
           <TouchableOpacity 
             style = {styles.tabcont}
             onPress={()=> setCont('Report')}>

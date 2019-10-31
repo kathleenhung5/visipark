@@ -6,25 +6,24 @@ import styles from '../../styles/ReportStyles';
 
 
 
-function Report(){
+function Report(props){
 const[Svalue,onChangesText] = React.useState('');
 const[value,onChangeText] = React.useState('');
-const[showPopus,setPopus] = React.useState(false);
-//  When InputText is focus, give 2px stroke to it
+//I'm commenting this out. Cause I'll build popup function. -Kathleen. 
 
-
-var popus = null;
- if (showPopus === true){
-   popus = (
-     <View style={styles.popupsBg}>
-      <Text style={Texts.HeadL}>Reported Succefully</Text>
-      <Text style={Texts.Body}>You've reported succefully!</Text>
-      <Button style={styles.button} 
-      title="Okay" onPress={()=>{ setPopus(!showPopus)}}>
-      </Button>
-     </View>
-   );
- }
+//const[showPopus,setPopus] = React.useState(false);
+// var popus = null;
+//  if (showPopus === true){
+//    popus = (
+//      <View style={styles.popupsBg}>
+//       <Text style={Texts.HeadL}>Reported Succefully</Text>
+//       <Text style={Texts.Body}>You've reported succefully!</Text>
+//       <Button style={styles.button} 
+//       title="Okay" onPress={()=>{ setPopus(!showPopus)}}>
+//       </Button>
+//      </View>
+//    );
+//  }
 
 
   return(
@@ -62,7 +61,7 @@ var popus = null;
                
         <TouchableOpacity
           style={styles.button}
-          onPress={()=>{ setPopus(!showPopus)}}
+          onPress={()=>{props.showPop('AddVisitor')}}
         >
           <Text style={[Texts.HeadS,{color:'#fff'}]}>Send</Text>
         </TouchableOpacity>
