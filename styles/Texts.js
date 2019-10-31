@@ -75,3 +75,5 @@ var Texts = StyleSheet.create({
         letterSpacing: 1.5
     }
 });
+
+export default Texts;

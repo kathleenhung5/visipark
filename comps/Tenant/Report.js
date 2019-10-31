@@ -1,5 +1,7 @@
 import React,{Component}from 'react';
-import {View, Text,Button,TextInput} from 'react-native';
+import {View, Text,TouchableOpacity,TextInput} from 'react-native';
+import Texts from '../../styles/Texts';
+import styles from '../../styles/ReportStyles';
 
 
 
@@ -25,29 +27,38 @@ var popus = null;
     <View>
       {popus}
       {/* Headings */}
-      <View style={{paddingTop:60}}>
-      <Text style={{fontSize:60}}>Report</Text>
-      <Text style={{fontSize:16}}>Send a message to building manager regarding visitor parking issues.</Text>
+      <View>
+        <Text style={Texts.SecHead}>Report</Text>
+        <Text style={Texts.Body}>Send a message to building manager regarding visitor parking issues.</Text>
       </View>
-      {/* TextInput Card */}
-    <View>
-    <Text>Your message</Text>
-    {/* Subject textInput */}
-    <Text>Subject</Text>
-    <TextInput
-      style={{ height: 40,width:"80%", borderColor: 'gray', borderWidth: 2, borderRadius:23 }}
-      onChangeText={text => onChangesText(text)}
-      value={Svalue}
-    />
-    {/* Message textInput */}
-       <Text>Message</Text>
-    <TextInput
-      style={{ height: "50%",width:"80%", borderColor: 'gray', borderWidth: 2, borderRadius:23 }}
-      onChangeText={text => onChangeText(text)}
-      value={value}
-    />
 
-    <Button title="Send" onPress={()=>{ setPopus(!showPopus)}}>Send</Button>
+      {/* TextInput Card */}
+    <View style={styles.card}>
+        <Text style={Texts.HeadL}>Your message</Text>
+
+        {/* Subject textInput */}
+        <Text style={Texts.Body}>Subject:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={text => onChangesText(text)}
+          value={Svalue}
+        />
+        {/* Message textInput */}
+          <Text style={Texts.Body}>Message:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={text => onChangeText(text)}
+          value={value}
+        />
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={()=>{ setPopus(!showPopus)}}
+        >
+          <Text style={[Texts.HeadS,{color:'#fff'}]}>Send</Text>
+        </TouchableOpacity>
+        
+        
     </View>
 
     </View>
