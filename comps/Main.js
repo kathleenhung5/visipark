@@ -9,10 +9,10 @@ import Report from '../comps/Tenant/Report';
 
 function Main(){
     // UI
-    var page = <Login />
+    var page = <Tenant />
 
     return (
-        <View>
+        <View style={{height: "100%"}}>
 
            {page}
             

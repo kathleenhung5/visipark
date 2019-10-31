@@ -8,7 +8,7 @@ import {Colors} from '../../styles/Colors';
 
 
 function Tenant(){
-  const [cont, setCont] = useState('Visitors');
+  const [cont, setCont] = useState('Report');
 
 // img src variables
   var visitorimg = null;
