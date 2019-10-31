@@ -8,7 +8,7 @@ import Login from '../comps/Login';
 
 function Main(){
     // UI
-    var page = <Login />
+    var page = <Tenant />
 
     return (
         <View style={styles.container}>

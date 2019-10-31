@@ -5,7 +5,7 @@ var styles = StyleSheet.create({
     container: {
         width: "100%",
         height:'100%',
-        backgroundColor: "#863AE8",
+        backgroundColor: "white",
         padding:20
     },
 
