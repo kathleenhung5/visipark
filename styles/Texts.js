@@ -12,16 +12,15 @@ var Texts = StyleSheet.create({
     SecHead:{
         fontFamily:'Poppins-SemiBold',
         fontSize:40,
-        color: Colors.Black,
-        letterSpacing: 1.5
+        letterSpacing: 0.2,
+        color: Colors.Black
     },
 
     // Heading L 
     HeadL:{
         fontFamily:'Poppins-SemiBold',
         fontSize:25,
-        color: Colors.Black,
-        letterSpacing: 1.5
+        color: Colors.Black
     },
 
     // Heading S 
@@ -29,7 +28,7 @@ var Texts = StyleSheet.create({
         fontFamily:'Poppins-SemiBold',
         fontSize:20,
         color: Colors.Black,
-        letterSpacing: 3
+        letterSpacing: 1
     },
 
     // Link
@@ -37,7 +36,7 @@ var Texts = StyleSheet.create({
         fontFamily:'OpenSans-Bold',
         fontSize:16,
         color: Colors.Purple,
-        letterSpacing: 4
+        letterSpacing: 1
     },
 
     // Body 
@@ -45,7 +44,7 @@ var Texts = StyleSheet.create({
         fontFamily:'OpenSans-Regular',
         fontSize:16,
         color: Colors.Black,
-        letterSpacing: 1.5,
+        letterSpacing: 0.3,
         lineHeight: 23
     },
 
@@ -54,7 +53,7 @@ var Texts = StyleSheet.create({
         fontFamily:'OpenSans-Bold',
         fontSize:16,
         color: Colors.Black,
-        letterSpacing: 1.5,
+        letterSpacing: 0.3,
         lineHeight: 23
     },
 
@@ -63,7 +62,7 @@ var Texts = StyleSheet.create({
         fontFamily:'OpenSans-Regular',
         fontSize:16,
         color: Colors.Darkgrey,
-        letterSpacing: 1.5,
+        letterSpacing: 0.3,
         lineHeight: 23
     },
 
@@ -72,7 +71,7 @@ var Texts = StyleSheet.create({
         fontFamily:'OpenSans-SemiBold',
         fontSize:18,
         color: Colors.Black,
-        letterSpacing: 1.5
+        letterSpacing: 0.3
     }
 });
 

@@ -10,6 +10,8 @@ function Report(){
 const[Svalue,onChangesText] = React.useState('');
 const[value,onChangeText] = React.useState('');
 const[showPopus,setPopus] = React.useState(false);
+//  When InputText is focus, give 2px stroke to it
+
 
 var popus = null;
  if (showPopus === true){
@@ -24,31 +26,35 @@ var popus = null;
 
 
   return(
-    <View>
+    <View style={styles.container}>
       {popus}
       {/* Headings */}
       <View>
         <Text style={Texts.SecHead}>Report</Text>
         <Text style={Texts.Body}>Send a message to building manager regarding visitor parking issues.</Text>
       </View>
-
       {/* TextInput Card */}
     <View style={styles.card}>
-        <Text style={Texts.HeadL}>Your message</Text>
-
+        <View style={styles.title}>
+          <Text style={Texts.HeadL}>Your message</Text>
+        </View>
         {/* Subject textInput */}
         <Text style={Texts.Body}>Subject:</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input,Texts.FormText]}
           onChangeText={text => onChangesText(text)}
           value={Svalue}
+          autoFocus = {true}
+          clearButtonMode = 'always'
+          maxLength = {50}
         />
         {/* Message textInput */}
           <Text style={Texts.Body}>Message:</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input,Texts.FormText,{height: 300}]}
           onChangeText={text => onChangeText(text)}
           value={value}
+          multiline = {true}
         />
 
         <TouchableOpacity
