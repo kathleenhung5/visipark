@@ -5,7 +5,7 @@ export const Colors = {
   Purple: '#863AE8',
   Darkgrey: '#bcbcbc',
   Lightgrey: '#fafafa',
-  Glack: '#151515'
+  Black: '#151515'
 };
 
 
