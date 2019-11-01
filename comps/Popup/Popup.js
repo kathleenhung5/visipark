@@ -13,13 +13,58 @@ function Popup(props){
   console.log('test in Popup.js');
   console.log(props.pop);
   
-  // Conditions for what to show in popup 
+  // Conditions for deciding what to show in popup 
+  if (props.pop == 'VisitorParkingPolicy'){
+    title = 'Visitor Parking Policy';
+    btnTxt = 'Okay';
+    content = (
+      <View>
+        <Text style={[Texts.Body,{marginBottom:10}]}>1. Each apartment is allowed to have maximum 2 visitors parking in visitor parking at the same time. 
+        </Text>
+        <Text style={[Texts.Body,{marginBottom:10}]}>2. Each visitor’s vehicle is allowed to park in visitor parking for a consecutive duration of 24 hours.
+        </Text>
+        <Text style={Texts.Body}>3. If visitors park overtime, the building has the right to tow their vehicles. 
+        </Text>
+      </View>
+    );
+  }
+
   if (props.pop == 'AddVisitor'){
     title = 'Add Visitor';
     btnTxt = 'Add';
     content = (
       <View>
-        <Text>Add Visitor Popup Content</Text>
+        <Text style={Texts.Body}>Add Visitor Popup Content</Text>
+      </View>
+    );
+  }
+
+  if (props.pop == 'ExtendParking'){
+    title = 'Extend Parking';
+    btnTxt = 'Extend';
+    content = (
+      <View>
+        <Text style={Texts.Body}>Extend Parking Popup Content</Text>
+      </View>
+    );
+  }
+
+  if (props.pop == 'Remove'){
+    title = 'Remove';
+    btnTxt = 'Yes';
+    content = (
+      <View>
+        <Text style={Texts.Body}>Are you sure you want to remove this visitor?</Text>
+      </View>
+    );
+  }
+
+  if (props.pop == 'RemovedSuccessfully'){
+    title = 'Removed Successfully';
+    btnTxt = 'Okay';
+    content = (
+      <View>
+        <Text style={Texts.Body}>You have removed this visitor successfully!</Text>
       </View>
     );
   }

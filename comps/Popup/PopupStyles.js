@@ -15,6 +15,7 @@ var styles = StyleSheet.create({
     poparea:{
         width: "100%",
         padding: 30,
+        marginTop: 30,
         borderRadius: 23,
         backgroundColor: "#fff",
         shadowColor: "#000",
@@ -22,7 +23,8 @@ var styles = StyleSheet.create({
         shadowOpacity: 0.2,
     },
     title:{
-        alignItems:'center'
+        alignItems:'center',
+        marginBottom: 10
     },
     button:{
         width: "100%",
@@ -31,7 +33,7 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 25,
-        marginTop: 10
+        marginTop: 20
     }
 })
 
