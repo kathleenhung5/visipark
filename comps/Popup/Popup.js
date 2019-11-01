@@ -9,14 +9,27 @@ function Popup(props){
   var title = '';
   var content = null;
   var btnTxt = '';
-
+  
+  console.log('test in Popup.js');
+  console.log(props.pop);
+  
   // Conditions for what to show in popup 
   if (props.pop == 'AddVisitor'){
     title = 'Add Visitor';
-    btnTxt = 'Add'
+    btnTxt = 'Add';
     content = (
       <View>
         <Text>Add Visitor Popup Content</Text>
+      </View>
+    );
+  }
+
+  if(props.pop == 'ReportedSuccessfully'){
+    title = 'Reported Successfully';
+    btnTxt = 'Okay';
+    content = (
+      <View>
+        <Text style={Texts.Body}>Thank you! You've reported successfully!</Text>
       </View>
     );
   }

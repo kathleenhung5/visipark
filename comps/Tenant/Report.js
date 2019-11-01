@@ -24,7 +24,8 @@ const[value,onChangeText] = React.useState('');
 //      </View>
 //    );
 //  }
-
+console.log('test in Report');
+console.log(props.pop);
 
   return(
 
@@ -61,7 +62,7 @@ const[value,onChangeText] = React.useState('');
                
         <TouchableOpacity
           style={styles.button}
-          onPress={()=>{props.showPop('AddVisitor')}}
+          onPress = {()=>{props.showPop('ReportedSuccessfully')}}
         >
           <Text style={[Texts.HeadS,{color:'#fff'}]}>Send</Text>
         </TouchableOpacity>

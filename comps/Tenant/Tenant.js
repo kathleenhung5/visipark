@@ -10,7 +10,10 @@ import {Colors} from '../../styles/Colors';
 function Tenant(props){
   const [cont, setCont] = useState('Report');
 
-// img src variables
+  console.log('test in Tenant');
+  console.log(props.pop);
+
+  // img src variables
   var visitorimg = null;
   var historyimg = null;
   var reportimg = null;
@@ -32,7 +35,7 @@ function Tenant(props){
     reportimg = require('../../img/report-grey.png');
   }
   if(cont == 'Report'){
-    Content = <Report />
+    Content = <Report {props.pop}={pop} {props.showPop}={showPop}/>
     visitorimg = require('../../img/ppl-grey.png');
     historyimg = require('../../img/history-grey.png');
     reportimg = require('../../img/report-purp.png');

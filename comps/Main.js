@@ -5,7 +5,7 @@ import styles from '../styles/MainStyles';
 import Tenant from './Tenant/Tenant';
 import Login from '../comps/Login';
 import Report from '../comps/Tenant/Report';
-import Popup from '../comps/Popup/Popup';
+import Popup from './Popup/Popup';
 
 
 function Main(){
@@ -14,24 +14,24 @@ function Main(){
     // Example: Your Popup title is 'Add Visitor', call showPop('AddVisitor') in your onPress.
     // !! IMPORTANT !! To close Popup, call showPop('').
     const [pop, showPop] = useState('AddVisitor'); 
-    var Popup = null;
+    var mpopup = null;
     if (pop == ''){
-       Popup = null;
+       mpopup = null;
     } else {
-        Popup = <Popup 
+        mpopup = <Popup 
                     pop = {pop} 
-                    showPop = {showPop}
+                    showPop = {showPop} 
                 />
     }
 
-    // UI
-    var page = <Tenant showPop = {showPop}/>
+    
 
+    // UI
+         var page = <Tenant pop = {pop} showPop = {showPop}/>
     return (
         <View style={{height: "100%"}}>
-            {Popup}
+           {mpopup} 
            {page}
-            
         </View>
     )
 }
