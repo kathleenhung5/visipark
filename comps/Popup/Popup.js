@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, TextInput, Picker} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, Picker, Image} from 'react-native';
 import Texts from '../../styles/Texts';
 import styles from './PopupStyles';
 
@@ -29,12 +29,49 @@ function Popup(props){
     );
   }
 
+
+  // variable for picker in Add Visitor Form
+  var addhr = [];
+  for(var i=1;i<=24;i++){
+    addhr.push(<Picker.Item lable={i.toString()} value={i} />);
+  }
+  console.log(addhr);
   if (props.pop == 'AddVisitor'){
     title = 'Add Visitor';
     btnTxt = 'Add';
     content = (
       <View>
-        <Text style={Texts.Body}>Add Visitor Popup Content</Text>
+        {/* close button */}
+        <Text style={Texts.Body}>Visitor's name:</Text>
+        <TextInput 
+          placeholder = "Name"
+          style={[styles.input,Texts.FormText]}
+          clearButtonMode = 'always'
+          maxLength = {40}/>
+        <Text style={Texts.Body}>Visitor's plate number:</Text>
+        <TextInput 
+          placeholder = "Plate number"
+          style={[styles.input,Texts.FormText]}
+          clearButtonMode = 'always'
+          maxLength = {7}
+          autoCapitalize = "characters"
+          />
+        <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
+
+        <View style={{flexDirection:'row',alignItems:'center'}}>
+          <Picker 
+            style={{width: 130, marginRight: 20}}
+            selectedValue = {2}
+            itemStyle={{height:90}}
+          >
+            {/* {addhr} */}
+            <Picker.Item label='1' value={1} />
+            <Picker.Item label='2' value={2} />
+            <Picker.Item label='3' value={3} />
+          </Picker>
+          <Text style={Texts.Body}>hr</Text>
+        </View>
+
       </View>
     );
   }
@@ -44,7 +81,22 @@ function Popup(props){
     btnTxt = 'Extend';
     content = (
       <View>
-        <Text style={Texts.Body}>Extend Parking Popup Content</Text>
+        <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
+        <Text style={Texts.Body}>You've registered: __hr</Text>
+        <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
+        <View style={{flexDirection:'row',alignItems:'center'}}>
+          <Picker 
+            style={{width: 130, marginRight: 20}}
+            selectedValue = {2}
+            itemStyle={{height:90}}
+          >
+            {/* {addhr} */}
+            <Picker.Item label='1' value={1} />
+            <Picker.Item label='2' value={2} />
+            <Picker.Item label='3' value={3} />
+          </Picker>
+          <Text style={Texts.Body}>hr</Text>
+        </View>
       </View>
     );
   }
@@ -84,6 +136,17 @@ function Popup(props){
     <View style={styles.bg}>
       {/* This is popup area */}
       <View style={styles.poparea}>
+        {/* Close Button */}
+          <TouchableOpacity 
+            onPress = {()=>{props.showPop('')}}
+            style={[styles.closeBut,{display:(props.pop=='AddVisitor'||props.pop=='ExtendParking'||props.pop=='Remove')?'flex':'none'}]} 
+          >
+              <Image 
+                  source={require('../../img/cross.png')}
+                  resizeMode = 'contain'
+                  style={styles.img}
+                />
+          </TouchableOpacity>
           {/* Popu Title */}
           <View style={styles.title}>
               <Text style={Texts.HeadL}>{title}</Text>

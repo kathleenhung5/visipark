@@ -46,10 +46,12 @@ console.log(props.pop);
         <Text style={Texts.Body}>Subject:</Text>
         <TextInput
           style={[styles.input,Texts.FormText]}
+          //style={[styles.input,Texts.FormText,{borderWidth:isFocused()?2:0}]}
           onChangeText={text => onChangesText(text)}
           value={Svalue}
           clearButtonMode = 'always'
           maxLength = {50}
+
         />
         {/* Message textInput */}
           <Text style={Texts.Body}>Message:</Text>
