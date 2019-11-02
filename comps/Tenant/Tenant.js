@@ -72,10 +72,9 @@ function Tenant(props){
               source = {historyimg}
               resizeMode = 'contain'
             />
-            <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}> History </Text> 
-          </TouchableOpacity> 
-            
-      
+
+            <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}>History</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity 
             style = {styles.tabcont}
@@ -91,7 +90,7 @@ function Tenant(props){
       </View>
       {/* End of Tab bar */}
     </View>
-      
+
   )
 }
 

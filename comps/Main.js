@@ -4,6 +4,7 @@ import {View, Text} from 'react-native';
 import styles from '../styles/MainStyles';
 import Tenant from './Tenant/Tenant';
 import Login from '../comps/Login';
+import History from '../comps/Tenant/History';
 import Report from '../comps/Tenant/Report';
 import Popup from './Popup/Popup';
 
@@ -30,6 +31,7 @@ function Main(){
             }
     
     // UI
+
     return (
         <View style={{height: "100%"}}>
            {mpopup} 

@@ -29,6 +29,7 @@ var Texts = StyleSheet.create({
         fontSize:20,
         color: Colors.Black,
         letterSpacing: 1
+
     },
 
     // Link
@@ -37,6 +38,7 @@ var Texts = StyleSheet.create({
         fontSize:16,
         color: Colors.Purple,
         letterSpacing: 1
+
     },
 
     // Body 
@@ -76,3 +78,4 @@ var Texts = StyleSheet.create({
 });
 
 export default Texts;
+
