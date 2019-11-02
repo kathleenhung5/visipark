@@ -12,7 +12,7 @@ function Main(){
     var page = <Login/>
 
     return (
-        <View style={{height:"100%"}}>
+        <View style={styles.container}>
            {page}
 
         </View>
