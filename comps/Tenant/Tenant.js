@@ -7,6 +7,7 @@ import styles from '../../styles/TenantStyles';
 import {Colors} from '../../styles/Colors';
 
 
+
 function Tenant(){
   const [cont, setCont] = useState('Report');
 
@@ -69,6 +70,7 @@ function Tenant(){
             />
             <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}>History</Text>
           </TouchableOpacity>
+
           
           <TouchableOpacity 
             style = {styles.tabcont}
@@ -84,7 +86,7 @@ function Tenant(){
       </View>
       {/* End of Tab bar */}
     </View>
-      
+
   )
 }
 
