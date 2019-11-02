@@ -6,14 +6,14 @@ function BMform(){
 
   return(
 
-    <View style={{width: "80%", marginTop: 10}}>
+    <View style={{width: "90%", marginTop: 10, alignItems:"center"}}>
       <TextInput
-      style={{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 , height: 45,  color:'white', margin:10}}
+      style={{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 , height: 45,  color:'white', margin:10,width:'90%'}}
       placeholder="password"
       placeholderTextColor="#bea9c9"
       />
       <TouchableOpacity
-        style={styles.TenantBtn}
+        style={styles.BMForm }
         onPress={()=>{alert('You can login as BM');}}>
         <Text style={styles.TenantText}>
         Login as Manager

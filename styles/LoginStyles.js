@@ -39,9 +39,10 @@ var styles = StyleSheet.create({
       fontSize:20
     },
     Buttons:{
-      justifyContent:"center",
-      alignItems:"center",
-      borderWidth:2,
+      width: "90%",
+      marginTop: 10,
+      alignItems:"center"
+
 
     },
     BMBtn: {
@@ -51,7 +52,7 @@ var styles = StyleSheet.create({
       borderRadius: 25,
       borderWidth: 2,
       borderColor: 'white',
-      width:'80%',
+      width:'90%',
       height:45,
       margin: 10
     },
@@ -67,7 +68,7 @@ var styles = StyleSheet.create({
       justifyContent:"center",
       backgroundColor: 'white',
       borderRadius: 25,
-      width:'80%',
+      width:'90%',
       height: 45,
     },
     TenantText: {
@@ -76,7 +77,26 @@ var styles = StyleSheet.create({
       fontFamily:"Poppins-SemiBold"
 
 
+    },
+    BMForm: {
+      alignItems: 'center',
+      justifyContent:"center",
+      backgroundColor: 'white',
+      borderRadius: 25,
+      width:'90%',
+      height: 45,
+      padding: 9
+    },
+    Tform: {
+      alignItems: 'center',
+      justifyContent:"center",
+      backgroundColor: 'white',
+      borderRadius: 25,
+      width:'90%',
+      height: 45,
+      padding: 9
     }
+
 
 
 
