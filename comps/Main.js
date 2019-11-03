@@ -32,7 +32,8 @@ function Main(){
     
     // UI
 
-    return (
+
+return (
         <View style={{height: "100%"}}>
            {mpopup} 
            {page}
