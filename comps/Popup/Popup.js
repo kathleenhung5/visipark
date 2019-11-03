@@ -10,10 +10,8 @@ function Popup(props){
   var content = null;
   var btnTxt = '';
   
-  console.log('test in Popup.js');
-  console.log(props.pop);
-  
   // Conditions for deciding what to show in popup 
+  // ---- Visitor Parking Policy ----
   if (props.pop == 'VisitorParkingPolicy'){
     title = 'Visitor Parking Policy';
     btnTxt = 'Okay';
@@ -28,20 +26,18 @@ function Popup(props){
       </View>
     );
   }
-
-
-  // variable for picker in Add Visitor Form
+// ---- Add Visitor ----
   var addhr = [];
   for(var i=1;i<=24;i++){
-    addhr.push(<Picker.Item lable={i.toString()} value={i} />);
+    addhr.push(
+    <Picker.Item key={i} label={i.toString()} value={i} />
+    );
   }
-  console.log(addhr);
   if (props.pop == 'AddVisitor'){
     title = 'Add Visitor';
     btnTxt = 'Add';
     content = (
       <View>
-        {/* close button */}
         <Text style={Texts.Body}>Visitor's name:</Text>
         <TextInput 
           placeholder = "Name"
@@ -64,10 +60,7 @@ function Popup(props){
             selectedValue = {2}
             itemStyle={{height:90}}
           >
-            {/* {addhr} */}
-            <Picker.Item label='1' value={1} />
-            <Picker.Item label='2' value={2} />
-            <Picker.Item label='3' value={3} />
+            {addhr}
           </Picker>
           <Text style={Texts.Body}>hr</Text>
         </View>
@@ -76,6 +69,13 @@ function Popup(props){
     );
   }
 
+  // ---- Extend Parking ----
+  var exthr = [];
+  for(var i=1;i<=24;i++){
+    exthr.push(
+    <Picker.Item key={i} label={i.toString()} value={i} />
+    );
+  }
   if (props.pop == 'ExtendParking'){
     title = 'Extend Parking';
     btnTxt = 'Extend';
@@ -90,10 +90,7 @@ function Popup(props){
             selectedValue = {2}
             itemStyle={{height:90}}
           >
-            {/* {addhr} */}
-            <Picker.Item label='1' value={1} />
-            <Picker.Item label='2' value={2} />
-            <Picker.Item label='3' value={3} />
+            {exthr}
           </Picker>
           <Text style={Texts.Body}>hr</Text>
         </View>
@@ -101,6 +98,7 @@ function Popup(props){
     );
   }
 
+  // ---- Remove ----
   if (props.pop == 'Remove'){
     title = 'Remove';
     btnTxt = 'Yes';
@@ -121,6 +119,7 @@ function Popup(props){
     );
   }
 
+  // ---- Remove Successfully ----
   if(props.pop == 'ReportedSuccessfully'){
     title = 'Reported Successfully';
     btnTxt = 'Okay';

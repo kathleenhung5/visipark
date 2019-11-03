@@ -10,9 +10,6 @@ import {Colors} from '../../styles/Colors';
 function Tenant(props){
   const [cont, setCont] = useState('Report');
 
-  console.log('test in Tenant');
-  console.log(props.pop);
-
   // img src variables
   var visitorimg = null;
   var historyimg = null;

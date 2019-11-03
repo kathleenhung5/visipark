@@ -24,8 +24,7 @@ const[value,onChangeText] = React.useState('');
 //      </View>
 //    );
 //  }
-console.log('test in Report');
-console.log(props.pop);
+
 
   return(
 
