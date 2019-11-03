@@ -8,10 +8,15 @@ import {Colors} from '../../styles/Colors';
 
 
 
-function Tenant(){
+
+function Tenant(props){
+
   const [cont, setCont] = useState('Report');
 
-// img src variables
+  console.log('test in Tenant');
+  console.log(props.pop);
+
+  // img src variables
   var visitorimg = null;
   var historyimg = null;
   var reportimg = null;
@@ -33,7 +38,7 @@ function Tenant(){
     reportimg = require('../../img/report-grey.png');
   }
   if(cont == 'Report'){
-    Content = <Report />
+    Content = <Report pop={props.pop} showPop={props.showPop}/>
     visitorimg = require('../../img/ppl-grey.png');
     historyimg = require('../../img/history-grey.png');
     reportimg = require('../../img/report-purp.png');
@@ -60,18 +65,20 @@ function Tenant(){
             Visitors</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity 
+          
+          <TouchableOpacity
             style = {styles.tabcont}
-            onPress={()=> setCont('History')}>
+            onPress={()=> setCont('History')}
+          >
             <Image 
               style = {styles.tabimg}
               source = {historyimg}
               resizeMode = 'contain'
             />
-            <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}>History</Text>
-          </TouchableOpacity>
 
-          
+            <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}> History </Text> 
+
+
           <TouchableOpacity 
             style = {styles.tabcont}
             onPress={()=> setCont('Report')}>
