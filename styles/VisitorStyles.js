@@ -4,12 +4,14 @@ import {StyleSheet} from 'react-native';
 var styles = StyleSheet.create({
     Bottom:{
         flex:1,
+
         alignItems: "center",
         justifyContent: "center",
-        bottom: "5%"
+        bottom: "4%"
     },
 
     Middle:{
+
         borderTopWidth: 50,
         borderColor: "white",
         flex:2,
@@ -17,6 +19,7 @@ var styles = StyleSheet.create({
 
     },
     Top: {
+
         paddingTop: 40,
         paddingLeft: 20,
         top: "1%",

@@ -14,7 +14,13 @@ function Visitors(){
   
   return(
     //Top part (SecHead, Desc, Policy)
-   
+
+    //Elias: if u add scroll view to this view,
+    //it squishes the <UnitVisitors> component...
+    //change from <View style...> to
+    //<ScrollView style...> dont forget the </View> aswell
+    <View style={{height:"100%"}}>
+
     <View style={styles.Top}>
 
       <Text style={Texts.SecHead}>Visitors</Text>
@@ -30,10 +36,13 @@ function Visitors(){
         </TouchableOpacity>
 
 
+
     <View style={styles.Middle}>
+
       <Text style={Texts.HeadL}>Unit {UnitNum}</Text>
 
       <UnitVisitors/>
+
     </View>
 
 
@@ -43,6 +52,8 @@ function Visitors(){
       </View>
     </View>
 
+    </View>
+    
   )
 }
 
