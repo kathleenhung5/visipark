@@ -6,22 +6,10 @@ var styles = StyleSheet.create({
         paddingTop: 60,
         paddingLeft: 20,
         paddingRight: 20,
-        width:"100%"
+        width:"100%",
+        height: "63%"
 
-    },
-    headerText:{
-        fontFamily:'Poppins-SemiBold',
-        fontSize:40,
-        color: Colors.Black,
-        letterSpacing: 1.5
-    },
-    description:{
-        fontFamily:'OpenSans-Regular',
-        fontSize:16,
-        color: Colors.Black,
-        letterSpacing: 1.5,
-        lineHeight: 23
-    },
+    },    
     SectionStyle:{
         flexDirection: 'row',
         justifyContent: 'center',
@@ -35,16 +23,47 @@ var styles = StyleSheet.create({
     },
     ImageStyle: {
         paddingRight: 30,
-        margin: 9,
-        height: 25,
-        width: 25,
-        //resizeMode : 'stretch',
-        alignSelf: 'flex-end'
+        margin: 10,
+        height: 36,
+        width: 32,
+       // alignSelf: 'flex-end',
+        
     },
     searchBar:{
         flex:1,
         alignItems: 'flex-start',
         paddingLeft: 20
+
+    },
+    card:{
+        backgroundColor: '#fff',
+        paddingLeft:30,
+        paddingRight:30,
+        paddingTop:20,
+        paddingBottom:20,
+        shadowColor: Colors.Purple,
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.13,
+        borderRadius: 23,
+        marginTop: 10,
+        flexDirection: 'row'
+    },
+    pinImg:{
+        width:23,
+        height: 40,
+        marginRight: 15
+        
+
+    },
+    visiBtn:{
+        borderWidth:2,
+        borderRadius:25,
+        borderColor: Colors.Purple,
+        width: "45%",
+        height: 40,
+        marginLeft: 50,
+        alignItems: 'center',
+        justifyContent:"center"
 
     }
 
