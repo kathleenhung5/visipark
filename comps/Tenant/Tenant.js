@@ -9,9 +9,10 @@ import {Colors} from '../../styles/Colors';
 
 
 
-function Tenant(props){
 
-  const [cont, setCont] = useState('Report');
+
+function Tenant(props){
+  const [cont, setCont] = useState('Visitors');
 
   console.log('test in Tenant');
   console.log(props.pop);
@@ -77,7 +78,7 @@ function Tenant(props){
             />
 
             <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}> History </Text> 
-
+          </TouchableOpacity>
 
           <TouchableOpacity 
             style = {styles.tabcont}

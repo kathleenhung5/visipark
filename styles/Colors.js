@@ -8,6 +8,8 @@ export const Colors = {
   Black: '#151515'
 };
 
+export default Colors;
+
 
 // How to use global colour
 // In your component.js
