@@ -7,7 +7,10 @@ import styles from '../../styles/TenantStyles';
 import {Colors} from '../../styles/Colors';
 
 
+
+
 function Tenant(props){
+
   const [cont, setCont] = useState('Report');
 
   console.log('test in Tenant');
@@ -72,10 +75,9 @@ function Tenant(props){
               source = {historyimg}
               resizeMode = 'contain'
             />
+
             <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}> History </Text> 
-          </TouchableOpacity> 
-            
-      
+
 
           <TouchableOpacity 
             style = {styles.tabcont}
@@ -91,7 +93,7 @@ function Tenant(props){
       </View>
       {/* End of Tab bar */}
     </View>
-      
+
   )
 }
 
