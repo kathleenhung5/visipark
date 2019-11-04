@@ -7,7 +7,7 @@ var styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         width:"100%",
-        height: "63%"
+        height: "90%"
 
     },    
     SectionStyle:{
@@ -46,12 +46,15 @@ var styles = StyleSheet.create({
         shadowOpacity: 0.13,
         borderRadius: 23,
         marginTop: 10,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent:"space-around"
     },
     pinImg:{
         width:23,
         height: 40,
-        marginRight: 15
+        marginRight: 15,
+       
+       
         
 
     },
@@ -61,10 +64,14 @@ var styles = StyleSheet.create({
         borderColor: Colors.Purple,
         width: "45%",
         height: 40,
-        marginLeft: 50,
+        marginLeft: 10,
         alignItems: 'center',
         justifyContent:"center"
-
+        
+    },
+    List:{
+        
+       
     }
 
 
