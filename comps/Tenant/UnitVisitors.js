@@ -1,21 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 import styles from '../../styles/UnitVisitors'
+import Visitors from './Visitors';
 
 
 
+function UnitVisitors(props){
 
-function UnitVisitors(){
     return(
-        <TouchableOpacity style={{height:"100%", borderWidth:1}}>
-    <View style={styles.Box}>
-        <Image source={require('../../img/add-visi.png')} style={styles.Img}/>
-        <Text style={Texts.BodyLight}>Add Visitor</Text>
-    </View>
-
-    </TouchableOpacity>
+<View></View>
+                              
     )
 }
 

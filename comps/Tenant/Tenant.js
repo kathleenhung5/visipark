@@ -27,7 +27,8 @@ function Tenant(props){
 
 // conditions updating Content and tabbar
   if(cont == 'Visitors'){
-    Content = <Visitors />
+    Content = <Visitors pop={props.pop} showPop={props.showPop}/>
+    
     visitorimg = require('../../img/ppl-purp.png');
     historyimg = require('../../img/history-grey.png');
     reportimg = require('../../img/report-grey.png');

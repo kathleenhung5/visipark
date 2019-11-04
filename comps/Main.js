@@ -7,6 +7,7 @@ import Login from '../comps/Login';
 import History from '../comps/Tenant/History';
 import Report from '../comps/Tenant/Report';
 import Popup from './Popup/Popup';
+import Visitor from '../comps/Tenant/UnitVisitors'
 
 
 function Main(){
@@ -14,7 +15,7 @@ function Main(){
     // Call showPop('YourPopupTitle') in your button to show the corresponding Popup.
     // Example: Your Popup title is 'Add Visitor', call showPop('AddVisitor') in your onPress.
     // !! IMPORTANT !! To close Popup, call showPop('').
-    const [pop, showPop] = useState('AddVisitor'); 
+    const [pop, showPop] = useState(''); 
     var mpopup = null;
     var page = <Tenant 
                  pop = {pop} 
