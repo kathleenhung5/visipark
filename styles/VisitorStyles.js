@@ -4,38 +4,43 @@ import {Colors} from './Colors';
 var styles = StyleSheet.create({
     
     Bottom:{
-        flex:1,
-        //adding more padding here streches other components out, cant rly get the styling perfect help!
-        paddingTop: 10,
+        //flex:1,
+        //adding more padding here streches other components out
+        paddingTop: 15,
         alignItems: "center",
         justifyContent: "center",
+
+
     },
 
     Middle:{
+
         paddingLeft: 20,
         paddingRight: 20,
+        flex: 1,
 
     },
     Top: {
         paddingTop: 60,
         paddingLeft: 20,
         paddingRight: 20,
-        paddingBottom: 40
+        paddingBottom: 40,
+
     },
     scrollview:{
-        height:"100%",
+        flex: 1,
+        backgroundColor: "#fab",
+        overflow: "scroll"
 
     },
     Box:{
-        marginTop:"5%",
+        marginTop: 10,
+        // marginTop:"5%",
         alignItems: "center",
         justifyContent: "center",
-        width: "100%",
-        //width: "90%",
-        height: "45%",
+
+        height: 200,
         borderRadius: 23,
-        //borderRadius: 30,
-        //Kathleen: Do we have bg color for this?
         backgroundColor: "#fafafa",
         borderStyle: "dashed",
         borderColor: "#CAB2E8",
@@ -49,8 +54,8 @@ var styles = StyleSheet.create({
         shadowRadius: 13,
         alignItems: "center",
         justifyContent: "center",
-        width: "100%",
-        height: "45%",
+
+        height: 200,
         borderRadius: 23,
         backgroundColor: "#fafafa",
         borderColor: "#CAB2E8",
@@ -120,19 +125,21 @@ var styles = StyleSheet.create({
     removeButton:{
         backgroundColor: Colors.Purple,
         borderRadius: 23,
-        height: "30%",
+        height: 45,
+        //height: "30%",
         width: "36%",
         justifyContent:'center',
         alignItems:'center',
         position: "absolute",
-        bottom: "13%",
-        right:"10%"
+        bottom: 20,
+        right:30
     },
     extendButton: {
         position: "absolute",
-        bottom: "13%",
-        left:"10%",
-        height: "30%",
+        bottom:20,
+        left:30,
+        height: 45,
+        //height: "30%",
         width: "36%",
         backgroundColor: Colors.Lightgrey,
         borderWidth: 2,
