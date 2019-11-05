@@ -4,28 +4,23 @@ import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 import styles from '../../styles/VisitorStyles';
 
-
-
-
-
 function Visitors(props){
 
-  //random numbers for now...
+  //Mockup Numbers
   var UnitNum = "201";
   var SpotCount = "5";
-  //active visitors card 1
+  //Active Card 
   var currentVisitor1 = "Elias Tayag"
   var currentVisitorPlate = "343 I6R"
   var timeLeft = 11;
 
+  //Function 1
 
 
-  
   return(
-    //Top part (SecHead, Desc, Policy)
-
     <View style={{flex:1, marginBottom: 70}}>
-
+      {/* ScrollView Starts here, wraps around everything */}
+      <ScrollView>
       {/* Top */}
         <View style={styles.Top}>
           <Text style={Texts.SecHead}>Visitors</Text>
@@ -46,11 +41,9 @@ function Visitors(props){
           <Text style={Texts.HeadL}>Unit {UnitNum}
           </Text>
           <Text style={Texts.BodyLight}>Estimated spots left: {SpotCount}</Text>
-          {/* ScrollView */}
-          <ScrollView>
 
       <View style={{height:"100%", paddingTop:20}}>
-          {/* UnitVisitors.js moved in here*/}
+          {/* UnitVisitors.js*/}
             <View style={styles.activeBox} >
               <Text style={styles.visitorName}>{currentVisitor1}</Text>
               <Text style={styles.plateText}>{currentVisitorPlate}</Text>
@@ -66,26 +59,19 @@ function Visitors(props){
               <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove')}}>
               <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
               </TouchableOpacity>
+
           </View>
+          
           {/* Empty card */}
          <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor')}}>
                 <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
                 <Text style={Texts.BodyLight}>Add Visitor</Text>
          </TouchableOpacity> 
       </View>
-      </ScrollView>
-
-
     </View>
-
- 
-        
-   
+    </ScrollView>
     </View>
-    
-    
   )
 }
-
 
 export default Visitors;
