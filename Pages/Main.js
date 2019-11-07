@@ -4,9 +4,10 @@ import {View, Text} from 'react-native';
 import styles from '../styles/MainStyles';
 import Tenant from './Tenant';
 import Login from '../comps/Login';
-import History from '../comps/Tenant/History';
-import Report from '../comps/Tenant/Report';
-import Popup from '../comps/Popup/Popup';
+import Popup from './Popup/Popup';
+import Manager from './Manager';
+
+
 
 
 function Main(){
@@ -14,12 +15,30 @@ function Main(){
     // Call showPop('YourPopupTitle') in your button to show the corresponding Popup.
     // Example: Your Popup title is 'Add Visitor', call showPop('AddVisitor') in your onPress.
     // !! IMPORTANT !! To close Popup, call showPop('').
-    const [pop, showPop] = useState('AddVisitor'); 
+
+    const [pop, showPop] = useState(''); 
+    const [showpage, setShowpage] = useState('Login');
     var mpopup = null;
-    var page = <Tenant 
+    var page = null;
+    
+    // Conditions to show {page}
+    if(showpage == 'Login'){
+        page = <Login showpage={showpage} setShowpage={setShowpage} />;
+    }
+    if(showpage == 'Tenant'){
+        page = <Tenant 
                  pop = {pop} 
                  showPop = {showPop}
                 />;
+    }
+    if(showpage == 'Manager'){
+        page = <Manager 
+                 pop = {pop} 
+                 showPop = {showPop}
+                />;
+    }
+
+
     // Conditions to show Popup
     if (pop == ''){
        mpopup = null;
@@ -30,15 +49,13 @@ function Main(){
                 />;
             }
     
+
+
+
     // UI
-
-
-    var page = <Tenant />
-
 return (
-        <View style={{height: "100%"}}>
+        <View style={styles.container}>
            {mpopup} 
-
            {page}
         </View>
     )

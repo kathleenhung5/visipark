@@ -4,7 +4,8 @@ import {Colors} from '../Colors';
 var styles = StyleSheet.create({
     container:{
         flex:1,
-        width:"100%"
+        width:"100%",
+        
     },
     tabbar:{
         position:'absolute',
