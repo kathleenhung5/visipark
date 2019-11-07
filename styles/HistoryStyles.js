@@ -7,7 +7,9 @@ var styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         width:"100%",
-        height: "90%"
+        //height: "90%"
+        flex: 1,
+        marginBottom: 70
 
     },    
     SectionStyle:{
@@ -19,7 +21,8 @@ var styles = StyleSheet.create({
         borderColor:Colors.Purple,
         height: 45,
         borderRadius: 25 ,
-        margin: 10
+        marginTop: 10,
+        marginBottom: 10
     },
     ImageStyle: {
         paddingRight: 30,
@@ -42,12 +45,13 @@ var styles = StyleSheet.create({
         paddingTop:20,
         paddingBottom:20,
         shadowColor: Colors.Purple,
-        shadowOffset: {width: 0, height: 2},
+        shadowOffset: {width: 0, height: 0},
         shadowOpacity: 0.13,
         borderRadius: 23,
         marginTop: 10,
         flexDirection: 'row',
-        justifyContent:"space-around"
+        justifyContent:"space-between"
+        //justifyContent:"flex-start"
     },
     pinImg:{
         width:23,
@@ -62,16 +66,30 @@ var styles = StyleSheet.create({
         borderWidth:2,
         borderRadius:25,
         borderColor: Colors.Purple,
-        width: "45%",
+        //width: "45%",
         height: 40,
         marginLeft: 10,
         alignItems: 'center',
-        justifyContent:"center"
+        justifyContent:"center",
+        paddingLeft: 15,
+        paddingRight: 15,
+        // alignSelf: 'flex-end'
         
     },
     List:{
-        
        
+       //borderWidth:1,
+       position:"absolute",
+       width: "60%",
+       marginLeft: 70,
+       marginTop: 18,
+
+      
+
+
+    },
+    name:{
+       // backgroundColor: "#fab"
     }
 
 

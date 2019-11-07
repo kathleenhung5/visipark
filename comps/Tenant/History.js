@@ -8,7 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const data = [
   {name:"Dora", plate:"Wowho"},
-  {name:"Kathleen", plate:"Haha"},
+  {name:"Kathleen balb alba ", plate:"Haha"},
   {name:"Elias", plate:"Yoyo"},
   {name:"Nicole", plate:"Diedie"},
   {name:"Loki", plate:"Meow"}
@@ -18,23 +18,30 @@ const data = [
 export default class History extends React.Component{
   constructor(props){
     super(props);
+  
     this.state = {
       isLoading: false, 
       searchKey:'',
-      greyPin: require('../../img/pin-grey.png'),    
-     
-    }
+      showPin: true
+    };
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+
   }
 
-  Load_New_Image=()=>{
+  // Load_New_Image=()=>{
  
-    this.setState({
+  //   this.setState({
  
-      purpPin : require('../../img/pin-purp.png')
+  //     purpPin : require('../../img/pin-purp.png')
  
-    })
+  //   })
+  // }
+  
+  handleToggleClick() {
+    this.setState(state => ({
+      showPin: !state.showPin
+    }));
   }
-
   
   render(){
         {/*  Searchfunction */}
@@ -78,23 +85,22 @@ export default class History extends React.Component{
         return (
        
         <View style={styles.card}>
-        <TouchableOpacity onPress={this.Load_New_Image}>
+        <TouchableOpacity onPress={this.handleToggleClick}>
           
           <Image
-            source={this.state.greyPin }
-            style={styles.pinImg}
+            source={this.state.showPin ? require('../../img/pin-grey.png') : require('../../img/pin-purp.png')}            style={styles.pinImg}
             /> 
             
           
         </TouchableOpacity>
-        <View>
-        <Text style={Texts.BodyBold}>{item.name}</Text>
-        <Text style={Texts.BodyLight}>{item.plate}</Text>
+        <View style={styles.List}>
+           <Text style={[Texts.BodyBold, styles.name]}>{item.name}</Text>
+           <Text style={Texts.BodyLight}>{item.plate}</Text>
         </View>
         
 
         <TouchableOpacity style={styles.visiBtn}>
-          <Text style={Texts.Link}>Revisit</Text>
+          <Text style={[Texts.BodyBold,{color: Colors.Purple}]}>Revisit</Text>
         </TouchableOpacity>
         
 
