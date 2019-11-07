@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput, Picker, Image} from 'react-native';
 import Texts from '../../styles/Texts';
 import styles from './PopupStyles';
@@ -9,11 +9,11 @@ function Popup(props){
   var title = '';
   var content = null;
   var btnTxt = '';
-  
-  console.log('test in Popup.js');
-  console.log(props.pop);
+  const [strk1, setStrk1] = useState(0);
+  const [strk2, setStrk2] = useState(0);
   
   // Conditions for deciding what to show in popup 
+  // ---- Visitor Parking Policy ----
   if (props.pop == 'VisitorParkingPolicy'){
     title = 'Visitor Parking Policy';
     btnTxt = 'Okay';
@@ -28,33 +28,36 @@ function Popup(props){
       </View>
     );
   }
-
-
-  // variable for picker in Add Visitor Form
+// ---- Add Visitor ----
   var addhr = [];
   for(var i=1;i<=24;i++){
-    addhr.push(<Picker.Item lable={i.toString()} value={i} />);
+    addhr.push(
+    <Picker.Item key={i} label={i.toString()} value={i} />
+    );
   }
-  console.log(addhr);
   if (props.pop == 'AddVisitor'){
     title = 'Add Visitor';
     btnTxt = 'Add';
     content = (
       <View>
-        {/* close button */}
         <Text style={Texts.Body}>Visitor's name:</Text>
         <TextInput 
           placeholder = "Name"
-          style={[styles.input,Texts.FormText]}
+          style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
           clearButtonMode = 'always'
-          maxLength = {40}/>
+          maxLength = {40}
+          onFocus = {()=>{setStrk1(2)}}
+          onBlur = {()=>{setStrk1(0)}}
+          />
         <Text style={Texts.Body}>Visitor's plate number:</Text>
         <TextInput 
           placeholder = "Plate number"
-          style={[styles.input,Texts.FormText]}
+          style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
           maxLength = {7}
           autoCapitalize = "characters"
+          onFocus = {()=>{setStrk2(2)}}
+          onBlur = {()=>{setStrk2(0)}}
           />
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
 
@@ -64,10 +67,7 @@ function Popup(props){
             selectedValue = {2}
             itemStyle={{height:90}}
           >
-            {/* {addhr} */}
-            <Picker.Item label='1' value={1} />
-            <Picker.Item label='2' value={2} />
-            <Picker.Item label='3' value={3} />
+            {addhr}
           </Picker>
           <Text style={Texts.Body}>hr</Text>
         </View>
@@ -76,6 +76,13 @@ function Popup(props){
     );
   }
 
+  // ---- Extend Parking ----
+  var exthr = [];
+  for(var i=1;i<=24;i++){
+    exthr.push(
+    <Picker.Item key={i} label={i.toString()} value={i} />
+    );
+  }
   if (props.pop == 'ExtendParking'){
     title = 'Extend Parking';
     btnTxt = 'Extend';
@@ -90,10 +97,7 @@ function Popup(props){
             selectedValue = {2}
             itemStyle={{height:90}}
           >
-            {/* {addhr} */}
-            <Picker.Item label='1' value={1} />
-            <Picker.Item label='2' value={2} />
-            <Picker.Item label='3' value={3} />
+            {exthr}
           </Picker>
           <Text style={Texts.Body}>hr</Text>
         </View>
@@ -101,32 +105,36 @@ function Popup(props){
     );
   }
 
+  // ---- Remove ----
   if (props.pop == 'Remove'){
     title = 'Remove';
     btnTxt = 'Yes';
     content = (
       <View>
-        <Text style={Texts.Body}>Are you sure you want to remove this visitor?</Text>
+        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove this visitor?</Text>
       </View>
     );
   }
 
+
+  //----- Removed Successfully ----
   if (props.pop == 'RemovedSuccessfully'){
     title = 'Removed Successfully';
     btnTxt = 'Okay';
     content = (
       <View>
-        <Text style={Texts.Body}>You have removed this visitor successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed this visitor successfully!</Text>
       </View>
     );
   }
 
+  // ---- Reported Successfully ----
   if(props.pop == 'ReportedSuccessfully'){
     title = 'Reported Successfully';
     btnTxt = 'Okay';
     content = (
       <View>
-        <Text style={Texts.Body}>Thank you! You've reported successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>Thank you! You've reported successfully!</Text>
       </View>
     );
   }
