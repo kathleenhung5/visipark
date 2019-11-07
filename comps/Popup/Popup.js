@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput, Picker, Image} from 'react-native';
 import Texts from '../../styles/Texts';
 import styles from './PopupStyles';
@@ -9,6 +9,8 @@ function Popup(props){
   var title = '';
   var content = null;
   var btnTxt = '';
+  const [strk1, setStrk1] = useState(0);
+  const [strk2, setStrk2] = useState(0);
   
   // Conditions for deciding what to show in popup 
   // ---- Visitor Parking Policy ----
@@ -41,16 +43,21 @@ function Popup(props){
         <Text style={Texts.Body}>Visitor's name:</Text>
         <TextInput 
           placeholder = "Name"
-          style={[styles.input,Texts.FormText]}
+          style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
           clearButtonMode = 'always'
-          maxLength = {40}/>
+          maxLength = {40}
+          onFocus = {()=>{setStrk1(2)}}
+          onBlur = {()=>{setStrk1(0)}}
+          />
         <Text style={Texts.Body}>Visitor's plate number:</Text>
         <TextInput 
           placeholder = "Plate number"
-          style={[styles.input,Texts.FormText]}
+          style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
           maxLength = {7}
           autoCapitalize = "characters"
+          onFocus = {()=>{setStrk2(2)}}
+          onBlur = {()=>{setStrk2(0)}}
           />
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
 
@@ -104,28 +111,30 @@ function Popup(props){
     btnTxt = 'Yes';
     content = (
       <View>
-        <Text style={Texts.Body}>Are you sure you want to remove this visitor?</Text>
+        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove this visitor?</Text>
       </View>
     );
   }
 
+
+  //----- Removed Successfully ----
   if (props.pop == 'RemovedSuccessfully'){
     title = 'Removed Successfully';
     btnTxt = 'Okay';
     content = (
       <View>
-        <Text style={Texts.Body}>You have removed this visitor successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed this visitor successfully!</Text>
       </View>
     );
   }
 
-  // ---- Remove Successfully ----
+  // ---- Reported Successfully ----
   if(props.pop == 'ReportedSuccessfully'){
     title = 'Reported Successfully';
     btnTxt = 'Okay';
     content = (
       <View>
-        <Text style={Texts.Body}>Thank you! You've reported successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>Thank you! You've reported successfully!</Text>
       </View>
     );
   }

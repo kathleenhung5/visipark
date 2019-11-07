@@ -14,7 +14,7 @@ function Main(){
     // Call showPop('YourPopupTitle') in your button to show the corresponding Popup.
     // Example: Your Popup title is 'Add Visitor', call showPop('AddVisitor') in your onPress.
     // !! IMPORTANT !! To close Popup, call showPop('').
-    const [pop, showPop] = useState('ExtendParking'); 
+    const [pop, showPop] = useState('ReportedSuccessfully'); 
     var mpopup = null;
     var page = <Tenant 
                  pop = {pop} 

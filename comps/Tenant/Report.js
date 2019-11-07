@@ -1,4 +1,4 @@
-import React,{Component}from 'react';
+import React,{useState}from 'react';
 import {View, Text,TouchableOpacity,TextInput,Button} from 'react-native';
 import Texts from '../../styles/Texts';
 import styles from '../../styles/ReportStyles';
@@ -9,6 +9,8 @@ import styles from '../../styles/ReportStyles';
 function Report(props){
 const[Svalue,onChangesText] = React.useState('');
 const[value,onChangeText] = React.useState('');
+const [strk1, setStrk1] = useState(0);
+const [strk2, setStrk2] = useState(0);
 //I'm commenting this out. Cause I'll build popup function. -Kathleen. 
 
 //const[showPopus,setPopus] = React.useState(false);
@@ -44,8 +46,9 @@ const[value,onChangeText] = React.useState('');
         {/* Subject textInput */}
         <Text style={Texts.Body}>Subject:</Text>
         <TextInput
-          style={[styles.input,Texts.FormText]}
-          //style={[styles.input,Texts.FormText,{borderWidth:isFocused()?2:0}]}
+          style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
+          onFocus = {()=>{setStrk1(2)}}
+          onBlur = {()=>{setStrk1(0)}}
           onChangeText={text => onChangesText(text)}
           value={Svalue}
           clearButtonMode = 'always'
@@ -55,7 +58,9 @@ const[value,onChangeText] = React.useState('');
         {/* Message textInput */}
           <Text style={Texts.Body}>Message:</Text>
         <TextInput
-          style={[styles.input,Texts.FormText,{height: 100}]}
+          style={[styles.input,Texts.FormText,{height: 100,borderWidth: strk2}]}
+          onFocus = {()=>{setStrk2(2)}}
+          onBlur = {()=>{setStrk2(0)}}
           onChangeText={text => onChangeText(text)}
           value={value}
           multiline = {true}
