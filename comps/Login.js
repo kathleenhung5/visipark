@@ -13,13 +13,16 @@ function Login(props){
   var TenantPage = null;
   if (showTenantPage === true){
     TenantPage=(<Tform showpage={props.showpage} setShowpage={props.setShowpage}/>);
+  } else {
+    TenantPage = null;
   }
   var BMPage = null;
   if (showBMPage === true){
     BMPage=(<BMform showpage={props.showpage} setShowpage={props.setShowpage}/>);
+  } else {
+    BMPage = null;
   }
 
-//  Kathleen: I added this variable 
   var Title = '';
   if(showBMPage){
     Title = 'Manager Password:';
@@ -44,16 +47,16 @@ function Login(props){
       <View style={styles.Bottom}>
         {/* Title */}
         <View style={styles.title}>
-             {/* Back button */}
+            {/* Back button */}
             {(showBMPage||showTenantPage)?<TouchableOpacity 
               style = {styles.arrow}
-              onPress = {()=>{showBMPage(false);showTenantPage(false)}}>
+              onPress = {()=>{setShowBMPage(false);setShowTenantPage(false)}}>
               <Image 
                     style = {{width: 30}}
                     resizeMode = "contain"
                     source = {require('../img/arrow-white.png')}
               />  
-            </TouchableOpacity>:null  }
+            </TouchableOpacity>:null}
             <Text style={[styles.LoginText,{marginBottom:showBMPage||showTenantPage?0:10}]}>{Title}</Text>
         </View>
         {/* Two forms. hide and show */}
