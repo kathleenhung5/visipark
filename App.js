@@ -15,8 +15,8 @@ import {
   Text,
 } from 'react-native';
 
-import styles from './styles/AppStyles';
-import Main from './comps/Main';
+import styles from './styles/PagesStyles/AppStyles';
+import Main from './Pages/Main';
 
 function App(){
   return(

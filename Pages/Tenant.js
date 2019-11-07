@@ -1,10 +1,10 @@
 import React,{useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import Visitors from './Visitors';
-import History from './History';
-import Report from './Report';
+import Visitors from '../comps/Tenant/Visitors';
+import History from '../comps/Tenant/History';
+import Report from '../comps/Tenant/Report';
 import styles from '../../styles/TenantStyles';
-import {Colors} from '../../styles/Colors';
+import {Colors} from '../styles/Colors';
 
 
 

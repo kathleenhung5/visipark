@@ -2,9 +2,11 @@
 import React,{useState} from 'react';
 import {View, Text} from 'react-native';
 import styles from '../styles/MainStyles';
-import Tenant from './Tenant/Tenant';
+import Tenant from './Tenant';
 import Login from '../comps/Login';
 import Popup from './Popup/Popup';
+import Manager from './Manager';
+
 
 
 
