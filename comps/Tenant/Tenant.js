@@ -8,6 +8,7 @@ import {Colors} from '../../styles/Colors';
 
 
 
+
 function Tenant(props){
   const [cont, setCont] = useState('Report');
 
@@ -21,7 +22,8 @@ function Tenant(props){
 
 // conditions updating Content and tabbar
   if(cont == 'Visitors'){
-    Content = <Visitors />
+    Content = <Visitors pop={props.pop} showPop={props.showPop}/>
+    
     visitorimg = require('../../img/ppl-purp.png');
     historyimg = require('../../img/history-grey.png');
     reportimg = require('../../img/report-grey.png');
@@ -70,6 +72,7 @@ function Tenant(props){
               resizeMode = 'contain'
             />
             <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}>History</Text>
+
           </TouchableOpacity>
 
           <TouchableOpacity 
