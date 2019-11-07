@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet,TouchableOpacity, TextInput} from 'react-native';
-import styles from '../styles/LoginStyles';
+import styles from '../../styles/PagesStyles/LoginStyles';
 
 function BMform(){
 

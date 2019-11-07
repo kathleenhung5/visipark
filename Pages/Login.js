@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import styles from '../styles/LoginStyles';
-import Tform from './Tform';
-import BMform from './BMform';
+import styles from '../styles/PagesStyles/LoginStyles';
+import Tform from '../comps/Tenant/Tform';
+import BMform from '../comps/Manager/BMform';
 
 
 
