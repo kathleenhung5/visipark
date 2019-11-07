@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
-import styles from '../../styles/VisitorStyles';
+import styles from '../../styles/CompsStyles/VisitorStyles';
 
 function Visitors(props){
 

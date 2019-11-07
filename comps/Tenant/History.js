@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Image, TouchableOpacity,FlatList, StyleSheet, ActivityIndicator } from 'react-native';
+import {View, Text, TextInput, Image, TouchableOpacity,FlatList, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
-import styles from '../../styles/HistoryStyles';
-import { ScrollView } from 'react-native-gesture-handler';
+import styles from '../../styles/CompsStyles/HistoryStyles';
 
 
 const data = [
   {name:"Dora", plate:"Wowho"},
-  {name:"Kathleen balb alba ", plate:"Haha"},
+  {name:"Kathleen", plate:"Haha"},
   {name:"Elias", plate:"Yoyo"},
   {name:"Nicole", plate:"Diedie"},
   {name:"Loki", plate:"Meow"}
