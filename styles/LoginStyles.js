@@ -32,6 +32,9 @@ var styles = StyleSheet.create({
       justifyContent:"center",
       alignItems:"center"
     },
+    title: {
+      flexDirection: 'row'
+    },
     LoginText: {
       fontFamily:"Poppins-SemiBold",
       color: "white",
@@ -91,11 +94,13 @@ var styles = StyleSheet.create({
       borderRadius: 25,
       width:'90%',
       height: 45
+    },
+    arrow:{
+      justifyContent:'center',
+      height: 25, 
+      marginRight: 20 
+      
     }
-
-
-
-
 
 });
 

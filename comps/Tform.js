@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet,TouchableOpacity, TextInput} from 'react-native';
 import styles from '../styles/LoginStyles';
 
-function Tform(){
+function Tform(props){
 
 
   return(
@@ -17,7 +17,7 @@ function Tform(){
       />
       <TouchableOpacity
         style={styles.Tform}
-        onPress={()=>{alert('You can login as T')}}>
+        onPress={()=>{props.setShowpage('Tenant')}}>
         <Text style={styles.TenantText}>
         Login as Tenant
         </Text>

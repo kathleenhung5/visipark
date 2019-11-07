@@ -1,22 +1,22 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from '../styles/LoginStyles';
 import Tform from './Tform';
 import BMform from './BMform';
 
 
 
-function Login(){
+function Login(props){
   const [showTenantPage, setShowTenantPage] = useState(false);
   const [showBMPage, setShowBMPage] = useState(false);
 
   var TenantPage = null;
   if (showTenantPage === true){
-    TenantPage=(<Tform />);
+    TenantPage=(<Tform showpage={props.showpage} setShowpage={props.setShowpage}/>);
   }
   var BMPage = null;
   if (showBMPage === true){
-    BMPage=(<BMform/>);
+    BMPage=(<BMform showpage={props.showpage} setShowpage={props.setShowpage}/>);
   }
 
 //  Kathleen: I added this variable 
@@ -31,8 +31,6 @@ function Login(){
 
   return(
     <View style={styles.container}>
-
-
       {/* Logo */}
       <View   style={styles.Top}>
         <Image source={require('../img/Logo.png')}
@@ -44,20 +42,20 @@ function Login(){
 
       {/* Bottom Part */}
       <View style={styles.Bottom}>
-        
-        {/* <Text style={[styles.LoginText,{display:showBMPage ? "none" : "flex"}]}>
-        {showTenantPage ? "apartment unit" : "Login as"}
-        </Text>
-        <Text style={[styles.LoginText,{display:showTenantPage ? "none" : ""}]}>
-        {showBMPage ? "manager password" : " "}
-        </Text> */}
-        {/* KATHLEEN: what you had is causing the position of your bottom to move slightly when the user clicks on either of the button. Because still have two <Text>, you're just hiding them but the second one is still there. I put a variable here instead so that it'll only take up one space */}
-        {/* KATHLEEN: So I added this here */}
-
         {/* Title */}
-        {/* I had to add margin here to balance out the Margin */}
-        <Text style={[styles.LoginText,{marginBottom:showBMPage||showTenantPage?0:10}]}>{Title}</Text>
-
+        <View style={styles.title}>
+             {/* Back button */}
+            {(showBMPage||showTenantPage)?<TouchableOpacity 
+              style = {styles.arrow}
+              onPress = {()=>{showBMPage(false);showTenantPage(false)}}>
+              <Image 
+                    style = {{width: 30}}
+                    resizeMode = "contain"
+                    source = {require('../img/arrow-white.png')}
+              />  
+            </TouchableOpacity>:null  }
+            <Text style={[styles.LoginText,{marginBottom:showBMPage||showTenantPage?0:10}]}>{Title}</Text>
+        </View>
         {/* Two forms. hide and show */}
         {TenantPage}
         {BMPage}
