@@ -38,7 +38,7 @@ var styles = StyleSheet.create({
     input:{
         width:"100%",
         height: 45,
-        padding: 15,
+        paddingLeft: 15,
         backgroundColor: Colors.Lightgrey,
         borderRadius: 25,
         marginTop: 10,
