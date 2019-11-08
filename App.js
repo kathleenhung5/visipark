@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import React,{useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,13 +17,16 @@ import {
 
 import styles from './styles/PagesStyles/AppStyles';
 import Main from './Pages/Main';
+import {Colors} from './styles/Colors';
 
 function App(){
+  const [safebg, setSafebg] = useState(true)
   return(
-    <View style={styles.container}>
-        <Main/>
-    </View>
+    <SafeAreaView style={[styles.container,{backgroundColor:(safebg)?"#fff":Colors.Purple}]}>
+        <Main safebg={safebg} setSafebg={setSafebg}/>
+    </SafeAreaView>
   )
 }
 
 export default App;
+//export default from './storybook';

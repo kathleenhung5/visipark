@@ -10,12 +10,12 @@ var styles = StyleSheet.create({
         height: "100%",
         backgroundColor: 'rgba(0,0,0,0.3)',
         zIndex: 1,
-        padding: 20
+        padding: 20,
+        justifyContent: "center"
     },
     poparea:{
         width: "100%",
         padding: 30,
-        marginTop: 30,
         borderRadius: 23,
         backgroundColor: "#fff",
         shadowColor: "#000",
@@ -38,7 +38,8 @@ var styles = StyleSheet.create({
     input:{
         width:"100%",
         height: 45,
-        padding: 15,
+        paddingLeft: 15,
+        paddingRight: 15,
         backgroundColor: Colors.Lightgrey,
         borderRadius: 25,
         marginTop: 10,
