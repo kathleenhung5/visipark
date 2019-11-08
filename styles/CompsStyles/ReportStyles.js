@@ -5,7 +5,8 @@ var styles = StyleSheet.create({
     container:{
         paddingLeft: 20,
         paddingRight: 20,
-        paddingTop: 60
+        paddingTop: 60,
+        marginBottom: 70
     },
     card:{
         backgroundColor: '#fff',
@@ -14,7 +15,8 @@ var styles = StyleSheet.create({
         shadowOffset: {width: 0, height: 0},
         shadowOpacity: 0.13,
         borderRadius: 23,
-        marginTop: 30
+        marginTop: 40,
+      
     },
     title:{
         alignItems:'center'
@@ -22,7 +24,8 @@ var styles = StyleSheet.create({
     input:{
         width:"100%",
         height: 45,
-        padding: 15,
+        paddingLeft: 15,
+        paddingRight: 15,
         backgroundColor: Colors.Lightgrey,
         borderRadius: 25,
         marginTop: 10,
