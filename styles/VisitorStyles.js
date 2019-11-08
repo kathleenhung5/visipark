@@ -39,7 +39,7 @@ var styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
 
-        height: 200,
+        height: 180,
         borderRadius: 23,
         backgroundColor: "#fafafa",
         borderStyle: "dashed",
@@ -55,14 +55,14 @@ var styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
 
-        height: 200,
+        height: 180,
         borderRadius: 23,
         backgroundColor: "#fafafa",
         borderColor: "#CAB2E8",
         borderWidth: .2,
     },
     Img:{
-        width: "25%",
+        width: 60,
         height: "55%",
         justifyContent: "center",
         alignItems: "center"
@@ -91,7 +91,8 @@ var styles = StyleSheet.create({
         fontFamily:'Poppins-SemiBold',
         fontSize:20,
         color: Colors.Black,
-        letterSpacing: 1
+        letterSpacing: 1,
+
     },
     visitorName: {
         position: "absolute",
@@ -126,8 +127,8 @@ var styles = StyleSheet.create({
         backgroundColor: Colors.Purple,
         borderRadius: 23,
         height: 45,
-        //height: "30%",
-        width: "36%",
+        //height: "30%"
+        width: "38%",
         justifyContent:'center',
         alignItems:'center',
         position: "absolute",
@@ -140,7 +141,7 @@ var styles = StyleSheet.create({
         left:30,
         height: 45,
         //height: "30%",
-        width: "36%",
+        width: "38%",
         backgroundColor: Colors.Lightgrey,
         borderWidth: 2,
         justifyContent:'center',
