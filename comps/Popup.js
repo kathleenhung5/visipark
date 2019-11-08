@@ -1,5 +1,15 @@
 import React,{useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput, Picker, Image} from 'react-native';
+import {
+  View, 
+  Text, 
+  TouchableOpacity, 
+  TextInput, 
+  Picker, 
+  Image, 
+  TouchableWithoutFeedback,
+  Keyboard, 
+  KeyboardAvoidingView
+} from 'react-native';
 import Texts from '../styles/Texts';
 import styles from '../styles/CompsStyles/PopupStyles';
 
@@ -35,6 +45,9 @@ function Popup(props){
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
+  const [addvisiName, setAddvisiName] = useState('');
+  const [addvisiPlate, setAddvisiPlate] = useState('');
+  const [addvisiDur, setAddvisiDur] = useState(2);
   if (props.pop == 'AddVisitor'){
     title = 'Add Visitor';
     btnTxt = 'Add';
@@ -48,6 +61,7 @@ function Popup(props){
           maxLength = {40}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
+          onChangeText = {(txt)=>{setAddvisiName(txt)}}
           />
         <Text style={Texts.Body}>Visitor's plate number:</Text>
         <TextInput 
@@ -58,14 +72,16 @@ function Popup(props){
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
+          onChangeText = {(txt)=>{setAddvisiPlate(txt)}}
           />
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
 
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
             style={{width: 130, marginRight: 20}}
-            selectedValue = {2}
+            selectedValue = {addvisiDur}
             itemStyle={{height:90}}
+            onValueChange = {(val, ind)=>{setAddvisiDur(val)}}
           >
             {addhr}
           </Picker>
@@ -78,24 +94,26 @@ function Popup(props){
 
   // ---- Extend Parking ----
   var exthr = [];
-  for(var i=1;i<=24;i++){
+  for(var i=1;i<=(24-addvisiDur);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
+  const [extendhr, setExtendhr] = useState(2);
   if (props.pop == 'ExtendParking'){
     title = 'Extend Parking';
     btnTxt = 'Extend';
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
-        <Text style={Texts.Body}>You've registered: __hr</Text>
+        <Text style={Texts.Body}>You've registered: {addvisiDur}hr</Text>
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
             style={{width: 130, marginRight: 20}}
-            selectedValue = {2}
+            selectedValue = {extendhr}
             itemStyle={{height:90}}
+            onValueChange = {(val,ind)=>{setExtendhr(val)}}
           >
             {exthr}
           </Picker>
@@ -111,7 +129,7 @@ function Popup(props){
     btnTxt = 'Yes';
     content = (
       <View>
-        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove this visitor?</Text>
+        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove {addvisiName}?</Text>
       </View>
     );
   }
@@ -123,7 +141,7 @@ function Popup(props){
     btnTxt = 'Okay';
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed this visitor successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {addvisiName} successfully!</Text>
       </View>
     );
   }
@@ -134,16 +152,21 @@ function Popup(props){
     btnTxt = 'Okay';
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>Thank you! You've reported successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>Thank you! You reported successfully!</Text>
       </View>
     );
   }
 
   return(
     // This is dark background
-    <View style={styles.bg}>
+  <View style={styles.bg}>
+
       {/* This is popup area */}
-      <View style={styles.poparea}>
+    <KeyboardAvoidingView 
+        behavior = "position"
+        >
+      <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
+        <View style={styles.poparea}>
         {/* Close Button */}
           <TouchableOpacity 
             onPress = {()=>{props.showPop('')}}
@@ -168,8 +191,10 @@ function Popup(props){
           >
             <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
           </TouchableOpacity>
-      </View>
-    </View>
+          </View>
+        </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  </View>
   )
 }
 

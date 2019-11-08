@@ -1,11 +1,12 @@
-
 import {StyleSheet} from 'react-native';
 import {Colors} from '../Colors';
+import Texts from '../Texts'
 
 var styles = StyleSheet.create({
     container:{
-        flex:1, 
-    }
+        
+    },
+    
 });
 
 export default styles;
