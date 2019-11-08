@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet,TouchableOpacity, TextInput} from 'react-native';
 import styles from '../../styles/PagesStyles/LoginStyles';
 
-function BMform(){
+function BMform(props){
 
   return(
 
@@ -14,7 +14,7 @@ function BMform(){
       />
       <TouchableOpacity
         style={styles.BMForm }
-        onPress={()=>{alert('You can login as BM');}}>
+        onPress={()=>{props.setShowpage('Manager')}}>
         <Text style={styles.TenantText}>
         Login as Manager
         </Text>

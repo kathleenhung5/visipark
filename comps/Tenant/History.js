@@ -61,12 +61,13 @@ export default class History extends React.Component{
         <View style={styles.SectionStyle}>
           <TextInput 
             placeholder="search"
-            style={styles.searchBar}
+            style={[styles.searchBar,Texts.FormText]}
             onChangeText={(value)=>this.setState({searchKey : value})}
             
           />
           <Image 
           source={require('../../img/search-grey.png')}
+          resizeMode = "contain"
           style={styles.ImageStyle}
           />  
         </View>       
