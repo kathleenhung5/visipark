@@ -20,9 +20,9 @@ import Main from './Pages/Main';
 
 function App(){
   return(
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
         <Main/>
-    </View>
+    </SafeAreaView>
   )
 }
 

@@ -1,5 +1,15 @@
 import React,{useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput, Picker, Image} from 'react-native';
+import {
+  View, 
+  Text, 
+  TouchableOpacity, 
+  TextInput, 
+  Picker, 
+  Image, 
+  TouchableWithoutFeedback,
+  Keyboard, 
+  KeyboardAvoidingView
+} from 'react-native';
 import Texts from '../styles/Texts';
 import styles from '../styles/CompsStyles/PopupStyles';
 
@@ -149,9 +159,14 @@ function Popup(props){
 
   return(
     // This is dark background
-    <View style={styles.bg}>
+  <View style={styles.bg}>
+
       {/* This is popup area */}
-      <View style={styles.poparea}>
+    <KeyboardAvoidingView 
+        behavior = "position"
+        >
+      <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
+        <View style={styles.poparea}>
         {/* Close Button */}
           <TouchableOpacity 
             onPress = {()=>{props.showPop('')}}
@@ -176,8 +191,10 @@ function Popup(props){
           >
             <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
           </TouchableOpacity>
-      </View>
-    </View>
+          </View>
+        </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  </View>
   )
 }
 

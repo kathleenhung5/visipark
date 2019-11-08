@@ -21,14 +21,14 @@ var styles = StyleSheet.create({
         borderColor:Colors.Purple,
         height: 45,
         borderRadius: 25 ,
-        marginTop: 10,
-        marginBottom: 10
+        marginTop: 40,
+        marginBottom: 20
     },
     ImageStyle: {
         paddingRight: 30,
         margin: 10,
-        height: 36,
-        width: 32,
+        //height: 36,
+        width: 28,
        // alignSelf: 'flex-end',
         
     },
