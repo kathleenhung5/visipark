@@ -4,9 +4,14 @@ import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 import styles from '../../styles/CompsStyles/TenantStyles';
 
-function Tenants(){
+function Tenants(props){
     return(
-        <View></View>
+        <View style={{flex:1}}>
+            <View>
+                <Text>Tenants</Text>
+                <Text></Text>
+            </View>
+        </View>
     )
 }
 
