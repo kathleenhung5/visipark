@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput, Picker, Image} from 'react-native';
-import Texts from '../../styles/Texts';
-import styles from './PopupStyles';
+import Texts from '../styles/Texts';
+import styles from '../styles/CompsStyles/PopupStyles';
 
 
 function Popup(props){
@@ -150,7 +150,7 @@ function Popup(props){
             style={[styles.closeBut,{display:(props.pop=='AddVisitor'||props.pop=='ExtendParking'||props.pop=='Remove')?'flex':'none'}]} 
           >
               <Image 
-                  source={require('../../img/cross.png')}
+                  source={require('../img/cross.png')}
                   resizeMode = 'contain'
                   style={styles.img}
                 />

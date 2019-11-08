@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Visitors from '../comps/Tenant/Visitors';
 import History from '../comps/Tenant/History';
 import Report from '../comps/Tenant/Report';
-import styles from '../../styles/TenantStyles';
+import styles from '../styles/PagesStyles/TenantStyles';
 import {Colors} from '../styles/Colors';
 
 
@@ -24,21 +24,21 @@ function Tenant(props){
   if(cont == 'Visitors'){
     Content = <Visitors pop={props.pop} showPop={props.showPop}/>
     
-    visitorimg = require('../../img/ppl-purp.png');
-    historyimg = require('../../img/history-grey.png');
-    reportimg = require('../../img/report-grey.png');
+    visitorimg = require('../img/ppl-purp.png');
+    historyimg = require('../img/history-grey.png');
+    reportimg = require('../img/report-grey.png');
   }
   if(cont =='History'){
     Content = <History />
-    visitorimg = require('../../img/ppl-grey.png');
-    historyimg = require('../../img/history-purp.png');
-    reportimg = require('../../img/report-grey.png');
+    visitorimg = require('../img/ppl-grey.png');
+    historyimg = require('../img/history-purp.png');
+    reportimg = require('../img/report-grey.png');
   }
   if(cont == 'Report'){
     Content = <Report pop={props.pop} showPop={props.showPop}/>
-    visitorimg = require('../../img/ppl-grey.png');
-    historyimg = require('../../img/history-grey.png');
-    reportimg = require('../../img/report-purp.png');
+    visitorimg = require('../img/ppl-grey.png');
+    historyimg = require('../img/history-grey.png');
+    reportimg = require('../img/report-purp.png');
   }
 
 

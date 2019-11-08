@@ -1,7 +1,7 @@
 import React,{useState}from 'react';
 import {View, Text,TouchableOpacity,TextInput,Button} from 'react-native';
 import Texts from '../../styles/Texts';
-import styles from '../../styles/ReportStyles';
+import styles from '../../styles/CompsStyles/ReportStyles';
 
 
 

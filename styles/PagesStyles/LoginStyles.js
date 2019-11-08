@@ -66,13 +66,15 @@ var styles = StyleSheet.create({
     TenantBtn: {
       alignItems: 'center',
       justifyContent:"center",
-      backgroundColor: 'white',
+      backgroundColor: '#863AE8',
       borderRadius: 25,
+      borderWidth: 2,
+      borderColor: 'white',
       width:'90%',
       height: 45
     },
     TenantText: {
-      color: "#863AE8",
+      color: "white",
       fontSize:20,
       fontFamily:"Poppins-SemiBold"
 
