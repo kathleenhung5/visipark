@@ -10,7 +10,7 @@ import Manager from '../Pages/Manager';
 
 
 
-function Main(){
+function Main(props){
     // Function for Popup
     // Call showPop('YourPopupTitle') in your button to show the corresponding Popup.
     // Example: Your Popup title is 'Add Visitor', call showPop('AddVisitor') in your onPress.
@@ -24,18 +24,21 @@ function Main(){
     // Conditions to show {page}
     if(showpage == 'Login'){
         page = <Login showpage={showpage} setShowpage={setShowpage} />;
+        props.setSafebg(false);
     }
     if(showpage == 'Tenant'){
         page = <Tenant 
                  pop = {pop} 
                  showPop = {showPop}
                 />;
+        props.setSafebg(true);
     }
     if(showpage == 'Manager'){
         page = <Manager 
                  pop = {pop} 
                  showPop = {showPop}
                 />;
+        props.setSafebg(true);
     }
 
 
