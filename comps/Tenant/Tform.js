@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet,TouchableOpacity, TextInput} from 'react-native';
 import styles from '../../styles/PagesStyles/LoginStyles';
+import {Colors} from '../../styles/Colors';
+import Texts from '../../styles/Texts';
 
 function Tform(props){
 
@@ -18,7 +20,7 @@ function Tform(props){
       <TouchableOpacity
         style={styles.Tform}
         onPress={()=>{props.setShowpage('Tenant')}}>
-        <Text style={styles.TenantText}>
+        <Text style={{color:"#863AE8"}}>
         Login as Tenant
         </Text>
        </TouchableOpacity>
