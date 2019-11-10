@@ -61,7 +61,7 @@ function Popup(props){
           maxLength = {40}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
-          onChangeText = {(txt)=>{setAddvisiName(txt)}}
+          onChangeText = {(addvisiName)=>{setAddvisiName(addvisiName)}}
           />
         <Text style={Texts.Body}>Visitor's plate number:</Text>
         <TextInput 
