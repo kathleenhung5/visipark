@@ -15,6 +15,8 @@ function Visitors(props){
   var currentVisitor1 = "elias";
   var currentVisitor2 = "tayag";
 
+
+
   var currentVisitorPlate1 = "343 I6R"
   var currentVisitorPlate2 = "244 V35"
 
@@ -50,10 +52,10 @@ function Visitors(props){
   if (props.card1 == true){
     cardtop =
               <View style={styles.activeBox} >
-              <Text style={styles.visitorName}>{currentVisitor1}</Text>
-              <Text style={styles.plateText}>{currentVisitorPlate1}</Text>
+              <Text style={styles.visitorName}>{props.name1}</Text>
+              <Text style={styles.plateText}>{props.plate1}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              <Text style={styles.time}>{timeLeft1}</Text>
+              <Text style={styles.time}>{props.dur1}</Text>
               <Text style={styles.timeHr}>hr</Text>
               <Text style={styles.leftText}>left</Text>
 
@@ -80,10 +82,10 @@ function Visitors(props){
   if (props.card2 == true){
     cardbot =
               <View style={styles.activeBox2} >
-              <Text style={styles.visitorName}>{currentVisitor2}</Text>
-              <Text style={styles.plateText}>{currentVisitorPlate2}</Text>
+              <Text style={styles.visitorName}>{props.name2}</Text>
+              <Text style={styles.plateText}>{props.plate2}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              <Text style={styles.time}>{timeLeft2}</Text>
+              <Text style={styles.time}>{props.dur2}</Text>
               <Text style={styles.timeHr}>hr</Text>
               <Text style={styles.leftText}>left</Text>
 

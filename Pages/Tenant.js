@@ -28,7 +28,20 @@ function Tenant(props){
           card1 = {props.card1}
           setCard1 = {props.setCard1}
           card2 = {props.card2}
-          setCard2 = {props.setCard2}/>  
+          setCard2 = {props.setCard2}
+          name1 = {props.name1}
+          setName1 ={props.setName1}
+          name2 = {props.name2}
+          setName2 ={props.setName2}
+          plate1 = {props.plate1}
+          setName1 ={props.setPlate1}
+          plate2 = {props.plate2}
+          setPlate2 ={props.setPlate2}
+          dur1 = {props.dur1}
+          setDur1 ={props.setDur1}
+          dur2 = {props.dur2}
+          setDur2 ={props.setDur2}
+          />  
     visitorimg = require('../img/ppl-purp.png');
     historyimg = require('../img/history-grey.png');
     reportimg = require('../img/report-grey.png');
