@@ -20,6 +20,12 @@ function Main(props){
     const [showpage, setShowpage] = useState('Login');
     var mpopup = null;
     var page = null;
+
+    //--------- Kathleen ----------
+    // I added them here, and pass them in popup and in Tenant
+    // functions to set visitor cards
+    const [card1, setCard1] = useState(false);
+    const [card2, setCard2] = useState(false);
     
     // Conditions to show {page}
     if(showpage == 'Login'){
@@ -30,6 +36,10 @@ function Main(props){
         page = <Tenant 
                  pop = {pop} 
                  showPop = {showPop}
+                 card1 = {card1}
+                 setCard1 = {setCard1}
+                 card2 = {card2}
+                 setCard2 = {setCard2}
                 />;
         props.setSafebg(true);
     }
@@ -49,6 +59,10 @@ function Main(props){
         mpopup = <Popup 
                     pop = {pop} 
                     showPop = {showPop} 
+                    card1 = {card1}
+                    setCard1 = {setCard1}
+                    card2 = {card2}
+                    setCard2 = {setCard2}
                 />;
             }
     

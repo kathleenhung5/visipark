@@ -20,7 +20,7 @@ function Popup(props){
   var title = '';
   var content = null;
   var btnTxt = '';
-  var button = ''
+  var button = null;
   
   const [strk1, setStrk1] = useState(0);
   const [strk2, setStrk2] = useState(0);
@@ -51,9 +51,27 @@ function Popup(props){
   const [addvisiName, setAddvisiName] = useState('');
   const [addvisiPlate, setAddvisiPlate] = useState('');
   const [addvisiDur, setAddvisiDur] = useState(2);
+ 
   if (props.pop == 'AddVisitor'){
     title = 'Add Visitor';
     btnTxt = 'Add';
+      // ------- Kathleen --------- 
+    // this is the button for when I have only one visitor
+    // You will need to add more conditions to change {button} when there's 0, or 1 visitors. 
+    button = (
+    <TouchableOpacity 
+            style={styles.button}
+            // here are the functions called when the button is pressed. 
+            onPress={()=>{
+              // this is for adding ONE visitor
+              props.setCard1(true);
+              props.setCard2(false);
+              // this is for closing the popup
+              props.showPop('');
+            }}>
+            <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+          </TouchableOpacity>
+    )
     content = (
       <View>
         <Text style={Texts.Body}>Visitor's name:</Text>
@@ -90,7 +108,6 @@ function Popup(props){
           </Picker>
           <Text style={Texts.Body}>hr</Text>
         </View>
-
       </View>
     );
   }
@@ -164,55 +181,58 @@ function Popup(props){
 
   
   //Buttons
+  
+  // ------- Kathleen -------
+  // it's nice to have a {button} variable and change the content depending on the popup title. But I think you could also just have this part together with other contents of the popup, so like, up there, because then you won't need to write all these conditions again and also it's easier for other people to read each case with ALL the content together. So yeah, I suggest you just put these in the conditions above this section ;D
 
-  if (btnTxt == 'Extend'){
-    button = (
-      <TouchableOpacity 
-      style = {styles.button}
-      onPress = {()=>{props.showPop('')}}>
-      <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
-    </TouchableOpacity>
-    )
-  }
-  if (btnTxt == 'Yes'){
-    button = (
-      <TouchableOpacity 
-      style = {styles.button}
-      onPress = {()=>{props.showPop('')}}>
-      <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
-    </TouchableOpacity>
-    )
-  }
+  // if (btnTxt == 'Extend'){
+  //   button = (
+  //     <TouchableOpacity 
+  //     style = {styles.button}
+  //     onPress = {()=>{props.showPop('')}}>
+  //     <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+  //   </TouchableOpacity>
+  //   )
+  // }
+  // if (btnTxt == 'Yes'){
+  //   button = (
+  //     <TouchableOpacity 
+  //     style = {styles.button}
+  //     onPress = {()=>{props.showPop('')}}>
+  //     <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+  //   </TouchableOpacity>
+  //   )
+  // }
 
 
 
 
 //make card = true to show the activeCard 
 //how can i: props.setCard2(true)??
-  if (btnTxt == 'Add'){
-    button = (
-      <TouchableOpacity 
-      style = {styles.button}
-      onPress = {()=>{props.showPop('')}}
-      onPressIn = {()=>{console.log('make card 1 or 2 = true')}}>
-      <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
-    </TouchableOpacity>
-    )
-  }
+  // if (btnTxt == 'Add'){
+  //   button = (
+  //     <TouchableOpacity 
+  //     style = {styles.button}
+  //     onPress = {()=>{props.showPop('')}}
+  //     onPressIn = {()=>{console.log('make card 1 or 2 = true')}}>
+  //     <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+  //   </TouchableOpacity>
+  //   )
+  // // }
 
 
 
 
 
-  if (btnTxt == 'Okay'){
-    button = (
-      <TouchableOpacity 
-      style = {styles.button}
-      onPress = {()=>{props.showPop('')}}>
-      <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
-    </TouchableOpacity>
-    )
-  }
+  // if (btnTxt == 'Okay'){
+  //   button = (
+  //     <TouchableOpacity 
+  //     style = {styles.button}
+  //     onPress = {()=>{props.showPop('')}}>
+  //     <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+  //   </TouchableOpacity>
+  //   )
+  // }
  
 
 
@@ -245,7 +265,7 @@ function Popup(props){
           {content}
           {/* Popup Button */}
           {button}
-          </View>
+        </View>
         </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   </View>

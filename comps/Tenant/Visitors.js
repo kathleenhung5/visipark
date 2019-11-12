@@ -21,17 +21,25 @@ function Visitors(props){
   var timeLeft1 = 11;
   var timeLeft2 = 11;
 
+// it's better to name your variable for UI different from the one you're using for useState, it can be confusing
+  var cardtop = null;
+  var cardbot = null;
+
 
   //Visitor functions default states
-  let [card1, setCard1] = useState(false);
-  let [card2, setCard2] = useState(false);
+  // ----------- Kathleen ---------------
+  // I'm moving these two levels up, to Main, so that I can pass them back in here and also into popup to use them in the button onPress. 
+  // And to use them here, I need to write "props" in front of them because they came all the way from main to tenant to here
+
+  // let [card1, setCard1] = useState(false);
+  // let [card2, setCard2] = useState(false);
 
   //Visitor card 1 function
   //default state
 
-  if (card1 == false){
+  if (props.card1 == false){
 
-    card1 =
+    cardtop =
     <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor') }} >
       <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
       <Text style={Texts.BodyLight}>Add Visitor</Text>
@@ -39,8 +47,8 @@ function Visitors(props){
   } 
   
   //if visitor is added state = true 
-  if (card1 == true){
-    card1 =
+  if (props.card1 == true){
+    cardtop =
               <View style={styles.activeBox} >
               <Text style={styles.visitorName}>{currentVisitor1}</Text>
               <Text style={styles.plateText}>{currentVisitorPlate1}</Text>
@@ -61,16 +69,16 @@ function Visitors(props){
   } 
 
   //Visitor card 2 functions (same syntax as visitor 1)
-  if (card2 == false){
-    card2 =
+  if (props.card2 == false){
+    cardbot =
     <TouchableOpacity style={styles.Box2} onPress={() => {props.showPop('AddVisitor') }}>
       <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
       <Text style={Texts.BodyLight}>Add Visitor</Text>
     </TouchableOpacity> 
   } 
 
-  if (card2 == true){
-    card2 =
+  if (props.card2 == true){
+    cardbot =
               <View style={styles.activeBox2} >
               <Text style={styles.visitorName}>{currentVisitor2}</Text>
               <Text style={styles.plateText}>{currentVisitorPlate2}</Text>
@@ -117,8 +125,8 @@ function Visitors(props){
       <View style={{height:"100%", paddingTop:20}}>
         
           {/* Visitor Cards UI*/}
-          {card1}
-          {card2} 
+          {cardtop}
+          {cardbot} 
 
       </View>
     </View>

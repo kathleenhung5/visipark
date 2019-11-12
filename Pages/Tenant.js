@@ -22,8 +22,13 @@ function Tenant(props){
 
 // conditions updating Content and tabbar
   if(cont == 'Visitors'){
-    Content = <Visitors pop={props.pop} showPop={props.showPop}/>
-    
+    Content = <Visitors 
+          pop={props.pop} 
+          showPop={props.showPop}
+          card1 = {props.card1}
+          setCard1 = {props.setCard1}
+          card2 = {props.card2}
+          setCard2 = {props.setCard2}/>  
     visitorimg = require('../img/ppl-purp.png');
     historyimg = require('../img/history-grey.png');
     reportimg = require('../img/report-grey.png');
