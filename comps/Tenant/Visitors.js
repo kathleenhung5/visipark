@@ -6,6 +6,7 @@ import styles from '../../styles/CompsStyles/VisitorStyles';
 
 function Visitors(props){
 
+
   //Database apartment States
   var UnitNum = "201";
   var SpotCount = "5";
@@ -20,12 +21,14 @@ function Visitors(props){
   var timeLeft1 = 11;
   var timeLeft2 = 11;
 
+
   //Visitor functions default states
   let [card1, setCard1] = useState(false);
   let [card2, setCard2] = useState(false);
 
   //Visitor card 1 function
   //default state
+
   if (card1 == false){
 
     card1 =
@@ -83,7 +86,6 @@ function Visitors(props){
               <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove')}}>
               <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
               </TouchableOpacity>
-
           </View> 
   } 
 

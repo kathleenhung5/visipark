@@ -16,9 +16,12 @@ import styles from '../styles/CompsStyles/PopupStyles';
 
 function Popup(props){
   // variables for changing Popup content
+
   var title = '';
   var content = null;
   var btnTxt = '';
+  var button = ''
+  
   const [strk1, setStrk1] = useState(0);
   const [strk2, setStrk2] = useState(0);
   
@@ -61,7 +64,7 @@ function Popup(props){
           maxLength = {40}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
-          onChangeText = {(addvisiName)=>{setAddvisiName(addvisiName)}}
+          onChangeText = {(addvisiName)=>{setAddvisiName(addvisiName); console.log(addvisiName)}}
           />
         <Text style={Texts.Body}>Visitor's plate number:</Text>
         <TextInput 
@@ -157,6 +160,61 @@ function Popup(props){
     );
   }
 
+
+
+  
+  //Buttons
+
+  if (btnTxt == 'Extend'){
+    button = (
+      <TouchableOpacity 
+      style = {styles.button}
+      onPress = {()=>{props.showPop('')}}>
+      <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+    </TouchableOpacity>
+    )
+  }
+  if (btnTxt == 'Yes'){
+    button = (
+      <TouchableOpacity 
+      style = {styles.button}
+      onPress = {()=>{props.showPop('')}}>
+      <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+    </TouchableOpacity>
+    )
+  }
+
+
+
+
+//make card = true to show the activeCard
+  if (btnTxt == 'Add'){
+    button = (
+      <TouchableOpacity 
+      style = {styles.button}
+      onPress = {()=>{props.showPop('')}}
+      onPressIn = {()=>{console.log('make card = true')}}>
+      <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+    </TouchableOpacity>
+    )
+  }
+
+
+
+
+  
+  if (btnTxt == 'Okay'){
+    button = (
+      <TouchableOpacity 
+      style = {styles.button}
+      onPress = {()=>{props.showPop('')}}>
+      <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+    </TouchableOpacity>
+    )
+  }
+ 
+
+
   return(
     // This is dark background
   <View style={styles.bg}>
@@ -185,12 +243,7 @@ function Popup(props){
           {/* Popup Content */}
           {content}
           {/* Popup Button */}
-          <TouchableOpacity 
-            style = {styles.button}
-            onPress = {()=>{props.showPop('')}}
-          >
-            <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
-          </TouchableOpacity>
+          {button}
           </View>
         </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
