@@ -187,13 +187,14 @@ function Popup(props){
 
 
 
-//make card = true to show the activeCard
+//make card = true to show the activeCard 
+//how can i: props.setCard2(true)??
   if (btnTxt == 'Add'){
     button = (
       <TouchableOpacity 
       style = {styles.button}
       onPress = {()=>{props.showPop('')}}
-      onPressIn = {()=>{console.log('make card = true')}}>
+      onPressIn = {()=>{console.log('make card 1 or 2 = true')}}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
     )
@@ -202,7 +203,7 @@ function Popup(props){
 
 
 
-  
+
   if (btnTxt == 'Okay'){
     button = (
       <TouchableOpacity 
