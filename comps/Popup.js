@@ -16,9 +16,13 @@ import styles from '../styles/CompsStyles/PopupStyles';
 
 function Popup(props){
   // variables for changing Popup content
+
   var title = '';
   var content = null;
   var btnTxt = '';
+  var button = null;
+
+
   const [strk1, setStrk1] = useState(0);
   const [strk2, setStrk2] = useState(0);
   
@@ -27,9 +31,17 @@ function Popup(props){
   if (props.pop == 'VisitorParkingPolicy'){
     title = 'Visitor Parking Policy';
     btnTxt = 'Okay';
+    
+     button = (
+       <TouchableOpacity 
+       style = {styles.button}
+       onPress = {()=>{props.showPop('')}}>
+       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+     </TouchableOpacity>
+     )
     content = (
       <View>
-        <Text style={[Texts.Body,{marginBottom:10}]}>1. Each apartment is allowed to have maximum 2 visitors parking in visitor parking at the same time. 
+        <Text style={[Texts.Body,{marginBottom:10}]}>. Each apartment is allowed to have maximum 2 visitors parking in visitor parking at the same time. 
         </Text>
         <Text style={[Texts.Body,{marginBottom:10}]}>2. Each visitor’s vehicle is allowed to park in visitor parking for a consecutive duration of 24 hours.
         </Text>
@@ -48,9 +60,28 @@ function Popup(props){
   const [addvisiName, setAddvisiName] = useState('');
   const [addvisiPlate, setAddvisiPlate] = useState('');
   const [addvisiDur, setAddvisiDur] = useState(2);
-  if (props.pop == 'AddVisitor'){
+ 
+
+  //if card1 is false then it will add the card to the card1 slot (the first card slot)
+  if (props.pop == 'AddVisitor' && props.card1 == false){
     title = 'Add Visitor';
     btnTxt = 'Add';
+      // ------- Kathleen --------- 
+    // this is the button for when I have only one visitor
+    // You will need to add more conditions to change {button} when there's 0, or 1 visitors. 
+    button = (
+    <TouchableOpacity 
+            style={styles.button}
+
+            onPress={()=>{
+              // turn card1 on
+              props.setCard1(true);
+
+              props.showPop('');
+            }}>
+            <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+          </TouchableOpacity>
+    )
     content = (
       <View>
         <Text style={Texts.Body}>Visitor's name:</Text>
@@ -61,7 +92,7 @@ function Popup(props){
           maxLength = {40}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
-          onChangeText = {(addvisiName)=>{setAddvisiName(addvisiName)}}
+          onChangeText = {(addvisiName)=>{props.setName1(addvisiName); console.log(props.name1)}}
           />
         <Text style={Texts.Body}>Visitor's plate number:</Text>
         <TextInput 
@@ -72,7 +103,7 @@ function Popup(props){
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
-          onChangeText = {(txt)=>{setAddvisiPlate(txt)}}
+          onChangeText = {(addvisiPlate)=>{props.setPlate1(addvisiPlate)}}
           />
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
 
@@ -81,18 +112,75 @@ function Popup(props){
             style={{width: 130, marginRight: 20}}
             selectedValue = {addvisiDur}
             itemStyle={{height:90}}
-            onValueChange = {(val, ind)=>{setAddvisiDur(val)}}
+            onValueChange = {(val, ind)=>{props.setDur1(val)}}
           >
             {addhr}
           </Picker>
           <Text style={Texts.Body}>hr</Text>
         </View>
-
       </View>
     );
-  }
+   } 
 
-  // ---- Extend Parking ----
+
+   //if card1 is true then it will turn on card2, which is the second card slot
+   if (props.pop == 'AddVisitor' && props.card1 == true){
+    title = 'Add Visitor';
+    btnTxt = 'Add';
+
+    button = (
+    <TouchableOpacity 
+            style={styles.button}
+
+            onPress={()=>{
+ 
+              props.setCard2(true);
+              props.showPop('');
+            }}>
+            <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+          </TouchableOpacity>
+    )
+    content = (
+      <View>
+        <Text style={Texts.Body}>Visitor's name:</Text>
+        <TextInput 
+          placeholder = "Name"
+          style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
+          clearButtonMode = 'always'
+          maxLength = {40}
+          onFocus = {()=>{setStrk1(2)}}
+          onBlur = {()=>{setStrk1(0)}}
+          onChangeText = {(addvisiName)=>{props.setName2(addvisiName); }}
+          />
+        <Text style={Texts.Body}>Visitor's plate number:</Text>
+        <TextInput 
+          placeholder = "Plate number"
+          style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
+          clearButtonMode = 'always'
+          maxLength = {7}
+          autoCapitalize = "characters"
+          onFocus = {()=>{setStrk2(2)}}
+          onBlur = {()=>{setStrk2(0)}}
+          onChangeText = {(addvisiPlate)=>{props.setPlate2(addvisiPlate)}}
+          />
+        <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
+
+        <View style={{flexDirection:'row',alignItems:'center'}}>
+          <Picker 
+            style={{width: 130, marginRight: 20}}
+            selectedValue = {addvisiDur}
+            itemStyle={{height:90}}
+            onValueChange = {(val, ind)=>{props.setDur2(val)}}
+          >
+            {addhr}
+          </Picker>
+          <Text style={Texts.Body}>hr</Text>
+        </View>
+      </View>
+    );
+   } 
+
+  // ---- Extend Parking ---- //currently only extends card1
   var exthr = [];
   for(var i=1;i<=(24-addvisiDur);i++){
     exthr.push(
@@ -103,6 +191,15 @@ function Popup(props){
   if (props.pop == 'ExtendParking'){
     title = 'Extend Parking';
     btnTxt = 'Extend';
+
+    button = (
+      <TouchableOpacity 
+      style = {styles.button}
+      onPress = {()=>{props.showPop('')}}>
+      <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
+    </TouchableOpacity>
+
+    )
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
@@ -113,7 +210,7 @@ function Popup(props){
             style={{width: 130, marginRight: 20}}
             selectedValue = {extendhr}
             itemStyle={{height:90}}
-            onValueChange = {(val,ind)=>{setExtendhr(val)}}
+            onValueChange = {(val,ind)=>{setExtendhr + props.setDur1 (val)}}
           >
             {exthr}
           </Picker>
@@ -123,17 +220,57 @@ function Popup(props){
     );
   }
 
-  // ---- Remove ----
-  if (props.pop == 'Remove'){
+  // ---- Remove ---- //if card2 is false (if theres no 2nd visitor it will remove card1 which is the first slot)
+  if (props.pop == 'Remove' && props.card2 == false){
     title = 'Remove';
     btnTxt = 'Yes';
+
+    button = (
+      <TouchableOpacity 
+              style={styles.button}
+              // here are the functions called when the button is pressed. 
+              onPress={()=>{
+                // this is for adding ONE visitor
+
+                // this is for closing the popup
+                props.showPop('');
+                props.setCard1(false);
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            </TouchableOpacity>
+      )
     content = (
       <View>
-        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove {addvisiName}?</Text>
+        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove {props.name1}?</Text>
       </View>
     );
   }
 
+
+  //!!! This is where i need to make a different if statement if theres 2 visitors. this if statement
+  //always removes the second card (card2) everytime.
+  if (props.pop == 'Remove' && props.card2 == true){
+    title = 'Remove';
+    btnTxt = 'Yes';
+
+    button = (
+      <TouchableOpacity 
+              style={styles.button}
+              onPress={()=>{
+
+                // always turns off the second card slot (card2)
+                props.showPop('');
+                props.setCard2(false);
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            </TouchableOpacity>
+      )
+    content = (
+      <View>
+        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove {props.name2}?</Text>
+      </View>
+    );
+  }
 
   //----- Removed Successfully ----
   if (props.pop == 'RemovedSuccessfully'){
@@ -185,13 +322,8 @@ function Popup(props){
           {/* Popup Content */}
           {content}
           {/* Popup Button */}
-          <TouchableOpacity 
-            style = {styles.button}
-            onPress = {()=>{props.showPop('')}}
-          >
-            <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
-          </TouchableOpacity>
-          </View>
+          {button}
+        </View>
         </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   </View>
