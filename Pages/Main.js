@@ -30,8 +30,8 @@ function Main(props){
     const [name2, setName2] = useState('');
     const [plate1, setPlate1] = useState('');
     const [plate2, setPlate2] = useState('');
-    const [dur1, setDur1] = useState('1');
-    const [dur2, setDur2] = useState('1');
+    const [dur1, setDur1] = useState(1);
+    const [dur2, setDur2] = useState(1);
     
     // Conditions to show {page}
     if(showpage == 'Login'){

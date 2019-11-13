@@ -42,14 +42,13 @@ function Popup(props){
     content = (
       <View>
         <Text style={[Texts.Body,{marginBottom:10}]}>
-          1. 
-        Each apartment is allowed to have maximum 2 visitors parking in visitor parking at the same time. 
+          1. Each apartment is allowed to have maximum 2 visitor vehicles parked in the visitor parking lot at the same time. 
         </Text>
         <Text style={[Texts.Body,{marginBottom:10}]}>
           2. Each visitor’s vehicle is allowed to park in visitor parking for a consecutive duration of 24 hours.
         </Text>
         <Text style={Texts.Body}>
-          3. If visitors park overtime, the building has the right to tow their vehicles. 
+          3. If visitors park over 24 hours, vehicles will be towed at owner's expense.
         </Text>
       </View>
     );
@@ -298,7 +297,7 @@ function Popup(props){
                 props.setCard1(false);
                 props.setName1('');
                 props.setPlate1('');
-                props.setDur1('1')
+                props.setDur1(1)
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
@@ -326,7 +325,7 @@ function Popup(props){
                 props.setCard2(false);
                 props.setName2('');
                 props.setPlate2('');
-                props.setDur2('1')
+                props.setDur2(1)
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
