@@ -366,6 +366,18 @@ function Popup(props){
   if(props.pop == 'ReportedSuccessfully'){
     title = 'Reported Successfully';
     btnTxt = 'Okay';
+
+    button = (
+      <TouchableOpacity 
+              style={styles.button}
+              onPress={()=>{
+                props.showPop('');
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            </TouchableOpacity>
+      )
+
+    
     content = (
       <View>
         <Text style={[Texts.Body,{paddingBottom: 20}]}>Thank you! You reported successfully!</Text>
