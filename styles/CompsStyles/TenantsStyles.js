@@ -6,14 +6,19 @@ var styles = StyleSheet.create({
     container:{
         flex:1
     },
-    top:{
+    header:{
+        paddingTop:40,
         flex:1,
-        backgroundColor: "#FAB",
+
     },
-    middle:{
+    content:{
         flex:5,
         backgroundColor: "#DAB"
     },
+    headerDesc:{
+
+    },
+
     
     
 });
