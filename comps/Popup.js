@@ -62,6 +62,7 @@ function Popup(props){
     );
   }
 
+
   const [addvisiDur, setAddvisiDur] = useState(1);
   console.log("before",addvisiDur);
  
@@ -163,7 +164,9 @@ function Popup(props){
           maxLength = {40}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
+
           onChangeText = {(addvisiName)=>{props.setName2(addvisiName); }}
+
           />
         <Text style={Texts.Body}>Visitor's plate number:</Text>
         <TextInput 
@@ -174,7 +177,9 @@ function Popup(props){
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
+
           onChangeText = {(addvisiPlate)=>{props.setPlate2(addvisiPlate)}}
+
           />
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
 
@@ -183,6 +188,7 @@ function Popup(props){
             style={{width: 130, marginRight: 20}}
             selectedValue = {addvisiDur}
             itemStyle={{height:90}}
+            
             onValueChange = {(val, ind)=>{
               props.setDur2(val);
               setAddvisiDur(val);
@@ -245,8 +251,10 @@ function Popup(props){
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
+
   const [extendhr2, setExtendhr2] = useState(0);
   if (props.pop == 'ExtendParking2'){
+
     title = 'Extend Parking';
     btnTxt = 'Extend';
 
@@ -261,16 +269,20 @@ function Popup(props){
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
+
         <Text style={Texts.Body}>You've registered: {props.dur2}hr</Text>
+
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
             style={{width: 130, marginRight: 20}}
+
             selectedValue = {extendhr2}
             itemStyle={{height:90}}
             onValueChange = {(val,ind)=>{
               setExtendhr2(val);
               props.setDur2 (val+props.dur2)}}
+
           >
             {exthr}
           </Picker>
@@ -304,7 +316,9 @@ function Popup(props){
       )
     content = (
       <View>
+
         <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove {props.name1}?</Text>
+
       </View>
     );
   }
@@ -389,6 +403,7 @@ function Popup(props){
           {/* Popup Button */}
           {button}
         </View>
+
         </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   </View>
