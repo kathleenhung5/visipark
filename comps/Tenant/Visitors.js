@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
@@ -6,47 +6,32 @@ import styles from '../../styles/CompsStyles/VisitorStyles';
 
 function Visitors(props){
 
-
   //Database apartment States
   var UnitNum = "201";
   var SpotCount = "5";
 
   //Current Visitor names, plates and time left
-  var currentVisitor1 = "elias";
-  var currentVisitor2 = "tayag";
-
-
-
-  var currentVisitorPlate1 = "343 I6R"
-  var currentVisitorPlate2 = "244 V35"
-
-  var timeLeft1 = 11;
-  var timeLeft2 = 11;
-
-// it's better to name your variable for UI different from the one you're using for useState, it can be confusing
   var cardtop = null;
   var cardbot = null;
-
+  var cardbot2 = null;
 
   //Visitor functions default states
-  // ----------- Kathleen ---------------
-  // I'm moving these two levels up, to Main, so that I can pass them back in here and also into popup to use them in the button onPress. 
-  // And to use them here, I need to write "props" in front of them because they came all the way from main to tenant to here
-
-  // let [card1, setCard1] = useState(false);
-  // let [card2, setCard2] = useState(false);
 
   //Visitor card 1 function
-  //default state
-
-  if (props.card1 == false){
+  if (props.card1 == false && props.card2 == false){
 
     cardtop =
-    <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor') }} >
-      <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
-      <Text style={Texts.BodyLight}>Add Visitor</Text>
-    </TouchableOpacity> 
+    null;
   } 
+
+  if (props.card1 == false && props.card2 == true){
+    cardbot2 = 
+         <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor') }} >
+       <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
+       <Text style={Texts.BodyLight}>Add Visitor</Text>
+     </TouchableOpacity> 
+  }
+
   
   //if visitor is added state = true 
   if (props.card1 == true){
@@ -59,16 +44,17 @@ function Visitors(props){
               <Text style={styles.timeHr}>hr</Text>
               <Text style={styles.leftText}>left</Text>
 
-              <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking')}}>
+              <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking1')}}>
               <Text style={[Texts.HeadS,{color:Colors.Purple}]}>Extend</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove')}}>
+              <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove1')}}>
               <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
               </TouchableOpacity>
 
           </View> 
   } 
+
 
   //Visitor card 2 functions (same syntax as visitor 1)
   if (props.card2 == false){
@@ -89,11 +75,11 @@ function Visitors(props){
               <Text style={styles.timeHr}>hr</Text>
               <Text style={styles.leftText}>left</Text>
 
-              <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking')}}>
+              <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking2')}}>
               <Text style={[Texts.HeadS,{color:Colors.Purple}]}>Extend</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove')}}>
+              <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove2')}}>
               <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
               </TouchableOpacity>
           </View> 
@@ -128,7 +114,8 @@ function Visitors(props){
         
           {/* Visitor Cards UI*/}
           {cardtop}
-          {cardbot} 
+          {cardbot}
+          {cardbot2}
 
       </View>
     </View>

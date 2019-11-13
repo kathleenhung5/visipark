@@ -21,7 +21,7 @@ var styles = StyleSheet.create({
 
     },
     Top: {
-        paddingTop: 60,
+        paddingTop: 45,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 40,
