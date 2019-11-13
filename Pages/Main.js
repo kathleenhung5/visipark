@@ -18,6 +18,11 @@ function Main(props){
 
     const [pop, showPop] = useState(''); 
     const [showpage, setShowpage] = useState('Login');
+    // visitor info
+    const [visiName, setVisiName] = useState('');
+    const [visiPlate, setVisiPlate] = useState('');
+    const [visiDur, setVisiDur] = useState(0);
+
     var mpopup = null;
     var page = null;
     
@@ -37,6 +42,12 @@ function Main(props){
         page = <Manager 
                  pop = {pop} 
                  showPop = {showPop}
+                 visiName = {visiName}
+                 setVisiName = {setVisiName}
+                 visiPlate ={visiPlate} 
+                 setVisiPlate = {setVisiPlate}
+                 visiDur = {visiDur} 
+                 setVisiDur = {setVisiDur}
                 />;
         props.setSafebg(true);
     }
@@ -49,6 +60,12 @@ function Main(props){
         mpopup = <Popup 
                     pop = {pop} 
                     showPop = {showPop} 
+                    visiName = {visiName}
+                    setVisiName = {setVisiName}
+                    visiPlate ={visiPlate} 
+                    setVisiPlate = {setVisiPlate}
+                    visiDur = {visiDur} 
+                    setVisiDur = {setVisiDur}
                 />;
             }
     

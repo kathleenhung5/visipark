@@ -13,6 +13,8 @@ function Visitors(props){
   var currentVisitor1 = "Elias Tayag"
   var currentVisitorPlate = "343 I6R"
   var timeLeft = 11;
+ 
+  
 
   //Function 1
 

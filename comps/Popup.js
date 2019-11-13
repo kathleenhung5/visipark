@@ -45,9 +45,9 @@ function Popup(props){
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
-  const [addvisiName, setAddvisiName] = useState('');
-  const [addvisiPlate, setAddvisiPlate] = useState('');
-  const [addvisiDur, setAddvisiDur] = useState(2);
+  // const [addvisiName, setAddvisiName] = useState('');
+  // const [addvisiPlate, setAddvisiPlate] = useState('');
+  // const [addvisiDur, setAddvisiDur] = useState(2);
   if (props.pop == 'AddVisitor'){
     title = 'Add Visitor';
     btnTxt = 'Add';
@@ -56,32 +56,34 @@ function Popup(props){
         <Text style={Texts.Body}>Visitor's name:</Text>
         <TextInput 
           placeholder = "Name"
+          value = {props.visiName}
           style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
           clearButtonMode = 'always'
           maxLength = {40}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
-          onChangeText = {(txt)=>{setAddvisiName(txt)}}
+          onChangeText = {(txt)=>{props.setVisiName(txt)}}
           />
         <Text style={Texts.Body}>Visitor's plate number:</Text>
         <TextInput 
           placeholder = "Plate number"
+          value = {props.visiPlate}
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
           maxLength = {7}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
-          onChangeText = {(txt)=>{setAddvisiPlate(txt)}}
+          onChangeText = {(txt)=>{props.setVisiPlate(txt)}}
           />
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
 
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
             style={{width: 130, marginRight: 20}}
-            selectedValue = {addvisiDur}
+            selectedValue = {props.visiDur}
             itemStyle={{height:90}}
-            onValueChange = {(val, ind)=>{setAddvisiDur(val)}}
+            onValueChange = {(val, ind)=>{props.setVisiDur(val)}}
           >
             {addhr}
           </Picker>
@@ -94,7 +96,7 @@ function Popup(props){
 
   // ---- Extend Parking ----
   var exthr = [];
-  for(var i=1;i<=(24-addvisiDur);i++){
+  for(var i=1;i<=(24-props.visiDur);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
@@ -106,7 +108,7 @@ function Popup(props){
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
-        <Text style={Texts.Body}>You've registered: {addvisiDur}hr</Text>
+        <Text style={Texts.Body}>You've registered: {props.visiDur}hr</Text>
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
@@ -141,7 +143,7 @@ function Popup(props){
     btnTxt = 'Okay';
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {addvisiName} successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.visiName} successfully!</Text>
       </View>
     );
   }

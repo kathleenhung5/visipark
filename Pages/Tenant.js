@@ -11,7 +11,7 @@ import {Colors} from '../styles/Colors';
 
 function Tenant(props){
   const [cont, setCont] = useState('Visitors');
-
+ 
   // img src variables
   var visitorimg = null;
   var historyimg = null;
@@ -22,14 +22,33 @@ function Tenant(props){
 
 // conditions updating Content and tabbar
   if(cont == 'Visitors'){
-    Content = <Visitors pop={props.pop} showPop={props.showPop}/>
+    Content = <Visitors 
+    pop={props.pop} 
+    showPop={props.showPop}
+    visiName = {props.visiName}
+    setVisiName = {props.setVisiName}
+    visiPlate ={props.visiPlate} 
+    setVisiPlate = {props.setVisiPlate}
+    visiDur = {props.visiDur} 
+    setVisiDur = {props.setVisiDur}
+    />
     
     visitorimg = require('../img/ppl-purp.png');
     historyimg = require('../img/history-grey.png');
     reportimg = require('../img/report-grey.png');
   }
   if(cont =='History'){
-    Content = <History />
+    Content = <History 
+    pop={props.pop} 
+    showPop={props.showPop}
+    visiName = {props.visiName}
+    setVisiName = {props.setVisiName}
+    visiPlate ={props.visiPlate} 
+    setVisiPlate = {props.setVisiPlate}
+    visiDur = {props.visiDur} 
+    setVisiDur = {props.setVisiDur}
+    
+    />
     visitorimg = require('../img/ppl-grey.png');
     historyimg = require('../img/history-purp.png');
     reportimg = require('../img/report-grey.png');

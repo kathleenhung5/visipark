@@ -5,6 +5,7 @@ import Texts from '../../styles/Texts';
 import styles from '../../styles/CompsStyles/HistoryStyles';
 
 
+
 const data = [
   {name:"Dora", plate:"Wowho"},
   {name:"Kathleen", plate:"Haha"},
@@ -17,9 +18,12 @@ const data = [
 export default class History extends React.Component{
   constructor(props){
     super(props);
-  
+    handleEvent = () => {
+      this.props.showPop('AddVisitor');
+         
+    }
     this.state = {
-      isLoading: false, 
+      //isLoading: false, 
       searchKey:'',
       showPin: true
     };
@@ -27,15 +31,6 @@ export default class History extends React.Component{
 
   }
 
-  // Load_New_Image=()=>{
- 
-  //   this.setState({
- 
-  //     purpPin : require('../../img/pin-purp.png')
- 
-  //   })
-  // }
-  
   handleToggleClick() {
     this.setState(state => ({
       showPin: !state.showPin
@@ -48,6 +43,7 @@ export default class History extends React.Component{
         return item.name.indexOf(this.state.searchKey) >= 0 ||
         item.plate.indexOf(this.state.searchKey) >= 0
     })
+
     return( 
     <View style={styles.container}> 
       {/*  Header */}
@@ -72,11 +68,7 @@ export default class History extends React.Component{
           />  
         </View>       
       </View>
-         <View>
-          {this.state.isLoading? 
-           <ActivityIndicator size="large" color="black" />
-          : null} 
-         </View>
+         
 
          {/* history Cards */}
       
@@ -89,17 +81,25 @@ export default class History extends React.Component{
           
           <Image
             source={this.state.showPin ? require('../../img/pin-grey.png') : require('../../img/pin-purp.png')}            style={styles.pinImg}
-            /> 
-            
-          
+            />   
         </TouchableOpacity>
+
         <View style={styles.List}>
            <Text style={[Texts.BodyBold, styles.name]}>{item.name}</Text>
            <Text style={Texts.BodyLight}>{item.plate}</Text>
         </View>
         
 
-        <TouchableOpacity style={styles.visiBtn}>
+        <TouchableOpacity 
+        style={styles.visiBtn}
+         onPress={()=>{
+          // props.setVisiName(data[index].name);
+          // props.setVisiPlate(data[index].plate);
+          //  props.showPop('AddVisitor')
+          {this.handleEvent}
+         
+        }}
+        >
           <Text style={[Texts.BodyBold,{color: Colors.Purple}]}>Revisit</Text>
         </TouchableOpacity>
         
