@@ -69,7 +69,7 @@ function Tenant(props){
     setVisiPlate = {props.setVisiPlate}
     visiDur = {props.visiDur} 
     setVisiDur = {props.setVisiDur}
-    
+    setName1 ={props.setName1}
     />
     visitorimg = require('../img/ppl-grey.png');
     historyimg = require('../img/history-purp.png');

@@ -18,10 +18,7 @@ const data = [
 export default class History extends React.Component{
   constructor(props){
     super(props);
-    handleEvent = () => {
-      this.props.showPop('AddVisitor');
-         
-    }
+    
     this.state = {
       //isLoading: false, 
       searchKey:'',
@@ -31,6 +28,10 @@ export default class History extends React.Component{
 
   }
 
+  handleEvent = () => {
+    this.props.showPop('AddVisitor');
+       
+  }
   handleToggleClick() {
     this.setState(state => ({
       showPin: !state.showPin
@@ -96,7 +97,8 @@ export default class History extends React.Component{
           // props.setVisiName(data[index].name);
           // props.setVisiPlate(data[index].plate);
           //  props.showPop('AddVisitor')
-          {this.handleEvent}
+          this.handleEvent();
+          this.props.setName1(item.name)
          
         }}
         >
