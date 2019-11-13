@@ -20,6 +20,18 @@ function Main(props){
     const [showpage, setShowpage] = useState('Login');
     var mpopup = null;
     var page = null;
+
+    //--------- Kathleen ----------
+    // I added them here, and pass them in popup and in Tenant
+    // functions to set visitor cards
+    const [card1, setCard1] = useState(false);
+    const [card2, setCard2] = useState(false);
+    const [name1, setName1] = useState('');
+    const [name2, setName2] = useState('');
+    const [plate1, setPlate1] = useState('');
+    const [plate2, setPlate2] = useState('');
+    const [dur1, setDur1] = useState(1);
+    const [dur2, setDur2] = useState(1);
     
     // Conditions to show {page}
     if(showpage == 'Login'){
@@ -30,6 +42,22 @@ function Main(props){
         page = <Tenant 
                  pop = {pop} 
                  showPop = {showPop}
+                 card1 = {card1}
+                 setCard1 = {setCard1}
+                 card2 = {card2}
+                 setCard2 = {setCard2}
+                 name1 = {name1}
+                 setName1 ={setName1}
+                 name2 = {name2}
+                 setName2 ={setName2}
+                 plate1 = {plate1}
+                 setName1 ={setPlate1}
+                 plate2 = {plate2}
+                 setPlate2 ={setPlate2}
+                 dur1 = {dur1}
+                 setDur1 ={setDur1}
+                 dur2 = {dur2}
+                 setDur2 ={setDur2}
                 />;
         props.setSafebg(true);
     }
@@ -49,7 +77,24 @@ function Main(props){
         mpopup = <Popup 
                     pop = {pop} 
                     showPop = {showPop} 
+                    card1 = {card1}
+                    setCard1 = {setCard1}
+                    card2 = {card2}
+                    setCard2 = {setCard2}
+                    name1 = {name1}
+                    setName1 ={setName1}
+                    name2 = {name2}
+                    setName2 ={setName2}
+                    plate1 = {plate1}
+                    setPlate1 ={setPlate1}
+                    plate2 = {plate2}
+                    setPlate2 ={setPlate2}
+                    dur1 = {dur1}
+                    setDur1 ={setDur1}
+                    dur2 = {dur2}
+                    setDur2 ={setDur2}
                 />;
+                
             }
     
 
