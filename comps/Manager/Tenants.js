@@ -11,7 +11,7 @@ function Tenants(props){
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={Texts.SecHead}>Tenants</Text>
-                <Text style={Texts.Body, styles.headerDesc}>Activate VisiPark and add a tenant plate number for each unit as needed. 
+                <Text style={Texts.Body}>Activate VisiPark and add a tenant plate number for each unit as needed. 
                     Reactivate for updating tenant plate.</Text>
             </View>
 
