@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
@@ -15,7 +15,18 @@ function Visitors(props){
   var timeLeft = 11;
 
   //Function 1
+  // time left = start + duration - now
+  // count time in mili seconds
+  useEffect(()=>{
+    var stime = new Date('2019-11-13 12:00:00');
+    var now = new Date();
+    console.log("miliseconds passed", Date.parse(stime),Date.parse(now));
+    console.log("time passed since start time",   Date.parse(now)-Date.parse(stime));
+    var parkingseconds = 3600;
+    var timepassed = Date.parse(now)-Date.parse(stime);
+    console.log(parkingseconds, timepassed/1000);
 
+  },[]);
 
   return(
     <View style={{flex:1, marginBottom: 70}}>
