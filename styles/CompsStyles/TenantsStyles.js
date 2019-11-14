@@ -8,21 +8,17 @@ var styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 60,
-
     },
-    header:{
-        flex:1,
 
-    },
     content:{
-
-        paddingTop: 40,
-        flex:5,
-
+        paddingTop: 0,
+        flex:5
     },
+
     headerDesc:{
-
+        marginBottom: 20
     },
+
     input:{
         width:"100%",
         height: 45,
@@ -34,11 +30,13 @@ var styles = StyleSheet.create({
         borderColor: Colors.Purple,
         borderWidth: 2
     },
+
     subHeader:{
         flexDirection:"row",
         marginBottom: 5,
         marginTop: 15,
     },
+
     card:{
         backgroundColor: '#fff',
         paddingLeft:30,
@@ -53,13 +51,17 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:"space-between"
     },
+
     subUnit:{
         flex:1,
-
     },
+
     List : {
         flexDirection: "row",
-        
+    },
+
+    tenantInfo:{
+        flex: 1
     }
 
 
