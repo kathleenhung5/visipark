@@ -18,6 +18,7 @@ function Main(props){
 
     const [pop, showPop] = useState(''); 
     const [showpage, setShowpage] = useState('Login');
+    
     // visitor info
     // const [visiName, setVisiName] = useState('');
     // const [visiPlate, setVisiPlate] = useState('');
@@ -37,10 +38,18 @@ function Main(props){
     const [plate2, setPlate2] = useState('');
     const [dur1, setDur1] = useState(1);
     const [dur2, setDur2] = useState(1);
+    //room number
+    const [room, setroom] = useState(0);
     
     // Conditions to show {page}
     if(showpage == 'Login'){
-        page = <Login showpage={showpage} setShowpage={setShowpage} />;
+        page = <Login 
+                showpage={showpage} 
+                setShowpage={setShowpage} 
+                //room number
+                room={room}
+                setroom={setroom}
+                />;
         props.setSafebg(false);
     }
     if(showpage == 'Tenant'){
@@ -63,6 +72,9 @@ function Main(props){
                  setDur1 ={setDur1}
                  dur2 = {dur2}
                  setDur2 ={setDur2}
+                 //room number
+                room={room}
+                setroom={setroom}
                 />;
         props.setSafebg(true);
     }

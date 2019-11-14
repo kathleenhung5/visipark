@@ -41,8 +41,9 @@ function Tenant(props){
           setDur1 ={props.setDur1}
           dur2 = {props.dur2}
           setDur2 ={props.setDur2}
+          room={props.room} 
+          setroom={props.setroom}
           />  
-
     visitorimg = require('../img/ppl-purp.png');
     historyimg = require('../img/history-grey.png');
     reportimg = require('../img/report-grey.png');

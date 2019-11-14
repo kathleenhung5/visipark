@@ -11,20 +11,27 @@ function Tform(props){
 
     <View style={{width: "90%", marginTop: 10, alignItems:"center"}}>
       <TextInput
-      style={{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25
-              ,width:'90%', height: 45,  color:'white', margin:10,textAlign: 'center'}}
+      style={[Texts.FormText,{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25
+              ,width:'90%', height: 45,  color:'white', margin:10,textAlign: 'center'}]}
+      autoFocus = {true}
       placeholder="unit number"
       placeholderTextColor="#bea9c9"
-
+      keyboardType="numeric"
+      onChangeText = {(txt)=>{
+        props.setroom(txt);
+      }}
       />
       <TouchableOpacity
         style={styles.Tform}
-        onPress={()=>{props.setShowpage('Tenant')}}>
+        onPress={()=>{
+          props.setShowpage('Tenant');
+          console.log(props.room);
+        }}>
         <Text style={{color:"#863AE8", fontFamily:"Poppins-SemiBold", fontSize:20}}>
         Login as Tenant
         </Text>
        </TouchableOpacity>
-      </View>
+     </View>
   )
 }
 

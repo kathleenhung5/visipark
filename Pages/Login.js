@@ -12,7 +12,9 @@ function Login(props){
 
   var TenantPage = null;
   if (showTenantPage === true){
-    TenantPage=(<Tform showpage={props.showpage} setShowpage={props.setShowpage}/>);
+    TenantPage=(<Tform showpage={props.showpage} setShowpage={props.setShowpage} 
+      //room number
+    room={props.room} setroom={props.setroom}/>);
   } else {
     TenantPage = null;
   }

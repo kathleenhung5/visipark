@@ -7,7 +7,7 @@ import styles from '../../styles/CompsStyles/VisitorStyles';
 function Visitors(props){
 
   //Database apartment States
-  var UnitNum = "201";
+  var UnitNum = "";
   var SpotCount = "5";
 
   //Current Visitor names, plates and time left
@@ -85,6 +85,7 @@ function Visitors(props){
           </View> 
   } 
 
+
   return(
     <View style={{flex:1, marginBottom: 70}}>
       {/* ScrollView Starts here, wraps around everything */}
@@ -106,7 +107,7 @@ function Visitors(props){
       {/* Middle */}
     <View style={styles.Middle}>
           {/* Unit number */}
-          <Text style={Texts.HeadL}>Unit {UnitNum}
+          <Text style={Texts.HeadL}>Unit {props.room}
           </Text>
           <Text style={Texts.BodyLight}>Estimated spots left: {SpotCount}</Text>
 
