@@ -11,7 +11,7 @@ import {Colors} from '../styles/Colors';
 
 function Tenant(props){
   const [cont, setCont] = useState('Visitors');
-
+ 
   // img src variables
   var visitorimg = null;
   var historyimg = null;
@@ -34,7 +34,7 @@ function Tenant(props){
           name2 = {props.name2}
           setName2 ={props.setName2}
           plate1 = {props.plate1}
-          setName1 ={props.setPlate1}
+          setPlate1 ={props.setPlate1}
           plate2 = {props.plate2}
           setPlate2 ={props.setPlate2}
           dur1 = {props.dur1}
@@ -42,12 +42,20 @@ function Tenant(props){
           dur2 = {props.dur2}
           setDur2 ={props.setDur2}
           />  
+
     visitorimg = require('../img/ppl-purp.png');
     historyimg = require('../img/history-grey.png');
     reportimg = require('../img/report-grey.png');
   }
   if(cont =='History'){
-    Content = <History />
+    Content = <History 
+    pop={props.pop} 
+    showPop={props.showPop}
+    setName1 ={props.setName1}
+    setName2 ={props.setName2}
+    setPlate1 ={props.setPlate1}
+    setPlate2 ={props.setPlate2}
+    />
     visitorimg = require('../img/ppl-grey.png');
     historyimg = require('../img/history-purp.png');
     reportimg = require('../img/report-grey.png');

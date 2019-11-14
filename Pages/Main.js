@@ -18,6 +18,11 @@ function Main(props){
 
     const [pop, showPop] = useState(''); 
     const [showpage, setShowpage] = useState('Login');
+    // visitor info
+    // const [visiName, setVisiName] = useState('');
+    // const [visiPlate, setVisiPlate] = useState('');
+    // const [visiDur, setVisiDur] = useState(0);
+
     var mpopup = null;
     var page = null;
 
@@ -51,7 +56,7 @@ function Main(props){
                  name2 = {name2}
                  setName2 ={setName2}
                  plate1 = {plate1}
-                 setName1 ={setPlate1}
+                 setPlate1 ={setPlate1}
                  plate2 = {plate2}
                  setPlate2 ={setPlate2}
                  dur1 = {dur1}
@@ -65,6 +70,12 @@ function Main(props){
         page = <Manager 
                  pop = {pop} 
                  showPop = {showPop}
+                 visiName = {visiName}
+                 setVisiName = {setVisiName}
+                 visiPlate ={visiPlate} 
+                 setVisiPlate = {setVisiPlate}
+                 visiDur = {visiDur} 
+                 setVisiDur = {setVisiDur}
                 />;
         props.setSafebg(true);
     }
@@ -77,6 +88,14 @@ function Main(props){
         mpopup = <Popup 
                     pop = {pop} 
                     showPop = {showPop} 
+
+//                    visiName = {visiName}
+//                     setVisiName = {setVisiName}
+//                     visiPlate ={visiPlate} 
+//                     setVisiPlate = {setVisiPlate}
+//                     visiDur = {visiDur} 
+//                     setVisiDur = {setVisiDur}
+
                     card1 = {card1}
                     setCard1 = {setCard1}
                     card2 = {card2}
@@ -93,6 +112,7 @@ function Main(props){
                     setDur1 ={setDur1}
                     dur2 = {dur2}
                     setDur2 ={setDur2}
+
                 />;
                 
             }
