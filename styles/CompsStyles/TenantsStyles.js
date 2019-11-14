@@ -65,7 +65,11 @@ var styles = StyleSheet.create({
     },
 
     tenantUnit:{
-        marginLeft:30
+        position: "absolute",
+        paddingTop:20,
+        paddingBottom:20,
+        left: 30
+
 
     },
     tenantSwitch:{
