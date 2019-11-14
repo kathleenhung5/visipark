@@ -35,12 +35,12 @@ var styles = StyleSheet.create({
         flexDirection:"row",
         marginBottom: 5,
         marginTop: 15,
+        justifyContent: "center",
     },
 
     card:{
         backgroundColor: '#fff',
-        paddingLeft:30,
-        paddingRight:30,
+
         paddingTop:20,
         paddingBottom:20,
         shadowColor: Colors.Purple,
@@ -48,21 +48,35 @@ var styles = StyleSheet.create({
         shadowOpacity: 0.13,
         borderRadius: 23,
         marginTop: 10,
-        flexDirection: 'row',
-        justifyContent:"space-between"
+        flexDirection: "row",
+        justifyContent: "center"
+        
     },
 
     subUnit:{
-        flex:1,
+        position: "absolute",
+        left: 30
+
+    },
+    subActive:{
+        position: "absolute",
+        right: 30
+
     },
 
-    List : {
-        flexDirection: "row",
-    },
+    tenantUnit:{
+        marginLeft:30
 
-    tenantInfo:{
-        flex: 1
-    }
+    },
+    tenantSwitch:{
+        marginTop:15,
+        position: "absolute",
+        right: 30
+
+    },
+    
+
+
 
 
 
