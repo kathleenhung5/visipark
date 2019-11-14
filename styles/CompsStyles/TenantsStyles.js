@@ -4,20 +4,67 @@ import Texts from '../Texts'
 
 var styles = StyleSheet.create({
     container:{
-        flex:1
-    },
-    header:{
-        paddingTop:40,
         flex:1,
-
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: 60,
     },
+
     content:{
-        flex:5,
-        backgroundColor: "#DAB"
+        paddingTop: 0,
+        flex:5
     },
-    headerDesc:{
 
+    headerDesc:{
+        marginBottom: 20
     },
+
+    input:{
+        width:"100%",
+        height: 45,
+        paddingLeft: 15,
+        paddingRight: 15,
+        backgroundColor: Colors.Lightgrey,
+        borderRadius: 25,
+        marginBottom: 10,
+        borderColor: Colors.Purple,
+        borderWidth: 2
+    },
+
+    subHeader:{
+        flexDirection:"row",
+        marginBottom: 5,
+        marginTop: 15,
+    },
+
+    card:{
+        backgroundColor: '#fff',
+        paddingLeft:30,
+        paddingRight:30,
+        paddingTop:20,
+        paddingBottom:20,
+        shadowColor: Colors.Purple,
+        shadowOffset: {width:0, height: 0},
+        shadowOpacity: 0.13,
+        borderRadius: 23,
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent:"space-between"
+    },
+
+    subUnit:{
+        flex:1,
+    },
+
+    List : {
+        flexDirection: "row",
+    },
+
+    tenantInfo:{
+        flex: 1
+    }
+
+
 
     
     
