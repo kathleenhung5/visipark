@@ -16,12 +16,53 @@ var styles = StyleSheet.create({
     },
     content:{
 
+        paddingTop: 40,
         flex:5,
-        backgroundColor: "#DAB"
+
     },
     headerDesc:{
 
     },
+    input:{
+        width:"100%",
+        height: 45,
+        paddingLeft: 15,
+        paddingRight: 15,
+        backgroundColor: Colors.Lightgrey,
+        borderRadius: 25,
+        marginBottom: 10,
+        borderColor: Colors.Purple,
+        borderWidth: 2
+    },
+    subHeader:{
+        flexDirection:"row",
+        marginBottom: 5,
+        marginTop: 15,
+    },
+    card:{
+        backgroundColor: '#fff',
+        paddingLeft:30,
+        paddingRight:30,
+        paddingTop:20,
+        paddingBottom:20,
+        shadowColor: Colors.Purple,
+        shadowOffset: {width:0, height: 0},
+        shadowOpacity: 0.13,
+        borderRadius: 23,
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent:"space-between"
+    },
+    subUnit:{
+        flex:1,
+
+    },
+    List : {
+        flexDirection: "row",
+        
+    }
+
+
 
     
     
