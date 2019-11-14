@@ -19,9 +19,9 @@ function Main(props){
     const [pop, showPop] = useState(''); 
     const [showpage, setShowpage] = useState('Login');
     // visitor info
-    // const [visiName, setVisiName] = useState('');
-    // const [visiPlate, setVisiPlate] = useState('');
-    // const [visiDur, setVisiDur] = useState(0);
+     const [visiName, setVisiName] = useState('');
+     const [visiPlate, setVisiPlate] = useState('');
+     const [visiDur, setVisiDur] = useState(0);
 
     var mpopup = null;
     var page = null;
