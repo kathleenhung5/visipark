@@ -23,18 +23,6 @@ function Tenant(props){
 // conditions updating Content and tabbar
   if(cont == 'Visitors'){
     Content = <Visitors 
-// <<<<<<< HEAD
-//     pop={props.pop} 
-//     showPop={props.showPop}
-//     visiName = {props.visiName}
-//     setVisiName = {props.setVisiName}
-//     visiPlate ={props.visiPlate} 
-//     setVisiPlate = {props.setVisiPlate}
-//     visiDur = {props.visiDur} 
-//     setVisiDur = {props.setVisiDur}
-//     />
-    
-
           pop={props.pop} 
           showPop={props.showPop}
           card1 = {props.card1}
@@ -46,7 +34,7 @@ function Tenant(props){
           name2 = {props.name2}
           setName2 ={props.setName2}
           plate1 = {props.plate1}
-          setName1 ={props.setPlate1}
+          setPlate1 ={props.setPlate1}
           plate2 = {props.plate2}
           setPlate2 ={props.setPlate2}
           dur1 = {props.dur1}
@@ -63,13 +51,10 @@ function Tenant(props){
     Content = <History 
     pop={props.pop} 
     showPop={props.showPop}
-    visiName = {props.visiName}
-    setVisiName = {props.setVisiName}
-    visiPlate ={props.visiPlate} 
-    setVisiPlate = {props.setVisiPlate}
-    visiDur = {props.visiDur} 
-    setVisiDur = {props.setVisiDur}
     setName1 ={props.setName1}
+    setName2 ={props.setName2}
+    setPlate1 ={props.setPlate1}
+    setPlate2 ={props.setPlate2}
     />
     visitorimg = require('../img/ppl-grey.png');
     historyimg = require('../img/history-purp.png');

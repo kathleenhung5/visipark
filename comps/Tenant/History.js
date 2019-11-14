@@ -98,7 +98,12 @@ export default class History extends React.Component{
           // props.setVisiPlate(data[index].plate);
           //  props.showPop('AddVisitor')
           this.handleEvent();
-          this.props.setName1(item.name)
+          this.props.setName1(item.name);
+          this.props.setPlate1(item.plate);
+          this.props.setName2(item.name);
+          this.props.setPlate2(item.plate);
+          
+         
          
         }}
         >

@@ -19,9 +19,9 @@ function Main(props){
     const [pop, showPop] = useState(''); 
     const [showpage, setShowpage] = useState('Login');
     // visitor info
-    const [visiName, setVisiName] = useState('');
-    const [visiPlate, setVisiPlate] = useState('');
-    const [visiDur, setVisiDur] = useState(0);
+    // const [visiName, setVisiName] = useState('');
+    // const [visiPlate, setVisiPlate] = useState('');
+    // const [visiDur, setVisiDur] = useState(0);
 
     var mpopup = null;
     var page = null;
@@ -56,7 +56,7 @@ function Main(props){
                  name2 = {name2}
                  setName2 ={setName2}
                  plate1 = {plate1}
-                 setName1 ={setPlate1}
+                 setPlate1 ={setPlate1}
                  plate2 = {plate2}
                  setPlate2 ={setPlate2}
                  dur1 = {dur1}
@@ -89,7 +89,7 @@ function Main(props){
                     pop = {pop} 
                     showPop = {showPop} 
 
-//                     visiName = {visiName}
+//                    visiName = {visiName}
 //                     setVisiName = {setVisiName}
 //                     visiPlate ={visiPlate} 
 //                     setVisiPlate = {setVisiPlate}
