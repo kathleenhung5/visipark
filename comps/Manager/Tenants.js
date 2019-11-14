@@ -12,7 +12,7 @@ import styles from '../../styles/CompsStyles/TenantsStyles';
 
 function Tenants(props){
 
-    var tName = "elias"
+    var tUnit = "101"
     var tPlate = "ABC 123"
 
     //Tenant List Cards
@@ -20,11 +20,11 @@ function Tenants(props){
 
     <View style={styles.card}>
 
-        <View style={styles.List}>
-        <Text style={[Texts.BodyBold]}>{tName}</Text>
+
+        <Text style={[Texts.BodyBold, styles.tenantUnit]}>{tUnit}</Text>
         <Text style={[Texts.BodyBold]}>{tPlate}</Text>
-        <Switch></Switch>
-        </View>
+        <Switch style={styles.tenantSwitch}></Switch>
+
      </View>
 
 
@@ -45,8 +45,8 @@ function Tenants(props){
 
             <View style={styles.subHeader}>
                 <Text style={[Texts.Body, styles.subUnit]}>Unit</Text>
-                <Text style={[Texts.Body, styles.subUnit]}>Tenant Plate</Text>
-                <Text style={[Texts.Body, styles.subUnit]}>Active</Text>
+                <Text style={[Texts.Body]}>Tenant Plate</Text>
+                <Text style={[Texts.Body, styles.subActive]}>Active</Text>
             </View>
 
         {/* tenants list starts here */}
