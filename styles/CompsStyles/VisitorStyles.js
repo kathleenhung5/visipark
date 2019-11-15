@@ -21,7 +21,7 @@ var styles = StyleSheet.create({
 
     },
     Top: {
-        paddingTop: 60,
+        paddingTop: 45,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 40,
@@ -33,11 +33,20 @@ var styles = StyleSheet.create({
 
     },
     Box:{
-        marginTop: 10,
-        // marginTop:"5%",
+        marginTop:10,
         alignItems: "center",
         justifyContent: "center",
-
+        height: 180,
+        borderRadius: 23,
+        backgroundColor: "#fafafa",
+        borderStyle: "dashed",
+        borderColor: "#CAB2E8",
+        borderWidth: 3.1,
+    },
+    Box2:{
+        marginTop: 25,
+        alignItems: "center",
+        justifyContent: "center",
         height: 180,
         borderRadius: 23,
         backgroundColor: "#fafafa",
@@ -59,6 +68,21 @@ var styles = StyleSheet.create({
         backgroundColor: "#fafafa",
         borderColor: "#CAB2E8",
         borderWidth: .2,
+    },
+    activeBox2:{
+        shadowColor: Colors.Purple,
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 0.13,
+        shadowRadius: 13,
+        alignItems: "center",
+        justifyContent: "center",
+
+        height: 180,
+        borderRadius: 23,
+        backgroundColor: "#fafafa",
+        borderColor: "#CAB2E8",
+        borderWidth: .2,
+        marginTop: 20,
     },
     Img:{
         width: 60,

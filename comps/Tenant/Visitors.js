@@ -6,27 +6,100 @@ import styles from '../../styles/CompsStyles/VisitorStyles';
 
 function Visitors(props){
 
-  //Mockup Numbers
+  //Database apartment States
   var UnitNum = "201";
   var SpotCount = "5";
-  //Active Card 
-  var currentVisitor1 = "Elias Tayag"
-  var currentVisitorPlate = "343 I6R"
-  var timeLeft = 11;
+
 
   //Function 1
   // time left = start + duration - now
   // count time in mili seconds
-  useEffect(()=>{
-    var stime = new Date('2019-11-13 12:00:00');
-    var now = new Date();
-    console.log("miliseconds passed", Date.parse(stime),Date.parse(now));
-    console.log("time passed since start time",   Date.parse(now)-Date.parse(stime));
-    var parkingseconds = 3600;
-    var timepassed = Date.parse(now)-Date.parse(stime);
-    console.log(parkingseconds, timepassed/1000);
+//  useEffect(()=>{
+//    var stime = new Date('2019-11-13 12:00:00');
+//    var now = new Date();
+//    console.log("miliseconds passed", Date.parse(stime),Date.parse(now));
+//    console.log("time passed since start time",   Date.parse(now)-Date.parse(stime));
+//    var parkingseconds = 3600;
+//   var timepassed = Date.parse(now)-Date.parse(stime);
+ //   console.log(parkingseconds, timepassed/1000);
 
-  },[]);
+//  },[]);
+
+  //Current Visitor names, plates and time left
+  var cardtop = null;
+  var cardbot = null;
+  var cardbot2 = null;
+
+  //Visitor functions default states
+
+  //Visitor card 1 function
+  if (props.card1 == false && props.card2 == false){
+
+    cardtop =
+    null;
+  } 
+
+  if (props.card1 == false && props.card2 == true){
+    cardbot2 = 
+         <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor') }} >
+       <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
+       <Text style={Texts.BodyLight}>Add Visitor</Text>
+     </TouchableOpacity> 
+  }
+
+  
+  //if visitor is added state = true 
+  if (props.card1 == true){
+    cardtop =
+              <View style={styles.activeBox} >
+              <Text style={styles.visitorName}>{props.name1}</Text>
+              <Text style={styles.plateText}>{props.plate1}</Text>
+              <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
+              <Text style={styles.time}>{props.dur1}</Text>
+              <Text style={styles.timeHr}>hr</Text>
+              <Text style={styles.leftText}>left</Text>
+
+              <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking1')}}>
+              <Text style={[Texts.HeadS,{color:Colors.Purple}]}>Extend</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove1')}}>
+              <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
+              </TouchableOpacity>
+
+          </View> 
+  } 
+
+
+  //Visitor card 2 functions (same syntax as visitor 1)
+  if (props.card2 == false){
+    cardbot =
+    <TouchableOpacity style={styles.Box2} onPress={() => {props.showPop('AddVisitor') }}>
+      <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
+      <Text style={Texts.BodyLight}>Add Visitor</Text>
+    </TouchableOpacity> 
+  } 
+
+  if (props.card2 == true){
+    cardbot =
+              <View style={styles.activeBox2} >
+              <Text style={styles.visitorName}>{props.name2}</Text>
+              <Text style={styles.plateText}>{props.plate2}</Text>
+              <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
+              <Text style={styles.time}>{props.dur2}</Text>
+              <Text style={styles.timeHr}>hr</Text>
+              <Text style={styles.leftText}>left</Text>
+
+              <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking2')}}>
+              <Text style={[Texts.HeadS,{color:Colors.Purple}]}>Extend</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove2')}}>
+              <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
+              </TouchableOpacity>
+          </View> 
+  } 
+
 
   return(
     <View style={{flex:1, marginBottom: 70}}>
@@ -54,30 +127,12 @@ function Visitors(props){
           <Text style={Texts.BodyLight}>Estimated spots left: {SpotCount}</Text>
 
       <View style={{height:"100%", paddingTop:20}}>
-          {/* UnitVisitors.js*/}
-            <View style={styles.activeBox} >
-              <Text style={styles.visitorName}>{currentVisitor1}</Text>
-              <Text style={styles.plateText}>{currentVisitorPlate}</Text>
-              <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              <Text style={styles.time}>{timeLeft}</Text>
-              <Text style={styles.timeHr}>hr</Text>
-              <Text style={styles.leftText}>left</Text>
+        
+          {/* Visitor Cards UI*/}
+          {cardtop}
+          {cardbot}
+          {cardbot2}
 
-              <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking')}}>
-              <Text style={[Texts.HeadS,{color:Colors.Purple}]}>Extend</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove')}}>
-              <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
-              </TouchableOpacity>
-
-          </View>
-          
-          {/* Empty card */}
-         <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor')}}>
-                <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
-                <Text style={Texts.BodyLight}>Add Visitor</Text>
-         </TouchableOpacity> 
       </View>
     </View>
     </ScrollView>
