@@ -26,7 +26,7 @@ function Main(props){
         setDbVisitors(data.data.visitors);
         setDbReports(data.data.reports);
     }
-    console.log(dbUnits,dbVisitors,dbReports);
+    
     
     // Add visitor Function
     const dbAddVisitor = async()=>{
@@ -81,10 +81,10 @@ function Main(props){
     // Extend visitor function 
     const dbExtendVisitor = async()=>{
         var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for removing a visitor 
+            // the following is an exmaple of what to put in the obj "data" to send to the server for extending a visitor 
             data: {
-                id: 8,
-                extendhour: "3:00:00"
+                // id: 8,
+                // extendhour: "3:00:00"
 
                 // here add your own data, make sure use the same property name and same data type for value 
             }
@@ -105,7 +105,7 @@ function Main(props){
     // Get History function 
     const dbGetHistory = async()=>{
         var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for removing a visitor 
+            // the following is an exmaple of what to put in the obj "data" to send to the server for getting all pinned and not pinned visitors in History page 
             data: {
                 unit_num: 101
 
@@ -121,7 +121,52 @@ function Main(props){
             body: JSON.stringify(visitor)
         })
         let visitordata = await data.text();
-        console.log("Data sent from server for History",JSON.parse(visitordata)); 
+        console.log("Data received from server for History page",JSON.parse(visitordata)); 
+    }
+
+    // Pin Visitor function 
+    const dbPinVisitor = async()=>{
+        var visitor = {
+            // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
+            data: {
+                id: 5
+                // here add your own data, make sure use the same property name and same data type for value 
+            }
+        }
+        var data = await fetch('http://localhost:8888/visipark/pinVisitor.php',{
+            method:'POST',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(visitor)
+        })
+        let visitordata = await data.text();
+        console.log("Data sent to server to pin a visitor",JSON.parse(visitordata)); 
+        dbGetHistory();
+        dbGetData();
+    }
+
+    // Unpin Visitor function 
+    const dbUnpinVisitor = async()=>{
+        var visitor = {
+            // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
+            data: {
+                id: 5
+                // here add your own data, make sure use the same property name and same data type for value 
+            }
+        }
+        var data = await fetch('http://localhost:8888/visipark/unpinVisitor.php',{
+            method:'POST',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(visitor)
+        })
+        let visitordata = await data.text();
+        console.log("Data sent to server to Unpin a visitor",JSON.parse(visitordata)); 
+        dbGetHistory();
         dbGetData();
     }
 
@@ -129,12 +174,15 @@ function Main(props){
 
     // ------------- functions that run when the app loads ----------------
     useEffect(()=>{
+        // dbUnpinVisitor();
+        // dbPinVisitor();
         // dbGetHistory();
         // dbGetData();
         // dbExtendVisitor();
         // dbRemoveVisitor();
         // dbAddVisitor();
     },[]);
+    console.log(dbUnits,dbVisitors,dbReports);
 
 // ------------- Pop up -----------------
     // Function for Popup
