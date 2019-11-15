@@ -13,10 +13,8 @@ function Tform(props){
       <TextInput
       style={[Texts.FormText,{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25
               ,width:'90%', height: 45,  color:'white', margin:10,textAlign: 'center'}]}
-      autoFocus = {true}
       placeholder="unit number"
       placeholderTextColor="#bea9c9"
-      keyboardType="numeric"
       onChangeText = {(txt)=>{
         props.setroom(txt);
       }}
