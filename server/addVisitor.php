@@ -27,6 +27,8 @@ $_POST = json_decode(file_get_contents("php://input"), true);
         //         duration: "3:00:00"
         //     }
         // }
+
+// front end shouldn't allow tenant to put in same plate number with different names for current visitors
         
 $visitor = $_POST['data'];
 

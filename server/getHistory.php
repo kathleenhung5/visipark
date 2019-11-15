@@ -27,7 +27,7 @@ $_POST = json_decode(file_get_contents("php://input"), true);
 
 
 
-//---- Function to get removed tenants of an apartment unit ----
+//---- Function to get pinned and unpinned past visitors for an apartment unit ----
 
 // select distinct plate, name, pin, id from visitors where pin=1
 // select plate, name, pin, id from visitors where removed=1 and pin<>1 and (plate not in (select plate from visitors where pin=1) or name not in (select name from visitors where pin=1))

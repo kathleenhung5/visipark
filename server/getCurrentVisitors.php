@@ -21,31 +21,32 @@ $_POST = json_decode(file_get_contents("php://input"), true);
 // ---- data receiving from client ----
 
         //     data: {
-        //         id: 4
+        //         unit_num: 101
         //     }
         // }
 
 
 
-//---- Function to get removed visitors of an apartment unit ----
+//---- Function to get current visitors of an apartment unit ----
+// front end shouldn't allow tenant to put in same plate numb
 
-// select distinct plate, name, pin, id from visitors where pin=1
-// select plate, name, pin, id from visitors where removed=1 and pin<>1 and (plate not in (select plate from visitors where pin=1) or name not in (select name from visitors where pin=1))
 
-$visitor = $_POST['data'];
-$id = $visitor['id'];
+$visitors = $_POST['data'];
+$unit_num = $visitors['unit_num'];
 
-function pinVisitor($id){
+function getCurrentVisitors($unit_num){
     $sql = "
-    UPDATE visitors  
-    SET pin=1 
-    WHERE id=$id
+    SELECT DISTINCT plate, name, pin, id 
+    FROM visitors 
+    WHERE unit_num = $unit_num and removed = 0
+    ORDER BY id
     ";
-    runQuery($sql);
+    return runQuery($sql);
 }
 
-pinVisitor($id);
 
 
-$json = json_encode($visitor);
+$currentVisitors = getCurrentVisitors($unit_num);
+
+$json = json_encode($currentVisitors);
 echo $json;

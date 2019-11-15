@@ -27,6 +27,29 @@ function Main(props){
         setDbReports(data.data.reports);
     }
     
+     // Get Current Visitor Function
+     const dbGetCurrentVisitors = async()=>{
+        var visitor = {
+            // the following is an exmaple of what to put in the obj "data" to send to the server for adding a visitor 
+            data: {
+                unit_num: 101
+
+                // here add your own data, make sure use the same property name and same data type for value 
+
+            }
+        }
+        var data = await fetch('http://localhost:8888/visipark/getCurrentVisitors.php',{
+            method:'POST',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(visitor)
+        })
+        let visitordata = await data.text();
+        console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
+        dbGetData();
+    }
     
     // Add visitor Function
     const dbAddVisitor = async()=>{
@@ -174,6 +197,7 @@ function Main(props){
 
     // ------------- functions that run when the app loads ----------------
     useEffect(()=>{
+        dbGetCurrentVisitors();
         // dbUnpinVisitor();
         // dbPinVisitor();
         // dbGetHistory();
