@@ -10,6 +10,21 @@ function Visitors(props){
   var UnitNum = "201";
   var SpotCount = "5";
 
+
+  //Function 1
+  // time left = start + duration - now
+  // count time in mili seconds
+//  useEffect(()=>{
+//    var stime = new Date('2019-11-13 12:00:00');
+//    var now = new Date();
+//    console.log("miliseconds passed", Date.parse(stime),Date.parse(now));
+//    console.log("time passed since start time",   Date.parse(now)-Date.parse(stime));
+//    var parkingseconds = 3600;
+//   var timepassed = Date.parse(now)-Date.parse(stime);
+ //   console.log(parkingseconds, timepassed/1000);
+
+//  },[]);
+
   //Current Visitor names, plates and time left
   var cardtop = null;
   var cardbot = null;
@@ -84,6 +99,7 @@ function Visitors(props){
               </TouchableOpacity>
           </View> 
   } 
+
 
   return(
     <View style={{flex:1, marginBottom: 70}}>

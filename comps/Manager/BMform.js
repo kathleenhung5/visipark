@@ -8,14 +8,15 @@ function BMform(props){
 
     <View style={{width: "90%", marginTop: 10, alignItems:"center"}}>
       <TextInput
-      style={{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 , height: 45,  color:'white', margin:10,width:'90%'}}
+      style={{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 , height: 45,  color:'white', margin:10,width:'90%',textAlign: 'center'}}
       placeholder="password"
       placeholderTextColor="#bea9c9"
+      
       />
       <TouchableOpacity
         style={styles.BMForm }
         onPress={()=>{props.setShowpage('Manager')}}>
-        <Text style={styles.TenantText}>
+        <Text style={{color:"#863AE8", fontFamily:"Poppins-SemiBold", fontSize:20}}>
         Login as Manager
         </Text>
        </TouchableOpacity>

@@ -27,7 +27,7 @@ function Login(props){
   if(showBMPage){
     Title = 'Manager Password:';
   } else if (showTenantPage){
-    Title = 'Apartment unit';
+    Title = 'Apartment Unit';
   } else {
     Title = 'Login as';
   }

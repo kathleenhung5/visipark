@@ -1,0 +1,63 @@
+CREATE DATABASE visipark;
+
+USE visipark;
+
+GRANT ALL PRIVILEGES ON visipark.*  TO 'visipark'@'localhost' IDENTIFIED BY 'visipark'; 
+
+CREATE TABLE units (
+num INT(3),
+plate VARCHAR(7),
+activated BOOLEAN,
+PRIMARY KEY (num) 
+);
+
+CREATE TABLE visitors (
+id INT NOT NULL AUTO_INCREMENT,
+unit_num INT(3),
+    FOREIGN KEY (unit_num) 
+    REFERENCES units(num)
+    ON UPDATE CASCADE ON DELETE RESTRICT,
+name VARCHAR(255),
+plate VARCHAR(7),
+start_time TIMESTAMP,
+end_time VARCHAR(255),
+removed BOOLEAN,
+pin BOOLEAN,
+PRIMARY KEY (id)
+);
+
+// still need to figure out end time
+
+
+CREATE TABLE reports (
+unit_num INT(3),
+    FOREIGN KEY (unit_num) 
+    REFERENCES units(num)
+    ON UPDATE CASCADE ON DELETE RESTRICT,
+created TIMESTAMP,
+subject VARCHAR(255),
+message TEXT,
+deleted BOOLEAN
+);
+
+INSERT INTO units VALUES
+(101, "101 ABC", 1),
+(102, "102 ABC", 1),
+(103, NULL, 0),
+(104, NULL, 0),
+(105, "105 ABC", 1),
+(106, "106 ABC", 1),
+(107, "107 ABC", 1);
+
+INSERT INTO visitors 
+(unit_num, name, plate, start_time, end_time, removed, pin)
+VALUES
+(101, "Kathleen", "101 ABC", now(), addtime(now(),'3:00:00'), 1, 1),
+(101, "Kathleen", "101 DEF", now(), addtime(now(),'3:00:00'), 1, 0),
+(101, "Elias", "101 ABG", now(), addtime(now(),'3:00:00'), 1, 0),
+(101, "Elias Tayag", "101 ABG", now(), addtime(now(),'3:00:00'), 1, 0),
+(101, "Nicole Li", "101 XYZ", now(), addtime(now(),'3:00:00'), 1, 0),
+(101, "Nicole Li", "101 XYZ", now(), addtime(now(),'3:00:00'), 1, 0),
+(101, "Nicole Li", "101 XYZ", now(), addtime(now(),'3:00:00'), 1, 1),
+(101, "Dora removed", "101 ABZ", now(), addtime(now(),'3:00:00'), 1, 0),
+(101, "Dora current", "101 ABZ", now(), addtime(now(),'3:00:00'), 0, 0);
