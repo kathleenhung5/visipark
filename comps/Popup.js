@@ -94,6 +94,7 @@ function Popup(props){
           style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
           clearButtonMode = 'always'
           maxLength = {40}
+          value={props.name1}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
           onChangeText = {(txt)=>{props.setName1(txt); console.log(props.name1)}}
@@ -106,6 +107,7 @@ function Popup(props){
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
           maxLength = {7}
+          value={props.plate1}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
