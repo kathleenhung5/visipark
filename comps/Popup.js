@@ -55,14 +55,14 @@ function Popup(props){
   }
 
 // ---- Add Visitor ----
+  // generating picker item
   var addhr = [];
   for(var i=1;i<=24;i++){
     addhr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
-
-
+  
   const [addvisiDur, setAddvisiDur] = useState(1);
   console.log("before",addvisiDur);
  

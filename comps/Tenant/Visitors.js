@@ -7,9 +7,7 @@ import styles from '../../styles/CompsStyles/VisitorStyles';
 function Visitors(props){
 
   //Database apartment States
-  var UnitNum = "201";
   var SpotCount = "5";
-
 
   //Function 1
   // time left = start + duration - now
@@ -41,7 +39,7 @@ function Visitors(props){
 
   if (props.card1 == false && props.card2 == true){
     cardbot2 = 
-         <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor') }} >
+         <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor'); }} >
        <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
        <Text style={Texts.BodyLight}>Add Visitor</Text>
      </TouchableOpacity> 
@@ -122,7 +120,7 @@ function Visitors(props){
       {/* Middle */}
     <View style={styles.Middle}>
           {/* Unit number */}
-          <Text style={Texts.HeadL}>Unit {UnitNum}
+          <Text style={Texts.HeadL}>Unit {props.unit}
           </Text>
           <Text style={Texts.BodyLight}>Estimated spots left: {SpotCount}</Text>
 
