@@ -9,7 +9,6 @@ function Visitors(props){
   //Database apartment States
   var SpotCount = "5";
 
-
   //Function 1
   // time left = start + duration - now
   // count time in mili seconds
@@ -40,7 +39,7 @@ function Visitors(props){
 
   if (props.card1 == false && props.card2 == true){
     cardbot2 = 
-         <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor') }} >
+         <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor'); }} >
        <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
        <Text style={Texts.BodyLight}>Add Visitor</Text>
      </TouchableOpacity> 

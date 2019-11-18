@@ -70,9 +70,6 @@ function Main(props){
         }
     }
    
-    
-    
-    
     // Remove visitor function 
     const dbRemoveVisitor = async()=>{
         var visitor = {
