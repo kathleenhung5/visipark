@@ -6,6 +6,7 @@ import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
 
+
 function Main(props){
 // --------------- Communicate with DB ----------------
     // These are the variables holding information sent from the db
@@ -116,7 +117,9 @@ function Main(props){
         console.log("Data that server received for extending visitor",visitordata); 
         dbGetData();
     }
-
+        console.log("Data that server received for adding visitor",visitordata); 
+        dbGetData();
+    }
 
     // Get History function 
     const dbGetHistory = async()=>{
@@ -185,7 +188,7 @@ function Main(props){
         dbGetHistory();
         dbGetData();
     }
-    
+
 
 // ------------------- Pop up ----------------------
     // Function for Popup
