@@ -43,8 +43,9 @@ function Main(props){
         // dbGetData();
 
         // set current visitors
-        // setCurrentVisitors(JSON.parse(visitordata));
-        setCurrentVisitors(data);
+        // console.log('parsed',JSON.parse(visitordata));
+        setCurrentVisitors(JSON.parse(visitordata));
+        
         // set visitor1 and visitor2 with current visitors info
         if (currentVisitors.length == 1){
             console.log('there is 1 current visitor');
@@ -61,10 +62,10 @@ function Main(props){
             setDur1(currentVisitors[0].time_left);
             setId1(currentVisitors[0].id);
             setCard1(true);
-            setName2(currentVisitors[0].name);
-            setPlate2(currentVisitors[0].plate);
-            setDur2(currentVisitors[0].time_left);
-            setId2(currentVisitors[0].id);
+            setName2(currentVisitors[1].name);
+            setPlate2(currentVisitors[1].plate);
+            setDur2(currentVisitors[1].time_left);
+            setId2(currentVisitors[1].id);
             setCard2(true);
         }
     }
@@ -247,9 +248,11 @@ function Main(props){
    var getUnit = async()=>{
        var localunit = await AsyncStorage.getItem('unit');
        console.log('your unit', localunit);
+       
        if(localunit !== null && localunit !==''){
            // if there IS unit number stored in local storage
-           // whice means, a unit has logged in on this phone
+           // run get current visitor
+           dbGetCurrentVisitors(localunit);
            setUnit(localunit);
            setShowpage('Tenant');
          } else {
@@ -345,7 +348,8 @@ function Main(props){
 // ----------- functions that run when the app loads ----------------
     useEffect(()=>{
         //Get unit number if there's one
-        getUnit().then(dbGetCurrentVisitors(101));
+        // getUnit().then(dbGetCurrentVisitors(101));
+        getUnit();
         // dbUnpinVisitor();
         // dbPinVisitor();
         // dbGetHistory();
