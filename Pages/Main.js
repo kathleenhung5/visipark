@@ -117,9 +117,7 @@ function Main(props){
         console.log("Data that server received for extending visitor",visitordata); 
         dbGetData();
     }
-        console.log("Data that server received for adding visitor",visitordata); 
-        dbGetData();
-    }
+  
 
     // Get History function 
     const dbGetHistory = async()=>{
