@@ -202,14 +202,40 @@ function Popup(props){
     );
    } 
 
+
   //Extend Parking Card 1
+var dbhr = 1;
+    // Extend visitor function (Backend)
+    const dbExtendVisitor = async()=>{
+      var visitor = {
+          // the following is an exmaple of what to put in the obj "data" to send to the server for extending a visitor 
+          data: {
+              id: {},
+              extendhour: {dbhr} + ":00:00"
+
+              // here add your own data, make sure use the same property name and same data type for value 
+          }
+      }
+      var data = await fetch('http://localhost:8888/visipark/extendVisitor.php',{
+          method:'POST',
+          headers:{
+              'Accept':'application/json',
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(visitor)
+      })
+      let visitordata = await data.text();
+      console.log("Data that server received for extending visitor",visitordata); 
+  }
+
+//front end function
   var exthr = [];
   for(var i=1;i<=(24-addvisiDur);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
-  const [extendhr1, setExtendhr1] = useState(0);
+  const [extendhr1, setExtendhr1] = useState(1);
   if (props.pop == 'ExtendParking1'){
     title = 'Extend Parking';
     btnTxt = 'Extend';
@@ -217,11 +243,15 @@ function Popup(props){
     button = (
       <TouchableOpacity 
       style = {styles.button}
-      onPress = {()=>{props.showPop('')}}>
+      onPress = {()=>{props.showPop('');
+      props.setDur1 (extendhr1+props.dur1)
+                      // dbExtendVisitor(id, extendhour);
+      }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
 
     )
+
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
@@ -234,7 +264,7 @@ function Popup(props){
             itemStyle={{height:90}}
             onValueChange = {(val,ind)=>{
               setExtendhr1(val);
-              props.setDur1 (val+props.dur1)}}
+          }}
           >
             {exthr}
           </Picker>
@@ -252,16 +282,19 @@ function Popup(props){
     );
   }
 
-  const [extendhr2, setExtendhr2] = useState(0);
+  const [extendhr2, setExtendhr2] = useState(1);
   if (props.pop == 'ExtendParking2'){
-
     title = 'Extend Parking';
     btnTxt = 'Extend';
 
     button = (
       <TouchableOpacity 
       style = {styles.button}
-      onPress = {()=>{props.showPop('')}}>
+      onPress = {()=>{props.showPop('');
+      props.setDur2 (extendhr2+props.dur2);
+      // dbExtendVisitor(currentid2, extendhour);
+
+      }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
 
@@ -276,13 +309,11 @@ function Popup(props){
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
             style={{width: 130, marginRight: 20}}
-
             selectedValue = {extendhr2}
             itemStyle={{height:90}}
             onValueChange = {(val,ind)=>{
               setExtendhr2(val);
-              props.setDur2 (val+props.dur2)}}
-
+              }}
           >
             {exthr}
           </Picker>
@@ -294,6 +325,32 @@ function Popup(props){
   
 
   // ---- Remove ---- //if card2 is false (if theres no 2nd visitor it will remove card1 which is the first slot)
+
+    // Remove visitor function (backend)
+    const dbRemoveVisitor = async()=>{
+      var visitor = {
+          // the following is an exmaple of what to put in the obj "data" to send to the server for removing a visitor 
+          data: {
+               id: {}
+              
+              // here add your own data, make sure use the same property name and same data type for value 
+          }
+      }
+      var data = await fetch('http://localhost:8888/visipark/removeVisitor.php',{
+          method:'POST',
+          headers:{
+              'Accept':'application/json',
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(visitor)
+      })
+      let visitordata = await data.text();
+      console.log("Data that server received for removing visitor",visitordata); 
+      dbGetData();
+  }
+
+//front end function
+
   if (props.pop == 'Remove1'){
     title = 'Remove';
     btnTxt = 'Yes';
@@ -305,11 +362,12 @@ function Popup(props){
               onPress={()=>{
                 // this is for adding ONE visitor
                 // this is for closing the popup
-                props.showPop('');
+                props.showPop('RemovedSuccessfully1');
                 props.setCard1(false);
                 props.setName1('');
                 props.setPlate1('');
-                props.setDur1(1)
+                props.setDur1(1);
+                dbRemoveVisitor(id);
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
@@ -335,11 +393,12 @@ function Popup(props){
               onPress={()=>{
 
                 // always turns off the second card slot (card2)
-                props.showPop('');
+                props.showPop('RemovedSuccessfully2');
                 props.setCard2(false);
                 props.setName2('');
                 props.setPlate2('');
                 props.setDur2(1)
+                dbRemoveVisitor(id);
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
@@ -351,16 +410,52 @@ function Popup(props){
     );
   }
 
-  //----- Removed Successfully ----
-  if (props.pop == 'RemovedSuccessfully'){
+
+
+  //----- Removed Successfully ---- 1
+  if (props.pop == 'RemovedSuccessfully1'){
     title = 'Removed Successfully';
     btnTxt = 'Okay';
+
+    button = (
+      <TouchableOpacity 
+              style={styles.button}
+              onPress={()=>{
+                props.showPop('');
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            </TouchableOpacity>
+      )
+
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {addvisiName} successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.name1} successfully!</Text>
       </View>
     );
   }
+
+
+    //----- Removed Successfully ---- 2
+    if (props.pop == 'RemovedSuccessfully2'){
+      title = 'Removed Successfully';
+      btnTxt = 'Okay';
+  
+      button = (
+        <TouchableOpacity 
+                style={styles.button}
+                onPress={()=>{
+                  props.showPop('');
+                }}>
+                <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+              </TouchableOpacity>
+        )
+  
+      content = (
+        <View>
+          <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.name2} successfully!</Text>
+        </View>
+      );
+    }
 
   // ---- Reported Successfully ----
   if(props.pop == 'ReportedSuccessfully'){
