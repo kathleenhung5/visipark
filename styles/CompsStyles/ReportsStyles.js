@@ -16,7 +16,7 @@ var styles = StyleSheet.create({
     },
 
     headerDesc:{
-        marginBottom: 20
+        marginBottom: 50
     },
 
     input:{
@@ -40,7 +40,8 @@ var styles = StyleSheet.create({
 
     card:{
         backgroundColor: '#fff',
-
+        paddingLeft: 30,
+        paddingRight: 30,
         paddingTop:20,
         paddingBottom:20,
         shadowColor: Colors.Purple,
@@ -48,9 +49,7 @@ var styles = StyleSheet.create({
         shadowOpacity: 0.13,
         borderRadius: 23,
         marginTop: 10,
-        flexDirection: "row",
         justifyContent: "center"
-        
     },
 
     subUnit:{
