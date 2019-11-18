@@ -54,7 +54,31 @@ function Popup(props){
     );
   }
 
-// ---- Add Visitor ----
+// ------- Card 1 Add Visitor ---------
+  // Add visitor to database Function
+  const dbAddVisitor = async(unit, name, plate, duration)=>{
+    var visitor = {
+        data: {
+            unit_num: unit,
+            name: name,
+            plate: plate,
+            duration: duration//'3:00:00'
+        }
+    }
+    var data = await fetch('http://localhost:8888/visipark/addVisitor.php',{
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(visitor)
+    })
+    let visitordata = await data.text();
+    console.log("Data that server received for adding visitor",visitordata); 
+    // dbGetData();
+    props.dbGetCurrentVisitors(props.unit);
+}
+  
   // generating picker item
   var addhr = [];
   for(var i=1;i<=24;i++){
@@ -62,9 +86,6 @@ function Popup(props){
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
-  
-  const [addvisiDur, setAddvisiDur] = useState(1);
-  console.log("before",addvisiDur);
  
   //Card slot 1 AddVisitor function
   if (props.pop == 'AddVisitor' && props.card1 == false){
@@ -76,6 +97,7 @@ function Popup(props){
 
             onPress={()=>{
               // activate card1, close popup
+              dbAddVisitor(props.unit, props.name1, props.plate1, props.dur1);
               props.setCard1(true);
               props.showPop('');
             }}>
@@ -86,31 +108,32 @@ function Popup(props){
     
     content = (
       <View>
-
         <Text style={Texts.Body}>Visitor's name:</Text>
 
         <TextInput 
           placeholder = "Name"
+          value = {props.name1}
           style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
           clearButtonMode = 'always'
           maxLength = {40}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
-          onChangeText = {(txt)=>{props.setName1(txt); console.log(props.name1)}}
-          />
+          onChangeText = {(txt)=>{props.setName1(txt)}}
+        />
 
         <Text style={Texts.Body}>Visitor's plate number:</Text>
 
         <TextInput 
           placeholder = "Plate number"
+          value = {props.plate1}
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
           maxLength = {7}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
-          onChangeText = {(addvisiPlate)=>{props.setPlate1(addvisiPlate)}}
-          />
+          onChangeText = {(txt)=>{props.setPlate1(txt)}}
+        />
 
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
 
@@ -118,13 +141,11 @@ function Popup(props){
           
           <Picker 
             style={{width: 130, marginRight: 20}}
-            selectedValue = {addvisiDur}
-            value={addvisiDur}
+            selectedValue = {props.dur1}
+            value={props.dur1}
             itemStyle={{height:90}}
             onValueChange = {(val, ind)=>{
               props.setDur1(val);
-              setAddvisiDur(val);
-              console.log(addhr, "after", addvisiDur)
             }}
           >
             {addhr}
@@ -136,7 +157,7 @@ function Popup(props){
    } 
 
 
-   //Card 2 AddVisitor function
+   // -------- Card 2 AddVisitor function --------
    if (props.pop == 'AddVisitor' && props.card1 == true){
     title = 'Add Visitor';
     btnTxt = 'Add';
@@ -144,8 +165,8 @@ function Popup(props){
     button = (
     <TouchableOpacity 
             style={styles.button}
-
             onPress={()=>{
+              dbAddVisitor(props.unit, props.name2, props.plate2, props.dur2);
               props.setCard2(true);
               props.showPop('');
             }}>
@@ -159,26 +180,25 @@ function Popup(props){
         <Text style={Texts.Body}>Visitor's name:</Text>
         <TextInput 
           placeholder = "Name"
+          value = {props.name2}
           style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
           clearButtonMode = 'always'
           maxLength = {40}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
-
-          onChangeText = {(addvisiName)=>{props.setName2(addvisiName); }}
-
+          onChangeText = {(txt)=>{props.setName2(txt)}}
           />
         <Text style={Texts.Body}>Visitor's plate number:</Text>
         <TextInput 
           placeholder = "Plate number"
+          value = {props.plate2}
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
           maxLength = {7}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
-
-          onChangeText = {(addvisiPlate)=>{props.setPlate2(addvisiPlate)}}
+          onChangeText = {(txt)=>{props.setPlate2(txt)}}
 
           />
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
@@ -186,12 +206,10 @@ function Popup(props){
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
             style={{width: 130, marginRight: 20}}
-            selectedValue = {addvisiDur}
+            selectedValue = {props.dur2}
             itemStyle={{height:90}}
-            
             onValueChange = {(val, ind)=>{
-              props.setDur2(val);
-              setAddvisiDur(val);
+            props.setDur2(val);
             }}
           >
             {addhr}
@@ -204,7 +222,8 @@ function Popup(props){
 
   //Extend Parking Card 1
   var exthr = [];
-  for(var i=1;i<=(24-addvisiDur);i++){
+  // dur to be changed later
+  for(var i=1;i<=(24-props.dur1);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
@@ -246,7 +265,7 @@ function Popup(props){
 
   //Extend Parking Card 2
   var exthr = [];
-  for(var i=1;i<=(24-addvisiDur);i++){
+  for(var i=1;i<=(24-props.dur2);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
@@ -357,7 +376,7 @@ function Popup(props){
     btnTxt = 'Okay';
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {addvisiName} successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed ____ successfully!</Text>
       </View>
     );
   }

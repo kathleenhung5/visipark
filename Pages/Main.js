@@ -23,14 +23,11 @@ function Main(props){
     }
     
      // Get Current Visitor Function
-     const dbGetCurrentVisitors = async()=>{
+     const [currentVisitors, setCurrentVisitors] = useState([]);
+     const dbGetCurrentVisitors = async(unit)=>{
         var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for adding a visitor 
             data: {
-                unit_num: 101
-
-                // here add your own data, make sure use the same property name and same data type for value 
-
+                unit_num: unit
             }
         }
         var data = await fetch('http://localhost:8888/visipark/getCurrentVisitors.php',{
@@ -43,35 +40,38 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
-        dbGetData();
-    }
-    
-    // Add visitor Function
-    const dbAddVisitor = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for adding a visitor 
-            data: {
-                // unit_num: 102,
-                // name: "Elias",
-                // plate: "abd 456",
-                // duration: '3:00:00'
+        // dbGetData();
 
-                // here add your own data, make sure use the same property name and same data type for value 
-
-            }
+        // set current visitors
+        // console.log('parsed',JSON.parse(visitordata));
+        setCurrentVisitors(JSON.parse(visitordata));
+        
+        // set visitor1 and visitor2 with current visitors info
+        if (currentVisitors.length == 1){
+            console.log('there is 1 current visitor');
+            setName1(currentVisitors[0].name);
+            setPlate1(currentVisitors[0].plate);
+            setDur1(currentVisitors[0].time_left);
+            setId1(currentVisitors[0].id);
+            setCard1(true);
         }
-        var data = await fetch('http://localhost:8888/visipark/addVisitor.php',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(visitor)
-        })
-        let visitordata = await data.text();
-        console.log("Data that server received for adding visitor",visitordata); 
-        dbGetData();
+        if (currentVisitors.length == 2){
+            console.log('there are 2 current visitors');
+            setName1(currentVisitors[0].name);
+            setPlate1(currentVisitors[0].plate);
+            setDur1(currentVisitors[0].time_left);
+            setId1(currentVisitors[0].id);
+            setCard1(true);
+            setName2(currentVisitors[1].name);
+            setPlate2(currentVisitors[1].plate);
+            setDur2(currentVisitors[1].time_left);
+            setId2(currentVisitors[1].id);
+            setCard2(true);
+        }
     }
+   
+    
+    
     
     // Remove visitor function 
     const dbRemoveVisitor = async()=>{
@@ -188,23 +188,12 @@ function Main(props){
         dbGetData();
     }
 
+    
+    
 
 
-    // ----------- functions that run when the app loads ----------------
-    useEffect(()=>{
-        //Get unit number if there's one
-        getUnit();
 
-        // dbGetCurrentVisitors();
-        // dbUnpinVisitor();
-        // dbPinVisitor();
-        // dbGetHistory();
-        // dbGetData();
-        // dbExtendVisitor();
-        // dbRemoveVisitor();
-        // dbAddVisitor();
-    },[]);
-    console.log(dbUnits,dbVisitors,dbReports);
+    
 
 // ------------------- Pop up ----------------------
     // Function for Popup
@@ -214,49 +203,9 @@ function Main(props){
 
     // Variable to show and hide popup
     const [pop, showPop] = useState(''); 
-    // Conditions to show Popup
-    if (pop == ''){
-        mpopup = null;
-     } else {
-         mpopup = <Popup 
-                     pop = {pop} 
-                     showPop = {showPop} 
-                     card1 = {card1}
-                     setCard1 = {setCard1}
-                     card2 = {card2}
-                     setCard2 = {setCard2}
-                     name1 = {name1}
-                     setName1 ={setName1}
-                     name2 = {name2}
-                     setName2 ={setName2}
-                     plate1 = {plate1}
-                     setPlate1 ={setPlate1}
-                     plate2 = {plate2}
-                     setPlate2 ={setPlate2}
-                     dur1 = {dur1}
-                     setDur1 ={setDur1}
-                     dur2 = {dur2}
-                     setDur2 ={setDur2}
- 
-                 />;                 
-             }
+   
 
 // ----------------- Unit and Visitors info ----------------
-    // state variable for unit info
-    const [unit, setUnit] = useState();
-    // function to get unit number from local storage 
-    var getUnit = async()=>{
-        var localunit = await AsyncStorage.getItem('unit');
-        console.log('your unit', localunit);
-        if(localunit !== null && localunit !==''){
-            // if there IS unit number stored in local storage
-            // whice means, a unit has logged in on this phone
-            setUnit(localunit);
-            setShowpage('Tenant');
-        } else {
-            setShowpage('Login');
-        }
-    }
     // state variables for visitor info
     const [card1, setCard1] = useState(false);  // card1={true} means cardtop in <Visitors /> is shown and holding a visitor's info   
     const [card2, setCard2] = useState(false);
@@ -264,8 +213,27 @@ function Main(props){
     const [name2, setName2] = useState('');
     const [plate1, setPlate1] = useState('');
     const [plate2, setPlate2] = useState('');
-    const [dur1, setDur1] = useState(1);
+    const [dur1, setDur1] = useState(1); // unit is Minute
     const [dur2, setDur2] = useState(1);
+    const [id1,setId1] = useState();
+    const [id2,setId2] = useState();
+
+   // function to get unit number from local storage 
+   const [unit, setUnit] = useState();
+   var getUnit = async()=>{
+       var localunit = await AsyncStorage.getItem('unit');
+       console.log('your unit', localunit);
+       
+       if(localunit !== null && localunit !==''){
+           // if there IS unit number stored in local storage
+           // run get current visitor
+           dbGetCurrentVisitors(localunit);
+           setUnit(localunit);
+           setShowpage('Tenant');
+         } else {
+           setShowpage('Login');
+         }
+     }
     
 // ------------------ Pages ---------------------
     // state variable to show and hide pages and variables hold pages. 
@@ -274,8 +242,6 @@ function Main(props){
     var page = null;
     
     // conditions to show and hide pages
-    
-
     if(showpage == 'Login'){
         page = <Login 
                 // show Login, Tenant or Manager page
@@ -312,7 +278,9 @@ function Main(props){
                  setDur1 ={setDur1}
                  dur2 = {dur2}
                  setDur2 ={setDur2}
-               
+                 id1 = {id1}
+                 id2 = {id2}
+
                 />;
         props.setSafebg(true);
     }
@@ -324,6 +292,61 @@ function Main(props){
         props.setSafebg(true);
     }
 
+     // Conditions to show Popup
+     if (pop == ''){
+        mpopup = null;
+     } else {
+         mpopup = <Popup 
+                     // popup
+                     pop = {pop} 
+                     showPop = {showPop} 
+                     // cards
+                     card1 = {card1}
+                     setCard1 = {setCard1}
+                     card2 = {card2}
+                     setCard2 = {setCard2}
+                     // unit
+                     unit = {unit}
+                     // visitors info
+                     name1 = {name1}
+                     setName1 ={setName1}
+                     name2 = {name2}
+                     setName2 ={setName2}
+                     plate1 = {plate1}
+                     setPlate1 ={setPlate1}
+                     plate2 = {plate2}
+                     setPlate2 ={setPlate2}
+                     dur1 = {dur1}
+                     setDur1 ={setDur1}
+                     dur2 = {dur2}
+                     setDur2 ={setDur2}
+                     id1 = {id1}
+                     id2 = {id2}
+                     // functions
+                     dbGetCurrentVisitors = {dbGetCurrentVisitors}
+                 />;                 
+             }
+
+
+
+// ----------- functions that run when the app loads ----------------
+    useEffect(()=>{
+        //Get unit number if there's one
+        // getUnit().then(dbGetCurrentVisitors(101));
+        getUnit();
+        // dbUnpinVisitor();
+        // dbPinVisitor();
+        // dbGetHistory();
+        dbGetData();
+        // dbExtendVisitor();
+        // dbRemoveVisitor();
+        // dbAddVisitor();
+    },[]);
+    // console.log('get all tables',dbUnits,dbVisitors,dbReports);
+
+
+
+    
     // -------------- UI ------------------
 return (
         <View style={styles.container}>
