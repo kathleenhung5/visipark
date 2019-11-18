@@ -117,6 +117,7 @@ function Main(props){
         dbGetData();
     }
 
+
     // Get History function 
     const dbGetHistory = async()=>{
         var visitor = {
@@ -184,12 +185,6 @@ function Main(props){
         dbGetHistory();
         dbGetData();
     }
-
-    
-    
-
-
-
     
 
 // ------------------- Pop up ----------------------
