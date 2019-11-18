@@ -1,18 +1,13 @@
-
 import React,{useState,useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, AsyncStorage} from 'react-native';
 import styles from '../styles/PagesStyles/MainStyles';
 import Tenant from '../Pages/Tenant';
 import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
-import axios from 'axios';
-
-
-
 
 function Main(props){
-// ---------- Communicate with DB -----------
+// --------------- Communicate with DB ----------------
     // These are the variables holding information sent from the db
     const [dbUnits, setDbUnits] = useState([]);
     const [dbVisitors, setDbVisitors] = useState([]);
@@ -195,9 +190,12 @@ function Main(props){
 
 
 
-    // ------------- functions that run when the app loads ----------------
+    // ----------- functions that run when the app loads ----------------
     useEffect(()=>{
-        dbGetCurrentVisitors();
+        //Get unit number if there's one
+        getUnit();
+
+        // dbGetCurrentVisitors();
         // dbUnpinVisitor();
         // dbPinVisitor();
         // dbGetHistory();
@@ -208,26 +206,59 @@ function Main(props){
     },[]);
     console.log(dbUnits,dbVisitors,dbReports);
 
-// ------------- Pop up -----------------
+// ------------------- Pop up ----------------------
     // Function for Popup
     // Call showPop('YourPopupTitle') in your button to show the corresponding Popup.
     // Example: Your Popup title is 'Add Visitor', call showPop('AddVisitor') in your onPress.
-    // !! IMPORTANT !! To close Popup, call showPop('').
+    // !! IMPORTANT !! To close Popup, call showPop('')
 
+    // Variable to show and hide popup
     const [pop, showPop] = useState(''); 
-    const [showpage, setShowpage] = useState('Login');
-    // visitor info
-     const [visiName, setVisiName] = useState('');
-     const [visiPlate, setVisiPlate] = useState('');
-     const [visiDur, setVisiDur] = useState(0);
+    // Conditions to show Popup
+    if (pop == ''){
+        mpopup = null;
+     } else {
+         mpopup = <Popup 
+                     pop = {pop} 
+                     showPop = {showPop} 
+                     card1 = {card1}
+                     setCard1 = {setCard1}
+                     card2 = {card2}
+                     setCard2 = {setCard2}
+                     name1 = {name1}
+                     setName1 ={setName1}
+                     name2 = {name2}
+                     setName2 ={setName2}
+                     plate1 = {plate1}
+                     setPlate1 ={setPlate1}
+                     plate2 = {plate2}
+                     setPlate2 ={setPlate2}
+                     dur1 = {dur1}
+                     setDur1 ={setDur1}
+                     dur2 = {dur2}
+                     setDur2 ={setDur2}
+ 
+                 />;                 
+             }
 
-    var mpopup = null;
-    var page = null;
-
-    //--------- Kathleen ----------
-    // I added them here, and pass them in popup and in Tenant
-    // functions to set visitor cards
-    const [card1, setCard1] = useState(false);
+// ----------------- Unit and Visitors info ----------------
+    // state variable for unit info
+    const [unit, setUnit] = useState();
+    // function to get unit number from local storage 
+    var getUnit = async()=>{
+        var localunit = await AsyncStorage.getItem('unit');
+        console.log('your unit', localunit);
+        if(localunit !== null && localunit !==''){
+            // if there IS unit number stored in local storage
+            // whice means, a unit has logged in on this phone
+            setUnit(localunit);
+            setShowpage('Tenant');
+        } else {
+            setShowpage('Login');
+        }
+    }
+    // state variables for visitor info
+    const [card1, setCard1] = useState(false);  // card1={true} means cardtop in <Visitors /> is shown and holding a visitor's info   
     const [card2, setCard2] = useState(false);
     const [name1, setName1] = useState('');
     const [name2, setName2] = useState('');
@@ -236,19 +267,39 @@ function Main(props){
     const [dur1, setDur1] = useState(1);
     const [dur2, setDur2] = useState(1);
     
-    // Conditions to show {page}
+// ------------------ Pages ---------------------
+    // state variable to show and hide pages and variables hold pages. 
+    const [showpage, setShowpage] = useState('');
+    var mpopup = null;
+    var page = null;
+    
+    // conditions to show and hide pages
+    
+
     if(showpage == 'Login'){
-        page = <Login showpage={showpage} setShowpage={setShowpage} />;
+        page = <Login 
+                // show Login, Tenant or Manager page
+                showpage={showpage}    
+                setShowpage={setShowpage} 
+                // unit info
+                unit = {unit}
+                setUnit = {setUnit}
+                />;
         props.setSafebg(false);
     }
     if(showpage == 'Tenant'){
         page = <Tenant 
+                // pop up
                  pop = {pop} 
                  showPop = {showPop}
+                 // cards
                  card1 = {card1}
                  setCard1 = {setCard1}
                  card2 = {card2}
                  setCard2 = {setCard2}
+                 // unit info
+                 unit = {unit}
+                 // visitors info
                  name1 = {name1}
                  setName1 ={setName1}
                  name2 = {name2}
@@ -261,6 +312,7 @@ function Main(props){
                  setDur1 ={setDur1}
                  dur2 = {dur2}
                  setDur2 ={setDur2}
+               
                 />;
         props.setSafebg(true);
     }
@@ -268,52 +320,10 @@ function Main(props){
         page = <Manager 
                  pop = {pop} 
                  showPop = {showPop}
-                 visiName = {visiName}
-                 setVisiName = {setVisiName}
-                 visiPlate ={visiPlate} 
-                 setVisiPlate = {setVisiPlate}
-                 visiDur = {visiDur} 
-                 setVisiDur = {setVisiDur}
                 />;
         props.setSafebg(true);
     }
 
-    // Conditions to show Popup
-    if (pop == ''){
-       mpopup = null;
-    } else {
-        mpopup = <Popup 
-                    pop = {pop} 
-                    showPop = {showPop} 
-
-//                    visiName = {visiName}
-//                     setVisiName = {setVisiName}
-//                     visiPlate ={visiPlate} 
-//                     setVisiPlate = {setVisiPlate}
-//                     visiDur = {visiDur} 
-//                     setVisiDur = {setVisiDur}
-
-                    card1 = {card1}
-                    setCard1 = {setCard1}
-                    card2 = {card2}
-                    setCard2 = {setCard2}
-                    name1 = {name1}
-                    setName1 ={setName1}
-                    name2 = {name2}
-                    setName2 ={setName2}
-                    plate1 = {plate1}
-                    setPlate1 ={setPlate1}
-                    plate2 = {plate2}
-                    setPlate2 ={setPlate2}
-                    dur1 = {dur1}
-                    setDur1 ={setDur1}
-                    dur2 = {dur2}
-                    setDur2 ={setDur2}
-
-                />;
-                
-            }
-    
     // -------------- UI ------------------
 return (
         <View style={styles.container}>

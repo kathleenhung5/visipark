@@ -12,13 +12,22 @@ function Login(props){
 
   var TenantPage = null;
   if (showTenantPage === true){
-    TenantPage=(<Tform showpage={props.showpage} setShowpage={props.setShowpage}/>);
+    TenantPage=(
+      <Tform 
+      showpage={props.showpage} 
+      setShowpage={props.setShowpage}
+      unit = {props.unit}
+      setUnit = {props.setUnit}
+      />);
   } else {
     TenantPage = null;
   }
   var BMPage = null;
   if (showBMPage === true){
-    BMPage=(<BMform showpage={props.showpage} setShowpage={props.setShowpage}/>);
+    BMPage = (
+    <BMform showpage={props.showpage} 
+    setShowpage={props.setShowpage}
+    />);
   } else {
     BMPage = null;
   }
