@@ -1,14 +1,20 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 import styles from '../../styles/CompsStyles/ReportsStyles';
 
-function Reports(){
+function Reports(props){
 
     var reports = 
 
-    <View>
+    <View style={styles.card}>
+        <TouchableOpacity onPress={() => {props.showPop('Reports') }}>
+            <Text style={Texts.HeadL}>Overtime parking!!</Text>
+            <Text style={Texts.Body}>Aug.22</Text>
+            <Text style={Texts.BodyLight}>someone has been parkin...</Text>
+            <Text style={Texts.Link}>Read More >></Text>
+        </TouchableOpacity>
 
      </View>
 
@@ -20,6 +26,19 @@ function Reports(){
 
 {/* tenants reports starts here */}
 <ScrollView>
+<View style={styles.card}>
+
+        <TouchableOpacity onPress={() => {props.showPop('Reports') }}>
+
+             <Text style={Texts.HeadL}>Help!</Text>
+             <Text style={Texts.Body}>Aug.22</Text>
+             <Text style={Texts.BodyLight}>someone has been parkin...</Text>
+             <Text style={Texts.Link}>Read More >></Text>
+
+        </TouchableOpacity>
+
+
+     </View>
         {reports}
 </ScrollView>
 
