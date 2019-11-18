@@ -6,7 +6,7 @@ import Tenant from '../Pages/Tenant';
 import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
-import axios from 'axios';
+
 
 
 

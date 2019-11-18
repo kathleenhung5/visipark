@@ -28,5 +28,4 @@ function App(){
   )
 }
 
-//export default App;
-export default from './storybook';
+export default App;
