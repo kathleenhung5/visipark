@@ -71,22 +71,17 @@ function Main(props){
         }
     }
    
-    
-    // Add visitor Function
-    const dbAddVisitor = async()=>{
+    // Remove visitor function 
+    const dbRemoveVisitor = async()=>{
         var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for adding a visitor 
+            // the following is an exmaple of what to put in the obj "data" to send to the server for removing a visitor 
             data: {
-                // unit_num: 102,
-                // name: "Elias",
-                // plate: "abd 456",
-                // duration: '3:00:00'
+                // id: 5
 
                 // here add your own data, make sure use the same property name and same data type for value 
-
             }
         }
-        var data = await fetch('http://localhost:8888/visipark/addVisitor.php',{
+        var data = await fetch('http://localhost:8888/visipark/removeVisitor.php',{
             method:'POST',
             headers:{
                 'Accept':'application/json',
@@ -95,10 +90,36 @@ function Main(props){
             body: JSON.stringify(visitor)
         })
         let visitordata = await data.text();
+        console.log("Data that server received for removing visitor",visitordata); 
+        dbGetData();
+    }
+
+    // Extend visitor function 
+    const dbExtendVisitor = async()=>{
+        var visitor = {
+            // the following is an exmaple of what to put in the obj "data" to send to the server for extending a visitor 
+            data: {
+                // id: 8,
+                // extendhour: "3:00:00"
+
+                // here add your own data, make sure use the same property name and same data type for value 
+            }
+        }
+        var data = await fetch('http://localhost:8888/visipark/extendVisitor.php',{
+            method:'POST',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(visitor)
+        })
+        let visitordata = await data.text();
+        console.log("Data that server received for extending visitor",visitordata); 
+        dbGetData();
+    }
         console.log("Data that server received for adding visitor",visitordata); 
         dbGetData();
     }
-    
 
     // Get History function 
     const dbGetHistory = async()=>{
@@ -271,12 +292,17 @@ function Main(props){
         mpopup = null;
      } else {
          mpopup = <Popup 
+                     // popup
                      pop = {pop} 
                      showPop = {showPop} 
+                     // cards
                      card1 = {card1}
                      setCard1 = {setCard1}
                      card2 = {card2}
                      setCard2 = {setCard2}
+                     // unit
+                     unit = {unit}
+                     // visitors info
                      name1 = {name1}
                      setName1 ={setName1}
                      name2 = {name2}
@@ -289,6 +315,10 @@ function Main(props){
                      setDur1 ={setDur1}
                      dur2 = {dur2}
                      setDur2 ={setDur2}
+                     id1 = {id1}
+                     id2 = {id2}
+                     // functions
+                     dbGetCurrentVisitors = {dbGetCurrentVisitors}
                  />;                 
              }
 
