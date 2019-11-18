@@ -23,14 +23,11 @@ function Main(props){
     }
     
      // Get Current Visitor Function
-     const dbGetCurrentVisitors = async()=>{
+     const [currentVisitors, setCurrentVisitors] = useState([]);
+     const dbGetCurrentVisitors = async(unit)=>{
         var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for adding a visitor 
             data: {
-                unit_num: 101
-
-                // here add your own data, make sure use the same property name and same data type for value 
-
+                unit_num: unit
             }
         }
         var data = await fetch('http://localhost:8888/visipark/getCurrentVisitors.php',{
@@ -44,6 +41,8 @@ function Main(props){
         let visitordata = await data.text();
         console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
         dbGetData();
+        // set current visitors
+        setCurrentVisitors(JSON.parse(visitordata));
     }
     
     // Add visitor Function
@@ -193,18 +192,16 @@ function Main(props){
     // ----------- functions that run when the app loads ----------------
     useEffect(()=>{
         //Get unit number if there's one
-        getUnit();
-
-        // dbGetCurrentVisitors();
+        getUnit().then(dbGetCurrentVisitors(101));
         // dbUnpinVisitor();
         // dbPinVisitor();
         // dbGetHistory();
-        // dbGetData();
+        dbGetData();
         // dbExtendVisitor();
         // dbRemoveVisitor();
         // dbAddVisitor();
     },[]);
-    console.log(dbUnits,dbVisitors,dbReports);
+    // console.log('get all tables',dbUnits,dbVisitors,dbReports);
 
 // ------------------- Pop up ----------------------
     // Function for Popup
@@ -237,7 +234,6 @@ function Main(props){
                      setDur1 ={setDur1}
                      dur2 = {dur2}
                      setDur2 ={setDur2}
- 
                  />;                 
              }
 
@@ -264,9 +260,18 @@ function Main(props){
     const [name2, setName2] = useState('');
     const [plate1, setPlate1] = useState('');
     const [plate2, setPlate2] = useState('');
-    const [dur1, setDur1] = useState(1);
+    const [dur1, setDur1] = useState(1); // unit is Minute
     const [dur2, setDur2] = useState(1);
-    
+    const [id1,setId1] = useState();
+    const [id2,setId2] = useState();
+    // set visitor1 and visitor2 with current visitors info
+    if (currentVisitors.length == 1){
+        console.log('test!!',currentVisitors[0].name);
+        // setName1(currentVisitors[0].name);
+        // setPlate1(currentVisitors[0].plate);
+        // setDur1(currentVisitors[0].time_left);
+        // setId1(currentVisitors[0].id);
+    }
 // ------------------ Pages ---------------------
     // state variable to show and hide pages and variables hold pages. 
     const [showpage, setShowpage] = useState('');
@@ -312,7 +317,7 @@ function Main(props){
                  setDur1 ={setDur1}
                  dur2 = {dur2}
                  setDur2 ={setDur2}
-               
+
                 />;
         props.setSafebg(true);
     }
