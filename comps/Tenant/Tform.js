@@ -38,15 +38,12 @@ function Tform(props){
       <TextInput
           placeholder="unit number"
           onChangeText = {(txt)=>{
-            props.setUnit(txt);
-          }}
+            props.setUnit(txt)}}
           maxLength={3}
           value = {props.unit}
           keyboardType = "numeric"
           style={[Texts.FormText,{color:'white' ,padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 ,width:'90%', height: 45,  color:'white', margin:20,textAlign: 'center'} ]}
           placeholderTextColor="#bea9c9"
-      }}
-
       />
       <TouchableOpacity
         style={styles.Tform}
