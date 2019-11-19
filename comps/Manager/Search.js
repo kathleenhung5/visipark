@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import {View, Text, TextInput, Image, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 //import styles from '../../styles/CompsStyles/SearchStyles';
 import styles from '../../styles/CompsStyles/HistoryStyles';
-import { ScrollView } from 'react-native-gesture-handler';
+
 
 var data = [
   {name:"Dora", plate:"Wowho"},
