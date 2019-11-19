@@ -36,14 +36,14 @@ $unit_num = $visitors['unit_num'];
 
 function getCurrentVisitors($unit_num){
     $sql = "
-    SELECT DISTINCT plate, name, pin, id 
+    SELECT DISTINCT plate, name, TIMESTAMPDIFF(MINUTE,NOW(),end_time) as time_left, id 
     FROM visitors 
     WHERE unit_num = $unit_num and removed = 0
     ORDER BY id
     ";
     return runQuery($sql);
 }
-
+//  SELECT DISTINCT plate, name, TIMESTAMPDIFF(MINUTE,NOW(),end_time) as time_left, id FROM visitors 
 
 
 $currentVisitors = getCurrentVisitors($unit_num);

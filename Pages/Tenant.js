@@ -23,12 +23,19 @@ function Tenant(props){
 // conditions updating Content and tabbar
   if(cont == 'Visitors'){
     Content = <Visitors 
+          // popup
           pop={props.pop} 
           showPop={props.showPop}
+          // cards
           card1 = {props.card1}
           setCard1 = {props.setCard1}
           card2 = {props.card2}
           setCard2 = {props.setCard2}
+          // unit info
+          unit = {props.unit}
+          // spots
+          spots = {props.spots}
+          // visitors info
           name1 = {props.name1}
           setName1 ={props.setName1}
           name2 = {props.name2}

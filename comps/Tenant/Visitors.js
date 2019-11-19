@@ -6,9 +6,7 @@ import styles from '../../styles/CompsStyles/VisitorStyles';
 
 function Visitors(props){
 
-  //Database apartment States
-  var UnitNum = "";
-  var SpotCount = "5";
+
 
 
   //Function 1
@@ -25,12 +23,10 @@ function Visitors(props){
 
 //  },[]);
 
-  //Current Visitor names, plates and time left
+  // UI Variables
   var cardtop = null;
   var cardbot = null;
   var cardbot2 = null;
-
-  //Visitor functions default states
 
   //Visitor card 1 function
   if (props.card1 == false && props.card2 == false){
@@ -41,7 +37,7 @@ function Visitors(props){
 
   if (props.card1 == false && props.card2 == true){
     cardbot2 = 
-         <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor') }} >
+         <TouchableOpacity style={styles.Box} onPress={() => {props.showPop('AddVisitor'); }} >
        <Image resizeMode='contain' source={require('../../img/add-visi.png')} style={styles.Img}/>
        <Text style={Texts.BodyLight}>Add Visitor</Text>
      </TouchableOpacity> 
@@ -51,7 +47,7 @@ function Visitors(props){
   //if visitor is added state = true 
   if (props.card1 == true){
     cardtop =
-              <View style={styles.activeBox} >
+            <View style={styles.activeBox} >
               <Text style={styles.visitorName}>{props.name1}</Text>
               <Text style={styles.plateText}>{props.plate1}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
@@ -122,9 +118,10 @@ function Visitors(props){
       {/* Middle */}
     <View style={styles.Middle}>
           {/* Unit number */}
-          <Text style={Texts.HeadL}>Unit {props.room}
+
+          <Text style={Texts.HeadL}>Unit {props.unit}
           </Text>
-          <Text style={Texts.BodyLight}>Estimated spots left: {SpotCount}</Text>
+          <Text style={Texts.BodyLight}>Estimated spots left: {props.spots}</Text>
 
       <View style={{height:"100%", paddingTop:20}}>
         

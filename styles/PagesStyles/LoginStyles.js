@@ -14,7 +14,6 @@ var styles = StyleSheet.create({
       alignItems:"center",
       justifyContent:"center",
 
-
     },
 
    Logo: {
@@ -54,7 +53,7 @@ var styles = StyleSheet.create({
       borderColor: 'white',
       width:'90%',
       height:45,
-      margin: 10
+      margin: 20
     },
     BMText: {
       //color: "white",

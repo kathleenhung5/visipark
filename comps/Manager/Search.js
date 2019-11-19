@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import {View, Text, TextInput, Image, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 //import styles from '../../styles/CompsStyles/SearchStyles';
+<<<<<<< HEAD
 import styles from '../../styles/CompsStyles/SearchStyles';
 import { ScrollView } from 'react-native-gesture-handler';
+=======
+import styles from '../../styles/CompsStyles/HistoryStyles';
+>>>>>>> master
 
 var data = [
   {plate:"kk123", unit:"101", },

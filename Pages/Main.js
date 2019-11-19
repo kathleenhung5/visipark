@@ -1,24 +1,17 @@
-
 import React,{useState,useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, AsyncStorage} from 'react-native';
 import styles from '../styles/PagesStyles/MainStyles';
 import Tenant from '../Pages/Tenant';
 import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
 
-
-
-
-
 function Main(props){
-// ---------- Communicate with DB -----------
-    // These are the variables holding information sent from the db
+// --------------- Communicate with DB ----------------
+    // getData Function
     const [dbUnits, setDbUnits] = useState([]);
     const [dbVisitors, setDbVisitors] = useState([]);
     const [dbReports, setDbReports] = useState([]);
-
-    // getData Function
     var dbGetData = async()=>{
         var resp = await fetch('http://localhost:8888/visipark/getData.php');
         var data = await resp.json();
@@ -28,14 +21,11 @@ function Main(props){
     }
     
      // Get Current Visitor Function
-     const dbGetCurrentVisitors = async()=>{
+     const [currentVisitors, setCurrentVisitors] = useState([]);
+     const dbGetCurrentVisitors = async(unit)=>{
         var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for adding a visitor 
             data: {
-                unit_num: 101
-
-                // here add your own data, make sure use the same property name and same data type for value 
-
+                unit_num: unit
             }
         }
         var data = await fetch('http://localhost:8888/visipark/getCurrentVisitors.php',{
@@ -48,36 +38,35 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
-        dbGetData();
-    }
-    
-    // Add visitor Function
-    const dbAddVisitor = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for adding a visitor 
-            data: {
-                // unit_num: 101,
-                // name: "Elias",
-                // plate: "abd 456",
-                // duration: '3:00:00'
 
-                // here add your own data, make sure use the same property name and same data type for value 
-                
-            }
+        // set current visitors
+        // console.log('parsed',JSON.parse(visitordata));
+        setCurrentVisitors(JSON.parse(visitordata));
+        
+        // set visitor1 and visitor2 with current visitors info
+        if (currentVisitors.length == 1){
+            console.log('there is 1 current visitor');
+            setName1(currentVisitors[0].name);
+            setPlate1(currentVisitors[0].plate);
+            setDur1(currentVisitors[0].time_left);
+            setId1(currentVisitors[0].id);
+            setCard1(true);
         }
-        var data = await fetch('http://localhost:8888/visipark/addVisitor.php',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(visitor)
-        })
-        let visitordata = await data.text();
-        console.log("Data that server received for adding visitor",visitordata); 
-        dbGetData();
+        if (currentVisitors.length == 2){
+            console.log('there are 2 current visitors');
+            setName1(currentVisitors[0].name);
+            setPlate1(currentVisitors[0].plate);
+            setDur1(currentVisitors[0].time_left);
+            setId1(currentVisitors[0].id);
+            setCard1(true);
+            setName2(currentVisitors[1].name);
+            setPlate2(currentVisitors[1].plate);
+            setDur2(currentVisitors[1].time_left);
+            setId2(currentVisitors[1].id);
+            setCard2(true);
+        }
     }
-    
+   
     // Remove visitor function 
     const dbRemoveVisitor = async()=>{
         var visitor = {
@@ -124,6 +113,7 @@ function Main(props){
         console.log("Data that server received for extending visitor",visitordata); 
         dbGetData();
     }
+  
 
     // Get History function 
     const [PinnedVisitors, setPinnedVisitors] = useState([]);
@@ -205,74 +195,86 @@ function Main(props){
         dbGetData();
     }
 
+    // get spots left function 
+    const [spots,setSpots] = useState();
+    var dbGetSpots = async()=>{
+    var resp = await fetch('http://localhost:8888/visipark/getSpots.php');
+    var data = await resp.json();
+    setSpots(data);
+}
 
 
-    // ------------- functions that run when the app loads ----------------
-    useEffect(()=>{
-        // dbGetCurrentVisitors();
-        // dbUnpinVisitor();
-        // dbPinVisitor();
-        dbGetHistory();
-        //  dbGetData();
-        // dbExtendVisitor();
-        // dbRemoveVisitor();
-        // dbAddVisitor();
-    },[]);
-    console.log(dbUnits,dbVisitors,dbReports);
-
-// ------------- Pop up -----------------
+// ------------------- Pop up ----------------------
     // Function for Popup
     // Call showPop('YourPopupTitle') in your button to show the corresponding Popup.
     // Example: Your Popup title is 'Add Visitor', call showPop('AddVisitor') in your onPress.
-    // !! IMPORTANT !! To close Popup, call showPop('').
+    // !! IMPORTANT !! To close Popup, call showPop('')
 
+    // Variable to show and hide popup
     const [pop, showPop] = useState(''); 
-    const [showpage, setShowpage] = useState('Login');
-
-    // visitor info
-     const [visiName, setVisiName] = useState('');
-     const [visiPlate, setVisiPlate] = useState('');
-     const [visiDur, setVisiDur] = useState(0);
 
 
-    var mpopup = null;
-    var page = null;
-
-    //--------- Kathleen ----------
-    // I added them here, and pass them in popup and in Tenant
-    // functions to set visitor cards
-    const [card1, setCard1] = useState(false);
+// ----------------- Unit and Visitors info ----------------
+    // state variables for visitor info
+    const [card1, setCard1] = useState(false);  // card1={true} means cardtop in <Visitors /> is shown and holding a visitor's info   
     const [card2, setCard2] = useState(false);
     const [name1, setName1] = useState('');
     const [name2, setName2] = useState('');
     const [plate1, setPlate1] = useState('');
     const [plate2, setPlate2] = useState('');
-    const [dur1, setDur1] = useState(1);
+    const [dur1, setDur1] = useState(1); // unit is Minute
     const [dur2, setDur2] = useState(1);
-    //room number
-    const [room, setroom] = useState(0);
+    const [id1,setId1] = useState();
+    const [id2,setId2] = useState();
+
+   // function to get unit number from local storage 
+   const [unit, setUnit] = useState();
+   var getUnit = async()=>{
+       var localunit = await AsyncStorage.getItem('unit');
+       console.log('your unit', localunit);
+       
+       if(localunit !== null && localunit !==''){
+           // if there IS unit number stored in local storage
+           // run get current visitor
+           dbGetCurrentVisitors(localunit);
+           setUnit(localunit);
+           setShowpage('Tenant');
+         } else {
+           setShowpage('Login');
+         }
+     }
     
-    // Conditions to show {page}
+// ------------------ Pages ---------------------
+    // state variable to show and hide pages and variables hold pages. 
+    const [showpage, setShowpage] = useState('');
+    var mpopup = null;
+    var page = null;
+    
+    // conditions to show and hide pages
     if(showpage == 'Login'){
         page = <Login 
-                showpage={showpage} 
+                // show Login, Tenant or Manager page
+                showpage={showpage}    
                 setShowpage={setShowpage} 
-                //room number
-                room={room}
-                setroom={setroom}
+                // unit info
+                unit = {unit}
+                setUnit = {setUnit}
                 />;
         props.setSafebg(false);
     }
     if(showpage == 'Tenant'){
-        console.log("setup tenant page")
-        console.log(UnpinnedVisitors)
         page = <Tenant 
+                // pop up
                  pop = {pop} 
                  showPop = {showPop}
+                 // cards
                  card1 = {card1}
                  setCard1 = {setCard1}
                  card2 = {card2}
                  setCard2 = {setCard2}
+                 // unit info
+                 unit = {unit}
+                 // visitors info
                  name1 = {name1}
                  setName1 ={setName1}
                  name2 = {name2}
@@ -285,11 +287,13 @@ function Main(props){
                  setDur1 ={setDur1}
                  dur2 = {dur2}
                  setDur2 ={setDur2}
+                 id1 = {id1}
+                 id2 = {id2}
+                 // spots
+                 spots = {spots}
+                 // History Page
                  UnpinnedVisitors = {UnpinnedVisitors}
                  PinnedVisitors = {PinnedVisitors}
-                 //room number
-                //room={room}
-                //setroom={setroom}
                 />;
         props.setSafebg(true);
     }
@@ -297,51 +301,65 @@ function Main(props){
         page = <Manager 
                  pop = {pop} 
                  showPop = {showPop}
-                 visiName = {visiName}
-                 setVisiName = {setVisiName}
-                 visiPlate ={visiPlate} 
-                 setVisiPlate = {setVisiPlate}
-                 visiDur = {visiDur} 
-                 setVisiDur = {setVisiDur}
                 />;
         props.setSafebg(true);
     }
 
-    // Conditions to show Popup
-    if (pop == ''){
-       mpopup = null;
-    } else {
-        mpopup = <Popup 
-                    pop = {pop} 
-                    showPop = {showPop} 
+     // Conditions to show Popup
+     if (pop == ''){
+        mpopup = null;
+     } else {
+         mpopup = <Popup 
+                     // popup
+                     pop = {pop} 
+                     showPop = {showPop} 
+                     // cards
+                     card1 = {card1}
+                     setCard1 = {setCard1}
+                     card2 = {card2}
+                     setCard2 = {setCard2}
+                     // unit
+                     unit = {unit}
+                     // visitors info
+                     name1 = {name1}
+                     setName1 ={setName1}
+                     name2 = {name2}
+                     setName2 ={setName2}
+                     plate1 = {plate1}
+                     setPlate1 ={setPlate1}
+                     plate2 = {plate2}
+                     setPlate2 ={setPlate2}
+                     dur1 = {dur1}
+                     setDur1 ={setDur1}
+                     dur2 = {dur2}
+                     setDur2 ={setDur2}
+                     id1 = {id1}
+                     id2 = {id2}
+                     // functions
+                     dbGetCurrentVisitors = {dbGetCurrentVisitors}
+                 />;                 
+             }
 
-//                    visiName = {visiName}
-//                     setVisiName = {setVisiName}
-//                     visiPlate ={visiPlate} 
-//                     setVisiPlate = {setVisiPlate}
-//                     visiDur = {visiDur} 
-//                     setVisiDur = {setVisiDur}
 
-                    card1 = {card1}
-                    setCard1 = {setCard1}
-                    card2 = {card2}
-                    setCard2 = {setCard2}
-                    name1 = {name1}
-                    setName1 ={setName1}
-                    name2 = {name2}
-                    setName2 ={setName2}
-                    plate1 = {plate1}
-                    setPlate1 ={setPlate1}
-                    plate2 = {plate2}
-                    setPlate2 ={setPlate2}
-                    dur1 = {dur1}
-                    setDur1 ={setDur1}
-                    dur2 = {dur2}
-                    setDur2 ={setDur2}
 
-                />;
-                
-            }
+// ----------- functions that run when the app loads ----------------
+    useEffect(()=>{
+        //Get unit number if there's one
+        // getUnit().then(dbGetCurrentVisitors(101));
+        getUnit();
+        dbGetSpots();
+        // dbUnpinVisitor();
+        // dbPinVisitor();
+        // dbGetHistory();
+        dbGetData();
+        // dbExtendVisitor();
+        // dbRemoveVisitor();
+        // dbAddVisitor();
+    },[]);
+    // console.log('get all tables',dbUnits,dbVisitors,dbReports);
+
+
+
     
     // -------------- UI ------------------
 return (
