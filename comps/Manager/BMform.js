@@ -1,14 +1,34 @@
-import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet,TouchableOpacity, TextInput} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  View, 
+  Text,
+  Animated,
+  TouchableOpacity, 
+  TextInput
+} from 'react-native';
 import styles from '../../styles/PagesStyles/LoginStyles';
+import Texts from '../../styles/Texts';
 
 function BMform(props){
-
+   // Animation 
+   const [op] = useState(new Animated.Value(0));
+   useEffect(()=>{
+     Animated.timing(
+       op,
+       {
+         toValue:1,
+         duration:300
+       }
+     ).start();
+   },[props.showBMPage]);
+ 
   return(
 
-    <View style={{width: "90%", marginTop: 10, alignItems:"center"}}>
+    <Animated.View style={{opacity: op, width: "90%", marginTop: 10, alignItems:"center"}}>
       <TextInput
-      style={{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 , height: 45,  color:'white', margin:10,width:'90%',textAlign: 'center'}}
+      keyboardType = "numeric"
+      maxLength = {6}
+      style={[Texts.FormText,{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 , height: 45,  color:'white', margin:20,width:'90%',textAlign: 'center'}]}
       placeholder="password"
       placeholderTextColor="#bea9c9"
       
@@ -20,7 +40,7 @@ function BMform(props){
         Login as Manager
         </Text>
        </TouchableOpacity>
-    </View>
+    </Animated.View>
 
 
 

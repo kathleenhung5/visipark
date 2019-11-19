@@ -8,17 +8,13 @@ var styles = StyleSheet.create({
         //adding more padding here streches other components out
         paddingTop: 15,
         alignItems: "center",
-        justifyContent: "center",
-
-
+        justifyContent: "center"
     },
 
     Middle:{
-
         paddingLeft: 20,
         paddingRight: 20,
         flex: 1,
-
     },
     Top: {
         paddingTop: 60,

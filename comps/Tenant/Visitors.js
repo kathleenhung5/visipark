@@ -49,7 +49,7 @@ function Visitors(props){
   //if visitor is added state = true 
   if (props.card1 == true){
     cardtop =
-              <View style={styles.activeBox} >
+            <View style={styles.activeBox} >
               <Text style={styles.visitorName}>{props.name1}</Text>
               <Text style={styles.plateText}>{props.plate1}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
