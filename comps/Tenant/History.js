@@ -24,7 +24,7 @@ function History(props){
     const [searchKey, setSearchKey] = useState('');
     let PinnedVisitors = props;
     console.log("passed" +PinnedVisitors)
-
+=9
     data = [...props.PinnedVisitors, ...props.UnpinnedVisitors ];
     
     /* get visitor history*/
