@@ -9,12 +9,10 @@ import Manager from '../Pages/Manager';
 var timer = null;
 function Main(props){
 // --------------- Communicate with DB ----------------
-    // These are the variables holding information sent from the db
+    // getData Function
     const [dbUnits, setDbUnits] = useState([]);
     const [dbVisitors, setDbVisitors] = useState([]);
     const [dbReports, setDbReports] = useState([]);
-
-    // getData Function
     var dbGetData = async()=>{
         var resp = await fetch('http://localhost:8888/visipark/getData.php');
         var data = await resp.json();
@@ -199,6 +197,13 @@ function Main(props){
         dbGetData();
     }
 
+    // get spots left function 
+    const [spots,setSpots] = useState();
+    var dbGetSpots = async()=>{
+    var resp = await fetch('http://localhost:8888/visipark/getSpots.php');
+    var data = await resp.json();
+    setSpots(data);
+}
 
 
 // ------------------- Pop up ----------------------
@@ -260,8 +265,6 @@ function Main(props){
         props.setSafebg(false);
     }
     if(showpage == 'Tenant'){
-        console.log("setup tenant page")
-        console.log(UnpinnedVisitors)
         page = <Tenant 
                 // pop up
                  pop = {pop} 
@@ -288,6 +291,8 @@ function Main(props){
                  setDur2 ={setDur2}
                  id1 = {id1}
                  id2 = {id2}
+                 // spots
+                 spots = {spots}
                  // History Page
                  UnpinnedVisitors = {UnpinnedVisitors}
                  PinnedVisitors = {PinnedVisitors}
@@ -346,11 +351,11 @@ function Main(props){
 
     useEffect(()=>{
         getUnit();
+        // timer for auto remove
         if(timer === null){
             console.log("start")
             timer = setInterval(dbAutoRemove,1000);
         }
-
         return ()=>{
             console.log("death");
             if(timer){
@@ -358,7 +363,7 @@ function Main(props){
                 timer = null;
             }
         }
-        // dbGetData();
+
     },[]);
     
 

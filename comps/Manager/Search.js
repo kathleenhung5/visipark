@@ -5,7 +5,6 @@ import Texts from '../../styles/Texts';
 //import styles from '../../styles/CompsStyles/SearchStyles';
 import styles from '../../styles/CompsStyles/HistoryStyles';
 
-
 var data = [
   {name:"Dora", plate:"Wowho"},
   {name:"Kathleen", plate:"Haha"},
