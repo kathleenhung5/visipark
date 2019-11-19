@@ -36,15 +36,17 @@ function Tform(props){
 
     <Animated.View style={{opacity: op, width: "90%", marginTop: 10, alignItems:"center"}}> 
       <TextInput
-      placeholder="unit number"
-      onChangeText = {(txt)=>{
-        props.setUnit(txt);
+          placeholder="unit number"
+          onChangeText = {(txt)=>{
+            props.setUnit(txt);
+          }}
+          maxLength={3}
+          value = {props.unit}
+          keyboardType = "numeric"
+          style={[Texts.FormText,{color:'white' ,padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 ,width:'90%', height: 45,  color:'white', margin:20,textAlign: 'center'} ]}
+          placeholderTextColor="#bea9c9"
       }}
-      maxLength={3}
-      value = {props.unit}
-      keyboardType = "numeric"
-      style={[Texts.FormText,{color:'white' ,padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 ,width:'90%', height: 45,  color:'white', margin:20,textAlign: 'center'} ]}
-      placeholderTextColor="#bea9c9"
+
       />
       <TouchableOpacity
         style={styles.Tform}
@@ -56,6 +58,7 @@ function Tform(props){
         Login as Tenant
         </Text>
        </TouchableOpacity>
+
       </Animated.View>
   )
 }

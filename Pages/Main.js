@@ -6,7 +6,6 @@ import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
 
-
 function Main(props){
 // --------------- Communicate with DB ----------------
     // These are the variables holding information sent from the db
@@ -41,7 +40,6 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
-        // dbGetData();
 
         // set current visitors
         // console.log('parsed',JSON.parse(visitordata));
@@ -120,6 +118,8 @@ function Main(props){
   
 
     // Get History function 
+    const [PinnedVisitors, setPinnedVisitors] = useState([]);
+    const [UnpinnedVisitors, setUnpinnedVisitors] = useState([]);
     const dbGetHistory = async()=>{
         var visitor = {
             // the following is an exmaple of what to put in the obj "data" to send to the server for getting all pinned and not pinned visitors in History page 
@@ -139,7 +139,17 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data received from server for History page",JSON.parse(visitordata)); 
+        console.log('pinned',JSON.parse(visitordata).pinned);
+        console.log('Unpinned',JSON.parse(visitordata).notpinned);
+        // set Pinned Visitors
+        setPinnedVisitors(JSON.parse(visitordata).pinned);
+        setUnpinnedVisitors(JSON.parse(visitordata).notpinned);
     }
+    
+    //console.log('Pinned visitors test',PinnedVisitors);
+    
+    
+    // console.log('setPinnedVisitor', PinnedVisitors);
 
     // Pin Visitor function 
     const dbPinVisitor = async()=>{
@@ -188,6 +198,7 @@ function Main(props){
     }
 
 
+
 // ------------------- Pop up ----------------------
     // Function for Popup
     // Call showPop('YourPopupTitle') in your button to show the corresponding Popup.
@@ -196,7 +207,7 @@ function Main(props){
 
     // Variable to show and hide popup
     const [pop, showPop] = useState(''); 
-   
+
 
 // ----------------- Unit and Visitors info ----------------
     // state variables for visitor info
@@ -247,6 +258,8 @@ function Main(props){
         props.setSafebg(false);
     }
     if(showpage == 'Tenant'){
+        console.log("setup tenant page")
+        console.log(UnpinnedVisitors)
         page = <Tenant 
                 // pop up
                  pop = {pop} 
@@ -273,7 +286,9 @@ function Main(props){
                  setDur2 ={setDur2}
                  id1 = {id1}
                  id2 = {id2}
-
+                 // History Page
+                 UnpinnedVisitors = {UnpinnedVisitors}
+                 PinnedVisitors = {PinnedVisitors}
                 />;
         props.setSafebg(true);
     }

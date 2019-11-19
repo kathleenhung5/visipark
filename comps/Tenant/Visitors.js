@@ -120,6 +120,7 @@ function Visitors(props){
       {/* Middle */}
     <View style={styles.Middle}>
           {/* Unit number */}
+
           <Text style={Texts.HeadL}>Unit {props.unit}
           </Text>
           <Text style={Texts.BodyLight}>Estimated spots left: {SpotCount}</Text>
