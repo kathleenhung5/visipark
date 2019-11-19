@@ -1,5 +1,14 @@
-import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View, 
+  Text, 
+  Image, 
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
+  KeyboardAvoidingView,
+  Animated
+} from 'react-native';
 import styles from '../styles/PagesStyles/LoginStyles';
 import Tform from '../comps/Tenant/Tform';
 import BMform from '../comps/Manager/BMform';
@@ -7,20 +16,33 @@ import BMform from '../comps/Manager/BMform';
 
 
 function Login(props){
+  
+
+  // functions created for login page
   const [showTenantPage, setShowTenantPage] = useState(false);
   const [showBMPage, setShowBMPage] = useState(false);
 
   var TenantPage = null;
   if (showTenantPage === true){
-    TenantPage=(<Tform showpage={props.showpage} setShowpage={props.setShowpage} 
-      //room number
-    room={props.room} setroom={props.setroom}/>);
+    TenantPage=(
+      <Tform 
+      showpage={props.showpage} 
+      setShowpage={props.setShowpage}
+      unit = {props.unit}
+      setUnit = {props.setUnit}
+      showTenantPage = {showTenantPage}
+      />);
   } else {
     TenantPage = null;
   }
   var BMPage = null;
   if (showBMPage === true){
-    BMPage=(<BMform showpage={props.showpage} setShowpage={props.setShowpage}/>);
+    BMPage = (
+    <BMform 
+      showpage={props.showpage} 
+      setShowpage={props.setShowpage}
+      showBMPage = {showBMPage}
+    />);
   } else {
     BMPage = null;
   }
@@ -34,10 +56,24 @@ function Login(props){
     Title = 'Login as';
   }
 
+  // Animation 
+  const [op] = useState(new Animated.Value(0));
+  useEffect(()=>{
+    Animated.timing(
+      op,
+      {
+        toValue:1,
+        duration:300
+      }
+    ).start();
+  },[showBMPage, showTenantPage]);
+
   return(
-    <View style={styles.container}>
+    <TouchableWithoutFeedback onPress = {Keyboard.dismiss}> 
+      <View style={styles.container}>
+      
       {/* Logo */}
-      <View   style={styles.Top}>
+        <View   style={styles.Top}>
         <Image source={require('../img/Logo.png')}
         resizeMode="contain"
         style={styles.Logo}
@@ -46,27 +82,28 @@ function Login(props){
       </View>
 
       {/* Bottom Part */}
-      <View style={styles.Bottom}>
-        {/* Title */}
-        <View style={styles.title}>
-            {/* Back button */}
-            {(showBMPage||showTenantPage)?<TouchableOpacity 
-              style = {styles.arrow}
-              onPress = {()=>{setShowBMPage(false);setShowTenantPage(false)}}>
-              <Image 
-                    style = {{width: 30}}
-                    resizeMode = "contain"
-                    source = {require('../img/arrow-white.png')}
-              />  
-            </TouchableOpacity>:null}
-            <Text style={[styles.LoginText,{marginBottom:showBMPage||showTenantPage?0:10}]}>{Title}</Text>
-        </View>
-        {/* Two forms. hide and show */}
-        {TenantPage}
-        {BMPage}
+        <KeyboardAvoidingView behavior="position">
+          <Animated.View style={[{opacity: op},styles.Bottom]}>
+            {/* Title */}
+            <View style={styles.title}>
+                {/* Back button */}
+                {(showBMPage||showTenantPage)?<TouchableOpacity 
+                  style = {styles.arrow}
+                  onPress = {()=>{setShowBMPage(false);setShowTenantPage(false)}}>
+                  <Image 
+                        style = {{width: 30}}
+                        resizeMode = "contain"
+                        source = {require('../img/arrow-white.png')}
+                  />  
+                </TouchableOpacity>:null}
+                <Text style={[styles.LoginText,{marginBottom:showBMPage||showTenantPage?0:10}]}>{Title}</Text>
+            </View>
+            {/* Two forms. hide and show */}
+            {TenantPage}
+            {BMPage}
 
-        {/* First page Two buttons */}
-        <View style={[styles.Buttons,{display:showBMPage ? "none" : ""}]}>
+            {/* First page Two buttons */}
+            <View style={[styles.Buttons,{display:showBMPage ? "none" : ""}]}>
           <TouchableOpacity
             style={[styles.BMBtn,{display:showBMPage ? "none" : ""},{display:showTenantPage ? "none" : ""}]}
             onPress={()=>{setShowBMPage(!showBMPage)}}>
@@ -86,8 +123,12 @@ function Login(props){
           </TouchableOpacity>
         </View>
 
+        </Animated.View>
+      </KeyboardAvoidingView> 
+   
+    
       </View>
-    </View>
+  </TouchableWithoutFeedback>
   )
 }
 
