@@ -49,6 +49,8 @@ function Tenant(props){
     reportimg = require('../img/report-grey.png');
   }
   if(cont =='History'){
+    console.log("setup history ")
+    console.log(props.UnpinnedVisitors)
     Content = <History 
     pop={props.pop} 
     showPop={props.showPop}
@@ -56,6 +58,12 @@ function Tenant(props){
     setName2 ={props.setName2}
     setPlate1 ={props.setPlate1}
     setPlate2 ={props.setPlate2}
+    // pass value//
+    PinnedVisitors={props.PinnedVisitors}
+    UnpinnedVisitors={props.UnpinnedVisitors}
+    setPinnedVisitors={props.setPinnedVisitors}
+    setUnpinnedVisitors={props.setunpinnedVisitors}
+
     />
     visitorimg = require('../img/ppl-grey.png');
     historyimg = require('../img/history-purp.png');

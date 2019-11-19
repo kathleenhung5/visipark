@@ -22,7 +22,7 @@ import {Colors} from './styles/Colors';
 function App(){
   const [safebg, setSafebg] = useState(true)
   return(
-    <SafeAreaView style={[styles.container,{backgroundColor:(safebg)?"#fff":Colors.Purple}]}>
+    <SafeAreaView style={[styles.container, {backgroundColor:(safebg)?"#fff":Colors.Purple, opacity: 1}]}>
         <Main safebg={safebg} setSafebg={setSafebg}/>
     </SafeAreaView>
   )
