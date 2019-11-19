@@ -1,18 +1,31 @@
-import React, {useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import {
   View,
    Text, 
-   Image, 
-   StyleSheet,
    TouchableOpacity, 
    TextInput,
-   AsyncStorage
+   AsyncStorage,
+   Animated
   } from 'react-native';
 import styles from '../../styles/PagesStyles/LoginStyles';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 
+
+
 function Tform(props){
+  // Animation 
+  const [op] = useState(new Animated.Value(0));
+  useEffect(()=>{
+    Animated.timing(
+      op,
+      {
+        toValue:1,
+        duration:300
+      }
+    ).start();
+  },[props.showTenantPage]);
+
   // function for storing unit num locally
   // called when button is pressed
   var storeunit = async() =>{
@@ -21,15 +34,16 @@ function Tform(props){
 
   return(
 
-    <View style={{width: "90%", marginTop: 10, alignItems:"center"}}>
+    <Animated.View style={{opacity: op, width: "90%", marginTop: 10, alignItems:"center"}}> 
       <TextInput
       placeholder="unit number"
       onChangeText = {(txt)=>{
         props.setUnit(txt);
       }}
+      maxLength={3}
       value = {props.unit}
-      style={{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25
-              ,width:'90%', height: 45,  color:'white', margin:10,textAlign: 'center'}}
+      keyboardType = "numeric"
+      style={[Texts.FormText,{color:'white' ,padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 ,width:'90%', height: 45,  color:'white', margin:20,textAlign: 'center'} ]}
       placeholderTextColor="#bea9c9"
       />
       <TouchableOpacity
@@ -42,7 +56,7 @@ function Tform(props){
         Login as Tenant
         </Text>
        </TouchableOpacity>
-      </View>
+      </Animated.View>
   )
 }
 
