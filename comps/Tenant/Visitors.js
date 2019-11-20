@@ -6,8 +6,8 @@ import styles from '../../styles/CompsStyles/VisitorStyles';
 
 function Visitors(props){
 
-  //Database apartment States
-  var SpotCount = "5";
+
+
 
   //Function 1
   // time left = start + duration - now
@@ -23,12 +23,10 @@ function Visitors(props){
 
 //  },[]);
 
-  //Current Visitor names, plates and time left
+  // UI Variables
   var cardtop = null;
   var cardbot = null;
   var cardbot2 = null;
-
-  //Visitor functions default states
 
   //Visitor card 1 function
   if (props.card1 == false && props.card2 == false){
@@ -123,7 +121,7 @@ function Visitors(props){
 
           <Text style={Texts.HeadL}>Unit {props.unit}
           </Text>
-          <Text style={Texts.BodyLight}>Estimated spots left: {SpotCount}</Text>
+          <Text style={Texts.BodyLight}>Estimated spots left: {props.spots}</Text>
 
       <View style={{height:"100%", paddingTop:20}}>
         

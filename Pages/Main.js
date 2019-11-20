@@ -6,14 +6,13 @@ import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
 
+var timer = null;
 function Main(props){
 // --------------- Communicate with DB ----------------
-    // These are the variables holding information sent from the db
+    // getData Function
     const [dbUnits, setDbUnits] = useState([]);
     const [dbVisitors, setDbVisitors] = useState([]);
     const [dbReports, setDbReports] = useState([]);
-
-    // getData Function
     var dbGetData = async()=>{
         var resp = await fetch('http://localhost:8888/visipark/getData.php');
         var data = await resp.json();
@@ -21,9 +20,15 @@ function Main(props){
         setDbVisitors(data.data.visitors);
         setDbReports(data.data.reports);
     }
-    
+
+    // Auto Remove expired visitors
+    var dbAutoRemove = async()=>{
+        var resp = await fetch('http://localhost:8888/visipark/autoRemove.php');
+        console.log('timer');
+    }
+
      // Get Current Visitor Function
-     const [currentVisitors, setCurrentVisitors] = useState([]);
+     //const [currentVisitors, setCurrentVisitors] = useState([]);
      const dbGetCurrentVisitors = async(unit)=>{
         var visitor = {
             data: {
@@ -43,7 +48,7 @@ function Main(props){
 
         // set current visitors
         // console.log('parsed',JSON.parse(visitordata));
-        setCurrentVisitors(JSON.parse(visitordata));
+        var currentVisitors = JSON.parse(visitordata);
         
         // set visitor1 and visitor2 with current visitors info
         if (currentVisitors.length == 1){
@@ -97,11 +102,6 @@ function Main(props){
         setPinnedVisitors(JSON.parse(visitordata).pinned);
         setUnpinnedVisitors(JSON.parse(visitordata).notpinned);
     }
-    
-    //console.log('Pinned visitors test',PinnedVisitors);
-    
-    
-    // console.log('setPinnedVisitor', PinnedVisitors);
 
     // Pin Visitor function 
     const dbPinVisitor = async()=>{
@@ -149,6 +149,13 @@ function Main(props){
         dbGetData();
     }
 
+    // get spots left function 
+    const [spots,setSpots] = useState();
+    var dbGetSpots = async()=>{
+    var resp = await fetch('http://localhost:8888/visipark/getSpots.php');
+    var data = await resp.json();
+    setSpots(data);
+}
 
 
 // ------------------- Pop up ----------------------
@@ -183,7 +190,7 @@ function Main(props){
        if(localunit !== null && localunit !==''){
            // if there IS unit number stored in local storage
            // run get current visitor
-           dbGetCurrentVisitors(localunit);
+           await dbGetCurrentVisitors(localunit);
            setUnit(localunit);
            setShowpage('Tenant');
          } else {
@@ -210,8 +217,6 @@ function Main(props){
         props.setSafebg(false);
     }
     if(showpage == 'Tenant'){
-        console.log("setup tenant page")
-        console.log(UnpinnedVisitors)
         page = <Tenant 
                 // pop up
                  pop = {pop} 
@@ -238,6 +243,8 @@ function Main(props){
                  setDur2 ={setDur2}
                  id1 = {id1}
                  id2 = {id2}
+                 // spots
+                 spots = {spots}
                  // History Page
                  UnpinnedVisitors = {UnpinnedVisitors}
                  PinnedVisitors = {PinnedVisitors}
@@ -290,19 +297,27 @@ function Main(props){
 
 
 // ----------- functions that run when the app loads ----------------
+    
+    
+    
+
     useEffect(()=>{
-        //Get unit number if there's one
-        // getUnit().then(dbGetCurrentVisitors(101));
         getUnit();
-        // dbUnpinVisitor();
-        // dbPinVisitor();
-        // dbGetHistory();
-        dbGetData();
-        // dbExtendVisitor();
-        // dbRemoveVisitor();
-        // dbAddVisitor();
+        // timer for auto remove
+        if(timer === null){
+            console.log("start")
+            timer = setInterval(dbAutoRemove,1000);
+        }
+        return ()=>{
+            console.log("death");
+            if(timer){
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+
     },[]);
-    // console.log('get all tables',dbUnits,dbVisitors,dbReports);
+    
 
 
 

@@ -33,6 +33,8 @@ function Tenant(props){
           setCard2 = {props.setCard2}
           // unit info
           unit = {props.unit}
+          // spots
+          spots = {props.spots}
           // visitors info
           name1 = {props.name1}
           setName1 ={props.setName1}
