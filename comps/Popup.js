@@ -26,6 +26,8 @@ function Popup(props){
   const [strk1, setStrk1] = useState(0);
   const [strk2, setStrk2] = useState(0);
 
+  const textend1 = JSON.stringify(props.dur1);
+
   var dbGetData = async()=>{
     var resp = await fetch('http://localhost:8888/visipark/getData.php');
     var data = await resp.json();
@@ -104,7 +106,7 @@ function Popup(props){
   if (props.pop == 'AddVisitor' && props.card1 == false){
     title = 'Add Visitor';
     btnTxt = 'Add';
-    tempname = '';
+
 
 
     button = (
@@ -133,8 +135,8 @@ function Popup(props){
           value={props.name1}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
-          onChangeText = {(tempname)=>{
-            props.setName1(tempname)}}
+          onChangeText = {(txt)=>{
+            props.setName1(txt)}}
         />
 
 
@@ -285,7 +287,8 @@ function Popup(props){
       style = {styles.button}
       onPress = {()=>{props.showPop('');
       props.setDur1 (extendhr1+props.dur1)
-      dbExtendVisitor(props.id1, props.dur1);
+      dbExtendVisitor(props.id1, extendhr1);
+      console.log(extendhr1);
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
