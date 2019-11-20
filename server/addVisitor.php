@@ -39,12 +39,22 @@ $duration = $visitor['duration'];
 
 
 
+// function addVisitor($unit_num, $name, $plate, $duration){
+//     $sql=
+//     "INSERT INTO visitors 
+//     (unit_num, name, plate, start_time, end_time,removed, pin) 
+//     VALUES 
+//     ($unit_num,'$name','$plate', now(), addtime(now(),'$duration'),0,0)
+//     ";
+//     runQuery($sql);
+// }
+
 function addVisitor($unit_num, $name, $plate, $duration){
     $sql=
     "INSERT INTO visitors 
     (unit_num, name, plate, start_time, end_time,removed, pin) 
     VALUES 
-    ($unit_num,'$name','$plate', now(), addtime(now(),'$duration'),0,0)
+    ($unit_num,'$name','$plate', now(), TIMESTAMPADD(HOUR, $duration,now()),0,0)
     ";
     runQuery($sql);
 }

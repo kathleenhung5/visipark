@@ -108,6 +108,7 @@ function Popup(props){
               dbAddVisitor(props.unit, props.name1, props.plate1, props.dur1);
               props.setCard1(true);
               props.showPop('');
+              props.setCont('Visitors');
             }}>
             <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             
@@ -179,6 +180,7 @@ function Popup(props){
               dbAddVisitor(props.unit, props.name2, props.plate2, props.dur2);
               props.setCard2(true);
               props.showPop('');
+              props.setCont('Visitors');
             }}>
 
             <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
