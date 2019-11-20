@@ -24,7 +24,7 @@ function Main(props){
     // Auto Remove expired visitors
     var dbAutoRemove = async()=>{
         var resp = await fetch('http://localhost:8888/visipark/autoRemove.php');
-        console.log('timer');
+        // console.log('timer');
     }
 
      // Get Current Visitor Function
@@ -44,7 +44,7 @@ function Main(props){
             body: JSON.stringify(visitor)
         })
         let visitordata = await data.text();
-        console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
+        // console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
 
         // set current visitors
         // console.log('parsed',JSON.parse(visitordata));
@@ -52,7 +52,7 @@ function Main(props){
         
         // set visitor1 and visitor2 with current visitors info
         if (currentVisitors.length == 1){
-            console.log('there is 1 current visitor');
+            // console.log('there is 1 current visitor');
             setName1(currentVisitors[0].name);
             setPlate1(currentVisitors[0].plate);
             setDur1(currentVisitors[0].time_left);
@@ -60,7 +60,7 @@ function Main(props){
             setCard1(true);
         }
         if (currentVisitors.length == 2){
-            console.log('there are 2 current visitors');
+            // console.log('there are 2 current visitors');
             setName1(currentVisitors[0].name);
             setPlate1(currentVisitors[0].plate);
             setDur1(currentVisitors[0].time_left);
@@ -169,6 +169,8 @@ function Main(props){
 
 
 // ----------------- Unit and Visitors info ----------------
+    // state variables for setting Tenant page content
+    const [cont, setCont] = useState('Visitors');
     // state variables for visitor info
     const [card1, setCard1] = useState(false);  // card1={true} means cardtop in <Visitors /> is shown and holding a visitor's info   
     const [card2, setCard2] = useState(false);
@@ -221,6 +223,9 @@ function Main(props){
                 // pop up
                  pop = {pop} 
                  showPop = {showPop}
+                // content 
+                cont = {cont}
+                setCont = {setCont}
                  // cards
                  card1 = {card1}
                  setCard1 = {setCard1}
@@ -267,6 +272,11 @@ function Main(props){
                      // popup
                      pop = {pop} 
                      showPop = {showPop} 
+                     // show page
+                     setShowpage = {setShowpage}
+                     // set content on Tenant page
+                     cont = {cont}
+                     setCont = {setCont}
                      // cards
                      card1 = {card1}
                      setCard1 = {setCard1}
@@ -303,18 +313,21 @@ function Main(props){
 
     useEffect(()=>{
         getUnit();
+        dbGetHistory();
         // timer for auto remove
-        if(timer === null){
-            console.log("start")
-            timer = setInterval(dbAutoRemove,1000);
-        }
-        return ()=>{
-            console.log("death");
-            if(timer){
-                clearInterval(timer);
-                timer = null;
-            }
-        }
+        // if(timer === null){
+        //     timer = setInterval(()=>{
+        //         dbAutoRemove();
+        //         dbGetCurrentVisitors();
+        //         dbGetHistory();
+        //     },1000);
+        // }
+        // return ()=>{
+        //     if(timer){
+        //         clearInterval(timer);
+        //         timer = null;
+        //     }
+        // }
 
     },[]);
     

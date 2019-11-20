@@ -21,7 +21,7 @@ var styles = StyleSheet.create({
 
     },
     Top: {
-        paddingTop: 45,
+        paddingTop: 60,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 40,
@@ -143,7 +143,7 @@ var styles = StyleSheet.create({
         letterSpacing: 0.3,
         lineHeight: 23,
         position: "absolute",
-        top: "34%",
+        top: "29%",
         left: "10%",
     },
     removeButton:{
