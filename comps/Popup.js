@@ -16,6 +16,7 @@ import styles from '../styles/CompsStyles/PopupStyles';
 
 function Popup(props){
 
+
   // variables for changing Popup content
   var title = '';
   var content = null;
@@ -32,6 +33,8 @@ function Popup(props){
     setDbVisitors(data.data.visitors);
     setDbReports(data.data.reports);
 }
+
+
   
   // Conditions for deciding what to show in popup 
   // ---- Visitor Parking Policy ----
@@ -94,15 +97,18 @@ function Popup(props){
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
+
+
  
   //Card slot 1 AddVisitor function
   if (props.pop == 'AddVisitor' && props.card1 == false){
     title = 'Add Visitor';
     btnTxt = 'Add';
+    tempname = '';
+
 
     button = (
     <TouchableOpacity style={styles.button}
-
             onPress={()=>{
               // activate card1, close popup
               dbAddVisitor(props.unit, props.name1, props.plate1, props.dur1);
@@ -118,7 +124,7 @@ function Popup(props){
       <View>
         <Text style={Texts.Body}>Visitor's name:</Text>
 
-        <TextInput 
+        <TextInput           
           placeholder = "Name"
           value = {props.name1}
           style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
@@ -127,8 +133,10 @@ function Popup(props){
           value={props.name1}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
-          onChangeText = {(txt)=>{props.setName1(txt)}}
+          onChangeText = {(tempname)=>{
+            props.setName1(tempname)}}
         />
+
 
         <Text style={Texts.Body}>Visitor's plate number:</Text>
 
@@ -137,7 +145,7 @@ function Popup(props){
           value = {props.plate1}
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
-          maxLength = {7}
+          maxLength = {6}
           value={props.plate1}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
@@ -204,7 +212,7 @@ function Popup(props){
           value = {props.plate2}
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
-          maxLength = {7}
+          maxLength = {6}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
