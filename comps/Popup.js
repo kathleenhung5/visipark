@@ -124,7 +124,7 @@ function Popup(props){
       <View>
         <Text style={Texts.Body}>Visitor's name:</Text>
 
-        <TextInput           
+        <TextInput         
           placeholder = "Name"
           value = {props.name1}
           style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
@@ -150,7 +150,8 @@ function Popup(props){
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
-          onChangeText = {(txt)=>{props.setPlate1(txt)}}
+          onChangeText = {(txt)=>{
+            props.setPlate1(txt)}}
         />
 
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
@@ -467,7 +468,7 @@ function Popup(props){
 
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed ____ successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.name1} successfully!</Text>
       </View>
     );
   }
