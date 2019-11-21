@@ -261,6 +261,7 @@ function Popup(props){
       })
       let visitordata = await data.text();
       console.log("Data that server received for extending visitor",visitordata); 
+      props.dbGetCurrentVisitors(props.unit);
   }
 
 //front end function
@@ -399,9 +400,7 @@ function Popup(props){
                 props.setName1('');
                 props.setPlate1('');
                 props.setDur1(1);
-                dbRemoveVisitor(props.id1);
-                dbGetData();
-                
+                dbRemoveVisitor(props.id1);             
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>

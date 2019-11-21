@@ -368,13 +368,14 @@ function Main(props){
 
     useEffect(()=>{
         getUnit();
+        dbGetHistory();
         dbGetSpots();
         //dbUnpinVisitor();
         //dbPinVisitor();
-        dbGetHistory();
         // dbExtendVisitor();
         // dbRemoveVisitor();
         // dbAddVisitor();
+
 
         // timer for auto remove
 
