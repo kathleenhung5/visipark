@@ -262,8 +262,8 @@ function Popup(props){
 
 //front end function
   var exthr = [];
-  // dur to be changed later
-  for(var i=1;i<=(24-props.dur1);i++){
+ 
+  for(var i=1;i<=(24-props.reg1);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
@@ -277,8 +277,8 @@ function Popup(props){
       <TouchableOpacity 
       style = {styles.button}
       onPress = {()=>{props.showPop('');
-      props.setDur1 (extendhr1+props.dur1)
-      dbExtendVisitor(props.id1, props.dur1);
+      props.setDur1(extendhr1+props.dur1);
+      dbExtendVisitor(props.id1, extendhr1);
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
@@ -288,7 +288,7 @@ function Popup(props){
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
-        <Text style={Texts.Body}>You've registered: {props.dur1}hr</Text>
+        <Text style={Texts.Body}>You've registered: {props.reg1}hr</Text>
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
@@ -309,7 +309,7 @@ function Popup(props){
 
   //Extend Parking Card 2
   var exthr = [];
-  for(var i=1;i<=(24-props.dur2);i++){
+  for(var i=1;i<=(24-props.reg2);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
@@ -325,7 +325,7 @@ function Popup(props){
       style = {styles.button}
       onPress = {()=>{props.showPop('');
       props.setDur2 (extendhr2+props.dur2);
-      dbExtendVisitor(props.id2, props.dur2);
+      dbExtendVisitor(props.id2, extendhr2);
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
@@ -335,7 +335,7 @@ function Popup(props){
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
 
-        <Text style={Texts.Body}>You've registered: {props.dur2}hr</Text>
+        <Text style={Texts.Body}>You've registered: {props.reg2}hr</Text>
 
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>

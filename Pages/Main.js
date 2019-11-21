@@ -28,7 +28,6 @@ function Main(props){
     }
 
      // Get Current Visitor Function
-     //const [currentVisitors, setCurrentVisitors] = useState([]);
      const dbGetCurrentVisitors = async(unit)=>{
         var visitor = {
             data: {
@@ -44,7 +43,7 @@ function Main(props){
             body: JSON.stringify(visitor)
         })
         let visitordata = await data.text();
-        // console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
+        console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
 
         // set current visitors
         // console.log('parsed',JSON.parse(visitordata));
@@ -56,6 +55,7 @@ function Main(props){
             setName1(currentVisitors[0].name);
             setPlate1(currentVisitors[0].plate);
             setDur1(currentVisitors[0].time_left);
+            setReg1(currentVisitors[0].regtime);
             setId1(currentVisitors[0].id);
             setCard1(true);
         }
@@ -64,11 +64,14 @@ function Main(props){
             setName1(currentVisitors[0].name);
             setPlate1(currentVisitors[0].plate);
             setDur1(currentVisitors[0].time_left);
+            setReg1(currentVisitors[0].regtime);
             setId1(currentVisitors[0].id);
             setCard1(true);
+
             setName2(currentVisitors[1].name);
             setPlate2(currentVisitors[1].plate);
             setDur2(currentVisitors[1].time_left);
+            setReg2(currentVisitors[1].regtime);
             setId2(currentVisitors[1].id);
             setCard2(true);
         }
@@ -157,7 +160,6 @@ function Main(props){
     setSpots(data);
 }
 
-
 // ------------------- Pop up ----------------------
     // Function for Popup
     // Call showPop('YourPopupTitle') in your button to show the corresponding Popup.
@@ -178,8 +180,10 @@ function Main(props){
     const [name2, setName2] = useState('');
     const [plate1, setPlate1] = useState('');
     const [plate2, setPlate2] = useState('');
-    const [dur1, setDur1] = useState(1); // unit is Minute
+    const [dur1, setDur1] = useState(1); // time left in UI
     const [dur2, setDur2] = useState(1);
+    const [reg1, setReg1] = useState();
+    const [reg2, setReg2] = useState();
     const [id1,setId1] = useState();
     const [id2,setId2] = useState();
 
@@ -297,6 +301,8 @@ function Main(props){
                      setDur1 ={setDur1}
                      dur2 = {dur2}
                      setDur2 ={setDur2}
+                     reg1 = {reg1}
+                     reg2 = {reg2}
                      id1 = {id1}
                      id2 = {id2}
                      // functions
@@ -314,7 +320,8 @@ function Main(props){
     useEffect(()=>{
         getUnit();
         dbGetHistory();
-        // timer for auto remove
+        dbGetSpots();
+        //timer for auto remove
         // if(timer === null){
         //     timer = setInterval(()=>{
         //         dbAutoRemove();
