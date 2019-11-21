@@ -26,12 +26,27 @@ function Popup(props){
   const [strk1, setStrk1] = useState(0);
   const [strk2, setStrk2] = useState(0);
 
+
+  let time1= props.dur1
+  var Hours1 = Math.floor(time1 /60)
+  var minutes1 = time1 % 60
+
+ let time2= props.dur2
+ var Hours2 = Math.floor(time2 /60)
+ var minutes2 = time2 % 60
+
+
+
+
   var dbGetData = async()=>{
     var resp = await fetch('http://localhost:8888/visipark/getData.php');
     var data = await resp.json();
     setDbUnits(data.data.units);
     setDbVisitors(data.data.visitors);
     setDbReports(data.data.reports);
+
+
+    
 }
   
   
@@ -44,7 +59,8 @@ function Popup(props){
      button = (
        <TouchableOpacity 
        style = {styles.button}
-       onPress = {()=>{props.showPop('')}}>
+       onPress = {()=>{props.showPop('');
+       }}>
        <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
      </TouchableOpacity>
      )
@@ -291,7 +307,7 @@ function Popup(props){
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
-        <Text style={Texts.Body}>You've registered: {props.dur1}hr</Text>
+        <Text style={Texts.Body}>You've registered: {Hours1}:{minutes1}hr(s)</Text>
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
@@ -338,7 +354,7 @@ function Popup(props){
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
 
-        <Text style={Texts.Body}>You've registered: {props.dur2}hr</Text>
+        <Text style={Texts.Body}>You've registered: {Hours2}:{minutes2}hr(s)</Text>
 
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
@@ -462,7 +478,7 @@ function Popup(props){
 
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed ____ successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>Your visitor has been successfully removed.</Text>
       </View>
     );
   }
@@ -485,7 +501,7 @@ function Popup(props){
   
       content = (
         <View>
-          <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.name2} successfully!</Text>
+          <Text style={[Texts.Body,{paddingBottom: 20}]}>Your visitor has been successfully removed.</Text>
         </View>
       );
     }
