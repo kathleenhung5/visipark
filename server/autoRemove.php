@@ -1,7 +1,6 @@
 <?php
 require_once('./database.php');
 header("Content-type:application/json");
-$_POST = json_decode(file_get_contents("php://input"), true);
 
 // ----- visitor table columns ---- 
 
@@ -18,33 +17,15 @@ $_POST = json_decode(file_get_contents("php://input"), true);
         // pin BOOLEAN,
         // PRIMARY KEY (id)
 
-// ---- data receiving from client ----
+//---- Query to remove visitors that expire
 
-        //     data: {
-        //         id: 1,
-        //         extendhour: 1
-        //     }
-        // }
-        
-$visitor = $_POST['data'];
-
-$id = $visitor['id'];
-$extendhour = $visitor['extendhour'];
-
-
-
-
-function extendVisitor($id, $extendhour){
-    $sql=
-    "UPDATE visitors 
-    SET end_time = addtime(end_time, '$extendhour')
-    WHERE id=$id
+function autoremove(){
+    $sql = "
+    UPDATE visitors SET removed = 1 WHERE TIMESTAMPDIFF(SECOND, NOW(),end_time) < 0 AND removed = 0;
     ";
     runQuery($sql);
-    
 }
 
-extendVisitor($id, $extendhour);
-
-$json = json_encode($visitor);
-echo $json;
+autoremove();
+// $json = json_encode($free);
+// echo $json;
