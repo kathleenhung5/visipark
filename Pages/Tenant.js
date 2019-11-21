@@ -67,7 +67,8 @@ function Tenant(props){
     // pass value//
     PinnedVisitors={props.PinnedVisitors}
     UnpinnedVisitors={props.UnpinnedVisitors}
-    setPinnedVisitors={props.setPinnedVisitors}
+    dbPinVisitor={props.dbPinVisitor}
+    dbUnpinVisitor={props.dbUnpinVisitor}
     setUnpinnedVisitors={props.setunpinnedVisitors}
 
     />
