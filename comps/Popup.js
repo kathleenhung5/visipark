@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import Texts from '../styles/Texts';
 import styles from '../styles/CompsStyles/PopupStyles';
+import Visitors from './Tenant/Visitors';
 
 
 function Popup(props){
@@ -32,6 +33,7 @@ function Popup(props){
     setDbVisitors(data.data.visitors);
     setDbReports(data.data.reports);
 }
+  
   
   // Conditions for deciding what to show in popup 
   // ---- Visitor Parking Policy ----
@@ -97,9 +99,10 @@ function Popup(props){
  
   //Card slot 1 AddVisitor function
   if (props.pop == 'AddVisitor' && props.card1 == false){
-    title = 'Add Visitor';
+    title  = 'Add Visitor';
     btnTxt = 'Add';
 
+  
     button = (
     <TouchableOpacity style={styles.button}
 

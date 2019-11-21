@@ -74,6 +74,53 @@ function Main(props){
         }
     }
    
+    // Remove visitor function 
+    const dbRemoveVisitor = async()=>{
+        var visitor = {
+            // the following is an exmaple of what to put in the obj "data" to send to the server for removing a visitor 
+            data: {
+                // id: 5
+
+                // here add your own data, make sure use the same property name and same data type for value 
+            }
+        }
+        var data = await fetch('http://localhost:8888/visipark/removeVisitor.php',{
+            method:'POST',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(visitor)
+        })
+        let visitordata = await data.text();
+        console.log("Data that server received for removing visitor",visitordata); 
+        await dbGetData();
+    }
+
+    // Extend visitor function 
+    const dbExtendVisitor = async()=>{
+        var visitor = {
+            // the following is an exmaple of what to put in the obj "data" to send to the server for extending a visitor 
+            data: {
+                // id: 8,
+                // extendhour: "3:00:00"
+
+                // here add your own data, make sure use the same property name and same data type for value 
+            }
+        }
+        var data = await fetch('http://localhost:8888/visipark/extendVisitor.php',{
+            method:'POST',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(visitor)
+        })
+        let visitordata = await data.text();
+        console.log("Data that server received for extending visitor",visitordata); 
+        await dbGetData();
+    }
+
     // Get History function 
     const [PinnedVisitors, setPinnedVisitors] = useState([]);
     const [UnpinnedVisitors, setUnpinnedVisitors] = useState([]);
@@ -104,11 +151,11 @@ function Main(props){
     }
 
     // Pin Visitor function 
-    const dbPinVisitor = async()=>{
+    const dbPinVisitor = async(id)=>{
         var visitor = {
             // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
             data: {
-                id: 5
+                id: id
                 // here add your own data, make sure use the same property name and same data type for value 
             }
         }
@@ -122,16 +169,16 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data sent to server to pin a visitor",JSON.parse(visitordata)); 
-        dbGetHistory();
-        dbGetData();
+        await dbGetHistory();
+        await dbGetData();
     }
 
     // Unpin Visitor function 
-    const dbUnpinVisitor = async()=>{
+    const dbUnpinVisitor = async(id)=>{
         var visitor = {
             // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
             data: {
-                id: 5
+                id: id
                 // here add your own data, make sure use the same property name and same data type for value 
             }
         }
@@ -145,8 +192,8 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data sent to server to Unpin a visitor",JSON.parse(visitordata)); 
-        dbGetHistory();
-        dbGetData();
+        await dbGetHistory();
+        await dbGetData();
     }
 
     // get spots left function 
@@ -253,6 +300,8 @@ function Main(props){
                  // History Page
                  UnpinnedVisitors = {UnpinnedVisitors}
                  PinnedVisitors = {PinnedVisitors}
+                 dbPinVisitor={dbPinVisitor}
+                 dbUnpinVisitor={dbUnpinVisitor}
                 />;
         props.setSafebg(true);
     }
@@ -314,6 +363,14 @@ function Main(props){
     useEffect(()=>{
         getUnit();
         dbGetHistory();
+        dbGetSpots();
+        //dbUnpinVisitor();
+        //dbPinVisitor();
+        // dbExtendVisitor();
+        // dbRemoveVisitor();
+        // dbAddVisitor();
+
+
         // timer for auto remove
         // if(timer === null){
         //     timer = setInterval(()=>{
@@ -328,6 +385,7 @@ function Main(props){
         //         timer = null;
         //     }
         // }
+
 
     },[]);
     
