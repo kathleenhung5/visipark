@@ -6,6 +6,7 @@ import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
 
+var timer = null;
 function Main(props){
 // --------------- Communicate with DB ----------------
     // getData Function
@@ -19,9 +20,15 @@ function Main(props){
         setDbVisitors(data.data.visitors);
         setDbReports(data.data.reports);
     }
-    
+
+    // Auto Remove expired visitors
+    var dbAutoRemove = async()=>{
+        var resp = await fetch('http://localhost:8888/visipark/autoRemove.php');
+        // console.log('timer');
+    }
+
      // Get Current Visitor Function
-     const [currentVisitors, setCurrentVisitors] = useState([]);
+     //const [currentVisitors, setCurrentVisitors] = useState([]);
      const dbGetCurrentVisitors = async(unit)=>{
         var visitor = {
             data: {
@@ -37,15 +44,15 @@ function Main(props){
             body: JSON.stringify(visitor)
         })
         let visitordata = await data.text();
-        console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
+        // console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
 
         // set current visitors
         // console.log('parsed',JSON.parse(visitordata));
-        setCurrentVisitors(JSON.parse(visitordata));
+        var currentVisitors = JSON.parse(visitordata);
         
         // set visitor1 and visitor2 with current visitors info
         if (currentVisitors.length == 1){
-            console.log('there is 1 current visitor');
+            // console.log('there is 1 current visitor');
             setName1(currentVisitors[0].name);
             setPlate1(currentVisitors[0].plate);
             setDur1(currentVisitors[0].time_left);
@@ -53,7 +60,7 @@ function Main(props){
             setCard1(true);
         }
         if (currentVisitors.length == 2){
-            console.log('there are 2 current visitors');
+            // console.log('there are 2 current visitors');
             setName1(currentVisitors[0].name);
             setPlate1(currentVisitors[0].plate);
             setDur1(currentVisitors[0].time_left);
@@ -113,7 +120,6 @@ function Main(props){
         console.log("Data that server received for extending visitor",visitordata); 
         await dbGetData();
     }
-  
 
     // Get History function 
     const [PinnedVisitors, setPinnedVisitors] = useState([]);
@@ -143,11 +149,6 @@ function Main(props){
         setPinnedVisitors(JSON.parse(visitordata).pinned);
         setUnpinnedVisitors(JSON.parse(visitordata).notpinned);
     }
-    
-    //console.log('Pinned visitors test',PinnedVisitors);
-    
-    
-    // console.log('setPinnedVisitor', PinnedVisitors);
 
     // Pin Visitor function 
     const dbPinVisitor = async(id)=>{
@@ -215,6 +216,8 @@ function Main(props){
 
 
 // ----------------- Unit and Visitors info ----------------
+    // state variables for setting Tenant page content
+    const [cont, setCont] = useState('Visitors');
     // state variables for visitor info
     const [card1, setCard1] = useState(false);  // card1={true} means cardtop in <Visitors /> is shown and holding a visitor's info   
     const [card2, setCard2] = useState(false);
@@ -236,7 +239,7 @@ function Main(props){
        if(localunit !== null && localunit !==''){
            // if there IS unit number stored in local storage
            // run get current visitor
-           dbGetCurrentVisitors(localunit);
+           await dbGetCurrentVisitors(localunit);
            setUnit(localunit);
            setShowpage('Tenant');
          } else {
@@ -267,6 +270,9 @@ function Main(props){
                 // pop up
                  pop = {pop} 
                  showPop = {showPop}
+                // content 
+                cont = {cont}
+                setCont = {setCont}
                  // cards
                  card1 = {card1}
                  setCard1 = {setCard1}
@@ -315,6 +321,11 @@ function Main(props){
                      // popup
                      pop = {pop} 
                      showPop = {showPop} 
+                     // show page
+                     setShowpage = {setShowpage}
+                     // set content on Tenant page
+                     cont = {cont}
+                     setCont = {setCont}
                      // cards
                      card1 = {card1}
                      setCard1 = {setCard1}
@@ -345,20 +356,39 @@ function Main(props){
 
 
 // ----------- functions that run when the app loads ----------------
+    
+    
+    
+
     useEffect(()=>{
-        //Get unit number if there's one
-        // getUnit().then(dbGetCurrentVisitors(101));
         getUnit();
         dbGetSpots();
-        dbUnpinVisitor();
-        dbPinVisitor();
+        //dbUnpinVisitor();
+        //dbPinVisitor();
         dbGetHistory();
         dbGetData();
         // dbExtendVisitor();
         // dbRemoveVisitor();
         // dbAddVisitor();
+
+        // timer for auto remove
+        // if(timer === null){
+        //     timer = setInterval(()=>{
+        //         dbAutoRemove();
+        //         dbGetCurrentVisitors();
+        //         dbGetHistory();
+        //     },1000);
+        // }
+        // return ()=>{
+        //     if(timer){
+        //         clearInterval(timer);
+        //         timer = null;
+        //     }
+        // }
+
+
     },[]);
-    // console.log('get all tables',dbUnits,dbVisitors,dbReports);
+    
 
 
 

@@ -10,7 +10,6 @@ import {Colors} from '../styles/Colors';
 
 
 function Tenant(props){
-  const [cont, setCont] = useState('Visitors');
  
   // img src variables
   var visitorimg = null;
@@ -21,7 +20,7 @@ function Tenant(props){
   var Content = null;
 
 // conditions updating Content and tabbar
-  if(cont == 'Visitors'){
+  if(props.cont == 'Visitors'){
     Content = <Visitors 
           // popup
           pop={props.pop} 
@@ -55,7 +54,7 @@ function Tenant(props){
     historyimg = require('../img/history-grey.png');
     reportimg = require('../img/report-grey.png');
   }
-  if(cont =='History'){
+  if(props.cont =='History'){
     console.log("setup history ")
     console.log(props.UnpinnedVisitors)
     Content = <History 
@@ -77,7 +76,7 @@ function Tenant(props){
     historyimg = require('../img/history-purp.png');
     reportimg = require('../img/report-grey.png');
   }
-  if(cont == 'Report'){
+  if(props.cont == 'Report'){
     Content = <Report pop={props.pop} showPop={props.showPop}/>
     visitorimg = require('../img/ppl-grey.png');
     historyimg = require('../img/history-grey.png');
@@ -94,39 +93,39 @@ function Tenant(props){
 
           <TouchableOpacity 
             style = {styles.tabcont}
-            onPress={()=> setCont('Visitors')}>
+            onPress={()=> props.setCont('Visitors')}>
             <Image 
               style = {styles.tabimg}
               source = {visitorimg}
               resizeMode = 'contain'
             />
             <Text 
-            style={[styles.tabtext,{color:(cont=='Visitors')?Colors.Purple:Colors.Darkgrey}]}>
+            style={[styles.tabtext,{color:(props.cont=='Visitors')?Colors.Purple:Colors.Darkgrey}]}>
             Visitors</Text>
           </TouchableOpacity>
            
           <TouchableOpacity
             style = {styles.tabcont}
-            onPress={()=> setCont('History')}
+            onPress={()=> props.setCont('History')}
           >
             <Image 
               style = {styles.tabimg}
               source = {historyimg}
               resizeMode = 'contain'
             />
-            <Text style={[styles.tabtext,{color:(cont=='History')?Colors.Purple:Colors.Darkgrey}]}>History</Text>
+            <Text style={[styles.tabtext,{color:(props.cont=='History')?Colors.Purple:Colors.Darkgrey}]}>History</Text>
 
           </TouchableOpacity>
 
           <TouchableOpacity 
             style = {styles.tabcont}
-            onPress={()=> setCont('Report')}>
+            onPress={()=> props.setCont('Report')}>
             <Image 
               style = {styles.tabimg}
               source = {reportimg}
               resizeMode = 'contain'
             />
-            <Text style={[styles.tabtext,{color:(cont=='Report')?Colors.Purple:Colors.Darkgrey}]}>Report</Text>
+            <Text style={[styles.tabtext,{color:(props.cont=='Report')?Colors.Purple:Colors.Darkgrey}]}>Report</Text>
           </TouchableOpacity>
 
       </View>

@@ -25,6 +25,14 @@ function Popup(props){
 
   const [strk1, setStrk1] = useState(0);
   const [strk2, setStrk2] = useState(0);
+
+  var dbGetData = async()=>{
+    var resp = await fetch('http://localhost:8888/visipark/getData.php');
+    var data = await resp.json();
+    setDbUnits(data.data.units);
+    setDbVisitors(data.data.visitors);
+    setDbReports(data.data.reports);
+}
   
   
   // Conditions for deciding what to show in popup 
@@ -103,7 +111,7 @@ function Popup(props){
               dbAddVisitor(props.unit, props.name1, props.plate1, props.dur1);
               props.setCard1(true);
               props.showPop('');
-             
+              props.setCont('Visitors');
             }}>
             <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             
@@ -175,6 +183,7 @@ function Popup(props){
               dbAddVisitor(props.unit, props.name2, props.plate2, props.dur2);
               props.setCard2(true);
               props.showPop('');
+              props.setCont('Visitors');
             }}>
 
             <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
@@ -228,14 +237,16 @@ function Popup(props){
 
 
   //Extend Parking Card 1
-var dbhr = 1;
+
+  
+
     // Extend visitor function (Backend)
-    const dbExtendVisitor = async()=>{
+    const dbExtendVisitor = async(id, extendhour)=>{
       var visitor = {
           // the following is an exmaple of what to put in the obj "data" to send to the server for extending a visitor 
           data: {
-              id: {},
-              extendhour: {dbhr} + ":00:00"
+              id: id,
+              extendhour: extendhour
 
               // here add your own data, make sure use the same property name and same data type for value 
           }
@@ -270,7 +281,7 @@ var dbhr = 1;
       style = {styles.button}
       onPress = {()=>{props.showPop('');
       props.setDur1 (extendhr1+props.dur1)
-                      // dbExtendVisitor(id, extendhour);
+      dbExtendVisitor(props.id1, props.dur1);
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
@@ -317,8 +328,7 @@ var dbhr = 1;
       style = {styles.button}
       onPress = {()=>{props.showPop('');
       props.setDur2 (extendhr2+props.dur2);
-      // dbExtendVisitor(currentid2, extendhour);
-
+      dbExtendVisitor(props.id2, props.dur2);
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
@@ -352,13 +362,11 @@ var dbhr = 1;
   // ---- Remove ---- //if card2 is false (if theres no 2nd visitor it will remove card1 which is the first slot)
 
     // Remove visitor function (backend)
-    const dbRemoveVisitor = async()=>{
+    const dbRemoveVisitor = async(id)=>{
       var visitor = {
-          // the following is an exmaple of what to put in the obj "data" to send to the server for removing a visitor 
-          data: {
-               id: {}
-              
-              // here add your own data, make sure use the same property name and same data type for value 
+
+        data: {
+               id: id              
           }
       }
       var data = await fetch('http://localhost:8888/visipark/removeVisitor.php',{
@@ -371,7 +379,6 @@ var dbhr = 1;
       })
       let visitordata = await data.text();
       console.log("Data that server received for removing visitor",visitordata); 
-      dbGetData();
   }
 
 //front end function
@@ -392,7 +399,9 @@ var dbhr = 1;
                 props.setName1('');
                 props.setPlate1('');
                 props.setDur1(1);
-                dbRemoveVisitor(id);
+                dbRemoveVisitor(props.id1);
+                dbGetData();
+                
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
@@ -423,7 +432,8 @@ var dbhr = 1;
                 props.setName2('');
                 props.setPlate2('');
                 props.setDur2(1)
-                dbRemoveVisitor(id);
+                dbRemoveVisitor(props.id2);
+                dbGetData();
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
