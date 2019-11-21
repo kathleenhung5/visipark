@@ -19,8 +19,8 @@ import styles from '../../styles/CompsStyles/HistoryStyles';
 
 
 function History(props){
-   // const [plate, setPlate] = useState([]);
-    const [showPin, setShowPin] = useState(true);
+
+   // const [showPin, setShowPin] = useState(true);
     const [searchKey, setSearchKey] = useState('');
     let PinnedVisitors = props;
     console.log("passed" +PinnedVisitors);
@@ -60,14 +60,14 @@ function History(props){
                     </View>       
                 </View>
 {/* history Card  */}
-            <ScrollView>
+        {/* //<View style={{flex:1}}> */}
+            <ScrollView style={{flex:1}}>
                 {filteredData.map((obj, index)=>{
                   var pin = parseInt(obj.pin);
                   return (
                 
                   <View style={styles.card}>
                     <TouchableOpacity onPress={()=>{
-                      //setShowPin(!showPin)
                       // do if else statement to pin or unpined
                       pin===0 ? props.dbPinVisitor(obj.id) : props.dbUnpinVisitor(obj.id);
                     }}>
@@ -100,7 +100,7 @@ function History(props){
               
                 })}
              </ScrollView>  
-
+        {/* </View> */}
 
 
         </View>

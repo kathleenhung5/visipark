@@ -364,6 +364,7 @@ function Main(props){
         getUnit();
         dbGetHistory();
         dbGetSpots();
+
         //dbUnpinVisitor();
         //dbPinVisitor();
         // dbExtendVisitor();
@@ -385,6 +386,7 @@ function Main(props){
         //         timer = null;
         //     }
         // }
+
 
 
     },[]);
