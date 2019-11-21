@@ -258,6 +258,7 @@ function Popup(props){
       })
       let visitordata = await data.text();
       console.log("Data that server received for extending visitor",visitordata); 
+      props.dbGetCurrentVisitors(props.unit);
   }
 
 //front end function
