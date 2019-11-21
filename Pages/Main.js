@@ -87,7 +87,7 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data that server received for removing visitor",visitordata); 
-        dbGetData();
+        await dbGetData();
     }
 
     // Extend visitor function 
@@ -111,7 +111,7 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data that server received for extending visitor",visitordata); 
-        dbGetData();
+        await dbGetData();
     }
   
 
@@ -150,11 +150,11 @@ function Main(props){
     // console.log('setPinnedVisitor', PinnedVisitors);
 
     // Pin Visitor function 
-    const dbPinVisitor = async()=>{
+    const dbPinVisitor = async(id)=>{
         var visitor = {
             // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
             data: {
-                id: 5
+                id: id
                 // here add your own data, make sure use the same property name and same data type for value 
             }
         }
@@ -168,16 +168,16 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data sent to server to pin a visitor",JSON.parse(visitordata)); 
-        dbGetHistory();
-        dbGetData();
+        await dbGetHistory();
+        await dbGetData();
     }
 
     // Unpin Visitor function 
-    const dbUnpinVisitor = async()=>{
+    const dbUnpinVisitor = async(id)=>{
         var visitor = {
             // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
             data: {
-                id: 5
+                id: id
                 // here add your own data, make sure use the same property name and same data type for value 
             }
         }
@@ -191,8 +191,8 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data sent to server to Unpin a visitor",JSON.parse(visitordata)); 
-        dbGetHistory();
-        dbGetData();
+        await dbGetHistory();
+        await dbGetData();
     }
 
     // get spots left function 
@@ -294,6 +294,8 @@ function Main(props){
                  // History Page
                  UnpinnedVisitors = {UnpinnedVisitors}
                  PinnedVisitors = {PinnedVisitors}
+                 dbPinVisitor={dbPinVisitor}
+                 dbUnpinVisitor={dbUnpinVisitor}
                 />;
         props.setSafebg(true);
     }
@@ -348,9 +350,9 @@ function Main(props){
         // getUnit().then(dbGetCurrentVisitors(101));
         getUnit();
         dbGetSpots();
-        // dbUnpinVisitor();
-        // dbPinVisitor();
-        // dbGetHistory();
+        dbUnpinVisitor();
+        dbPinVisitor();
+        dbGetHistory();
         dbGetData();
         // dbExtendVisitor();
         // dbRemoveVisitor();
