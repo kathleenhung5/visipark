@@ -165,7 +165,7 @@ var styles = StyleSheet.create({
         height: 45,
         //height: "30%",
         width: "38%",
-        backgroundColor: Colors.Lightgrey,
+        // backgroundColor: Colors.Lightgrey,
         borderWidth: 2,
         justifyContent:'center',
         alignItems:'center',
@@ -179,11 +179,10 @@ var styles = StyleSheet.create({
         height: 45,
         //height: "30%",
         width: "38%",
-        backgroundColor: 'grey',
         borderWidth: 2,
         justifyContent:'center',
         alignItems:'center',
-        borderColor: 'darkgrey',
+        borderColor: Colors.Darkgrey,
         borderRadius: 23,
     }
     

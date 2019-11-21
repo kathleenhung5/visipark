@@ -39,7 +39,7 @@ function Visitors(props){
  var Hours2 = Math.floor(time2 /60)
  var minutes2 = time2 % 60
 
-    if (Hours1 >= 24){
+    if (props.reg1 >= 24){
       button1 = 
       <TouchableOpacity style={styles.extendButtonGrey} >
       <Text style={[Texts.HeadS,{color:'lightgrey'}]}>Extend</Text>
@@ -51,7 +51,7 @@ function Visitors(props){
       </TouchableOpacity>
     }
 
-    if (Hours2 >= 24){
+    if (props.reg2 >= 24){
       button2 = 
       <TouchableOpacity style={styles.extendButtonGrey}>
       <Text style={[Texts.HeadS,{color:'lightgrey'}]}>Extend</Text>
