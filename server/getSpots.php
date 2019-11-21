@@ -27,7 +27,7 @@ function getSpotsOccupied(){
 }
 
 $occupied = getSpotsOccupied();
-$free = 20-$occupied[0]['occupied'];
+$free = 30-$occupied[0]['occupied'];
 
 $json = json_encode($free);
 echo $json;

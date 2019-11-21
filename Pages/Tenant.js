@@ -60,6 +60,8 @@ function Tenant(props){
     Content = <History 
     pop={props.pop} 
     showPop={props.showPop}
+    card1 = {props.card1}
+    card2 = {props.card2}
     setName1 ={props.setName1}
     setName2 ={props.setName2}
     setPlate1 ={props.setPlate1}

@@ -51,6 +51,7 @@ function getNotPinned($unit_num){
     FROM visitors 
     WHERE unit_num = $unit_num AND removed=1 AND pin<>1 AND 
     (plate not in (select plate from visitors where pin=1) OR name not in (select name from visitors where pin=1))
+    ORDER BY id DESC
     ";
     return runQuery($sql);
 }

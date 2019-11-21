@@ -27,6 +27,42 @@ function Visitors(props){
   var cardtop = null;
   var cardbot = null;
   var cardbot2 = null;
+  var button1 = null;
+  var button2 = null;
+
+  //time convert
+  let time1= props.dur1
+  var Hours1 = Math.floor(time1 /60)
+  var minutes1 = time1 % 60
+
+ let time2= props.dur2
+ var Hours2 = Math.floor(time2 /60)
+ var minutes2 = time2 % 60
+
+    if (Hours1 >= 24){
+      button1 = 
+      <TouchableOpacity style={styles.extendButtonGrey} >
+      <Text style={[Texts.HeadS,{color:'lightgrey'}]}>Extend</Text>
+      </TouchableOpacity>
+    } else {
+      button1 = 
+      <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking1')}}>
+      <Text style={[Texts.HeadS,{color:Colors.Purple}]}>Extend</Text>
+      </TouchableOpacity>
+    }
+
+    if (Hours2 >= 24){
+      button2 = 
+      <TouchableOpacity style={styles.extendButtonGrey}>
+      <Text style={[Texts.HeadS,{color:'lightgrey'}]}>Extend</Text>
+      </TouchableOpacity>
+    } else {
+      button2 = 
+      <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking2')}}>
+      <Text style={[Texts.HeadS,{color:Colors.Purple}]}>Extend</Text>
+      </TouchableOpacity>
+    }
+
 
   //Visitor card 1 function
   if (props.card1 == false && props.card2 == false){
@@ -51,13 +87,14 @@ function Visitors(props){
               <Text style={styles.visitorName}>{props.name1}</Text>
               <Text style={styles.plateText}>{props.plate1}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              <Text style={styles.time}>{props.dur1}</Text>
+              {/* <Text style={styles.time}>{Hours1}:{minutes1}</Text> */}
+              <Text style={styles.time}>{Hours1}</Text>
               <Text style={styles.timeHr}>hr</Text>
               <Text style={styles.leftText}>left</Text>
 
-              <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking1')}}>
-              <Text style={[Texts.HeadS,{color:Colors.Purple}]}>Extend</Text>
-              </TouchableOpacity>
+
+              {button1}
+
 
               <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove1')}}>
               <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
@@ -82,13 +119,12 @@ function Visitors(props){
               <Text style={styles.visitorName}>{props.name2}</Text>
               <Text style={styles.plateText}>{props.plate2}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              <Text style={styles.time}>{props.dur2}</Text>
+              {/* <Text style={styles.time}>{Hours2}:{minutes2}</Text> */}
+              <Text style={styles.time}>{Hours2}</Text>
               <Text style={styles.timeHr}>hr</Text>
               <Text style={styles.leftText}>left</Text>
 
-              <TouchableOpacity style={styles.extendButton} onPress={() => {props.showPop('ExtendParking2')}}>
-              <Text style={[Texts.HeadS,{color:Colors.Purple}]}>Extend</Text>
-              </TouchableOpacity>
+              {button2}
 
               <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove2')}}>
               <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
