@@ -243,12 +243,9 @@ function Popup(props){
     // Extend visitor function (Backend)
     const dbExtendVisitor = async(id, extendhour)=>{
       var visitor = {
-          // the following is an exmaple of what to put in the obj "data" to send to the server for extending a visitor 
           data: {
               id: id,
               extendhour: extendhour
-
-              // here add your own data, make sure use the same property name and same data type for value 
           }
       }
       var data = await fetch('http://localhost:8888/visipark/extendVisitor.php',{
@@ -266,7 +263,6 @@ function Popup(props){
 
 //front end function
   var exthr = [];
- 
   for(var i=1;i<=(24-props.reg1);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
@@ -463,7 +459,7 @@ function Popup(props){
 
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed ____ successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.name1} successfully!</Text>
       </View>
     );
   }
@@ -527,7 +523,7 @@ function Popup(props){
         {/* Close Button */}
           <TouchableOpacity 
             onPress = {()=>{props.showPop('')}}
-            style={[styles.closeBut,{display:(props.pop=='AddVisitor'||props.pop=='ExtendParking'||props.pop=='Remove')?'flex':'none'}]} 
+            style={[styles.closeBut,{display:(props.pop=='AddVisitor'||props.pop=='ExtendParking1'||props.pop=='ExtendParking2'||props.pop=='Remove1'||props.pop=='Remove2')?'flex':'none'}]} 
           >
               <Image 
                   source={require('../img/cross.png')}
