@@ -40,23 +40,27 @@ var styles = StyleSheet.create({
     },
     card:{
         backgroundColor: '#fff',
-        paddingLeft:30,
-        paddingRight:30,
+        marginLeft:1,
+        marginRight:1,
         paddingTop:20,
         paddingBottom:20,
         shadowColor: Colors.Purple,
         shadowOffset: {width: 0, height: 0},
         shadowOpacity: 0.13,
+        shadowRadius: 3,
         borderRadius: 23,
         marginTop: 10,
         flexDirection: 'row',
-        justifyContent:"space-between"
+        justifyContent:"space-between",
+       // borderWidth:1
+        
         //justifyContent:"flex-start"
     },
     pinImg:{
         width:23,
         height: 40,
-        marginRight: 15,
+        //marginRight: 5,
+        marginLeft:25
        
        
         
@@ -68,7 +72,8 @@ var styles = StyleSheet.create({
         borderColor: Colors.Purple,
         //width: "45%",
         height: 40,
-        marginLeft: 10,
+        //marginLeft: 10,
+        marginRight: 25,
         alignItems: 'center',
         justifyContent:"center",
         paddingLeft: 15,

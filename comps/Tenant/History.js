@@ -20,7 +20,7 @@ import styles from '../../styles/CompsStyles/HistoryStyles';
 
 function History(props){
 
-    const [showPin, setShowPin] = useState(true);
+   // const [showPin, setShowPin] = useState(true);
     const [searchKey, setSearchKey] = useState('');
     let PinnedVisitors = props;
     console.log("passed" +PinnedVisitors);
@@ -60,7 +60,8 @@ function History(props){
                     </View>       
                 </View>
 {/* history Card  */}
-            <ScrollView>
+        {/* //<View style={{flex:1}}> */}
+            <ScrollView style={{flex:1}}>
                 {filteredData.map((obj, index)=>{
                   var pin = parseInt(obj.pin);
                   return (
@@ -99,7 +100,7 @@ function History(props){
               
                 })}
              </ScrollView>  
-
+        {/* </View> */}
 
 
         </View>
