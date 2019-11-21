@@ -16,7 +16,6 @@ import styles from '../styles/CompsStyles/PopupStyles';
 
 function Popup(props){
 
-
   // variables for changing Popup content
   var title = '';
   var content = null;
@@ -26,8 +25,6 @@ function Popup(props){
   const [strk1, setStrk1] = useState(0);
   const [strk2, setStrk2] = useState(0);
 
-  const textend1 = JSON.stringify(props.dur1);
-
   var dbGetData = async()=>{
     var resp = await fetch('http://localhost:8888/visipark/getData.php');
     var data = await resp.json();
@@ -35,8 +32,6 @@ function Popup(props){
     setDbVisitors(data.data.visitors);
     setDbReports(data.data.reports);
 }
-
-
   
   // Conditions for deciding what to show in popup 
   // ---- Visitor Parking Policy ----
@@ -99,23 +94,21 @@ function Popup(props){
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
-
-
  
   //Card slot 1 AddVisitor function
   if (props.pop == 'AddVisitor' && props.card1 == false){
     title = 'Add Visitor';
     btnTxt = 'Add';
 
-
-
     button = (
     <TouchableOpacity style={styles.button}
+
             onPress={()=>{
               // activate card1, close popup
               dbAddVisitor(props.unit, props.name1, props.plate1, props.dur1);
               props.setCard1(true);
               props.showPop('');
+              props.setCont('Visitors');
             }}>
             <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             
@@ -126,7 +119,7 @@ function Popup(props){
       <View>
         <Text style={Texts.Body}>Visitor's name:</Text>
 
-        <TextInput         
+        <TextInput 
           placeholder = "Name"
           value = {props.name1}
           style={[styles.input,Texts.FormText,{borderWidth: strk1}]}
@@ -135,10 +128,8 @@ function Popup(props){
           value={props.name1}
           onFocus = {()=>{setStrk1(2)}}
           onBlur = {()=>{setStrk1(0)}}
-          onChangeText = {(txt)=>{
-            props.setName1(txt)}}
+          onChangeText = {(txt)=>{props.setName1(txt)}}
         />
-
 
         <Text style={Texts.Body}>Visitor's plate number:</Text>
 
@@ -147,13 +138,12 @@ function Popup(props){
           value = {props.plate1}
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
-          maxLength = {6}
+          maxLength = {7}
           value={props.plate1}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
-          onChangeText = {(txt)=>{
-            props.setPlate1(txt)}}
+          onChangeText = {(txt)=>{props.setPlate1(txt)}}
         />
 
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
@@ -190,6 +180,7 @@ function Popup(props){
               dbAddVisitor(props.unit, props.name2, props.plate2, props.dur2);
               props.setCard2(true);
               props.showPop('');
+              props.setCont('Visitors');
             }}>
 
             <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
@@ -215,7 +206,7 @@ function Popup(props){
           value = {props.plate2}
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
-          maxLength = {6}
+          maxLength = {7}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
@@ -286,9 +277,7 @@ function Popup(props){
       <TouchableOpacity 
       style = {styles.button}
       onPress = {()=>{props.showPop('');
-      props.setDur1 (extendhr1+props.dur1)
       dbExtendVisitor(props.id1, extendhr1);
-      console.log(extendhr1);
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
@@ -334,8 +323,8 @@ function Popup(props){
       <TouchableOpacity 
       style = {styles.button}
       onPress = {()=>{props.showPop('');
-      props.setDur2 (extendhr2+props.dur2);
-      dbExtendVisitor(props.id2, props.dur2);
+      dbExtendVisitor(props.id2, extendhr2);
+
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
@@ -406,9 +395,7 @@ function Popup(props){
                 props.setName1('');
                 props.setPlate1('');
                 props.setDur1(1);
-                dbRemoveVisitor(props.id1);
-                dbGetData();
-                
+                dbRemoveVisitor(props.id1);             
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
@@ -471,7 +458,7 @@ function Popup(props){
 
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.name1} successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed ____ successfully!</Text>
       </View>
     );
   }
