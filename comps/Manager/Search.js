@@ -3,14 +3,16 @@ import {View, Text, TextInput, Image, TouchableOpacity, ScrollView} from 'react-
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 //import styles from '../../styles/CompsStyles/SearchStyles';
-import styles from '../../styles/CompsStyles/HistoryStyles';
+
+import styles from '../../styles/CompsStyles/SearchStyles';
+
 
 var data = [
-  {name:"Dora", plate:"Wowho"},
-  {name:"Kathleen", plate:"Haha"},
-  {name:"Elias", plate:"Yoyo"},
-  {name:"Nicole", plate:"Diedie"},
-  {name:"Loki", plate:"Meow"}
+  {plate:"kk123", unit:"101", },
+  {plate:"aa234", unit:"102"},
+  {plate:"cc789", unit:"103"},
+  {plate:"dd456", unit:"104"},
+  {plate:"ee789", unit:"105"}
 
 ];
 
@@ -18,8 +20,8 @@ var data = [
 function Search(){
   const [searchKey, setSearchKey] = useState('');
   const filteredData = data.filter((obj)=>{
-    return obj.name.indexOf(searchKey) >= 0 ||
-            obj.plate.indexOf(searchKey) >= 0 
+    return obj.plate.indexOf(searchKey) >= 0 ||
+            obj.unit.indexOf(searchKey) >= 0 
   })
 
 
@@ -53,28 +55,22 @@ function Search(){
                   return (
                 
                   <View style={styles.card}>
-                  <TouchableOpacity onPress={this.handleToggleClick}>
-                    
-                    <Image
-                      source={require('../../img/pin-grey.png')} style={styles.pinImg}
-                      />   
-                  </TouchableOpacity>
 
-                  <View style={styles.List}>
-                    <Text style={[Texts.BodyBold, styles.name]}>{item.name}</Text>
-                    <Text style={Texts.BodyLight}>{item.plate}</Text>
+                    <View style={styles.List}>
+                      <Text style={[Texts.HeadS, styles.name]}>{item.plate}</Text>
+                      <Text style={Texts.BodyLight}>unit{item.unit}</Text>
+                    </View>
+                    
+
+                    <View> 
+                      <Text style={[Texts.BodyBold,{color: Colors.Purple}]}>visitor
+                      </Text>
+                    </View> 
+
                   </View>
                   
 
-                  <TouchableOpacity 
-                  style={styles.visiBtn}
-                  onPress={()=>{}}
-                  >
-                    <Text style={[Texts.BodyBold,{color: Colors.Purple}]}>Revisit</Text>
-                  </TouchableOpacity>
-                  
-
-                  </View>               
+                                
                   )
               
                 })}
