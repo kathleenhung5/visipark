@@ -348,13 +348,13 @@ function Main(props){
         // getUnit().then(dbGetCurrentVisitors(101));
         getUnit();
         dbGetSpots();
-        // dbUnpinVisitor();
-        // dbPinVisitor();
-        // dbGetHistory();
+        dbUnpinVisitor();
+        dbPinVisitor();
+        dbGetHistory();
         dbGetData();
-        // dbExtendVisitor();
-        // dbRemoveVisitor();
-        // dbAddVisitor();
+        dbExtendVisitor();
+        dbRemoveVisitor();
+        dbAddVisitor();
     },[]);
     // console.log('get all tables',dbUnits,dbVisitors,dbReports);
 
