@@ -24,7 +24,8 @@ $_POST = json_decode(file_get_contents("php://input"), true);
         //         id: 1,
         //         extendhour: 3
         //     }
-        // }
+
+
         
 $visitor = $_POST['data'];
 
