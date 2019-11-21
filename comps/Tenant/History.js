@@ -97,6 +97,10 @@ function History(props){
                         props.setName2(obj.name);
                         props.setPlate2(obj.plate);
                       }
+                      // if there's 2 visitors already
+                      if(props.card1 == true && props.card2 == true){
+                        props.showPop('Full');
+                      }
                   
                     }}>
                     <Text style={[Texts.BodyBold,{color: Colors.Purple}]}>

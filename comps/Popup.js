@@ -510,6 +510,30 @@ function Popup(props){
     );
   }
 
+  // ---- Revisit Fail ----
+  if(props.pop == 'Full'){
+    title = "Can't Add Visitors";
+    btnTxt = 'Okay';
+
+    button = (
+      <TouchableOpacity 
+              style={styles.button}
+              onPress={()=>{
+                props.showPop('');
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            </TouchableOpacity>
+      )
+
+    
+    content = (
+      <View>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>Each unit is allowed to have only 2 visitors.
+        </Text>
+      </View>
+    );
+  }
+
   return(
     // This is dark background
   <View style={styles.bg}>
