@@ -94,7 +94,7 @@ var styles = StyleSheet.create({
     carIcon:{
         position: "absolute",
         top: "14%",
-        right: "32%",
+        right: "26%",
         width: "15%",
         height: "27%"
     },

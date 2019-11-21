@@ -87,7 +87,8 @@ function Visitors(props){
               <Text style={styles.visitorName}>{props.name1}</Text>
               <Text style={styles.plateText}>{props.plate1}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              <Text style={styles.time}>{Hours1}:{minutes1}</Text>
+              {/* <Text style={styles.time}>{Hours1}:{minutes1}</Text> */}
+              <Text style={styles.time}>{Hours1}</Text>
               <Text style={styles.timeHr}>hr</Text>
               <Text style={styles.leftText}>left</Text>
 
@@ -118,7 +119,8 @@ function Visitors(props){
               <Text style={styles.visitorName}>{props.name2}</Text>
               <Text style={styles.plateText}>{props.plate2}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              <Text style={styles.time}>{Hours2}:{minutes2}</Text>
+              {/* <Text style={styles.time}>{Hours2}:{minutes2}</Text> */}
+              <Text style={styles.time}>{Hours2}</Text>
               <Text style={styles.timeHr}>hr</Text>
               <Text style={styles.leftText}>left</Text>
 
