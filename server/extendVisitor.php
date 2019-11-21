@@ -22,7 +22,7 @@ $_POST = json_decode(file_get_contents("php://input"), true);
 
         //     data: {
         //         id: 1,
-        //         extendhour: "3:00:00"
+        //         extendhour: 1
         //     }
         // }
         
@@ -41,6 +41,7 @@ function extendVisitor($id, $extendhour){
     WHERE id=$id
     ";
     runQuery($sql);
+    
 }
 
 extendVisitor($id, $extendhour);

@@ -261,6 +261,7 @@ function Popup(props){
       })
       let visitordata = await data.text();
       console.log("Data that server received for extending visitor",visitordata); 
+      props.dbGetCurrentVisitors(props.unit);
   }
 
 //front end function
@@ -280,8 +281,7 @@ function Popup(props){
       <TouchableOpacity 
       style = {styles.button}
       onPress = {()=>{props.showPop('');
-      props.setDur1 (extendhr1+props.dur1)
-      dbExtendVisitor(props.id1, props.dur1);
+      dbExtendVisitor(props.id1, extendhr1);
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
@@ -327,8 +327,8 @@ function Popup(props){
       <TouchableOpacity 
       style = {styles.button}
       onPress = {()=>{props.showPop('');
-      props.setDur2 (extendhr2+props.dur2);
-      dbExtendVisitor(props.id2, props.dur2);
+      dbExtendVisitor(props.id2, extendhr2);
+
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
@@ -399,9 +399,7 @@ function Popup(props){
                 props.setName1('');
                 props.setPlate1('');
                 props.setDur1(1);
-                dbRemoveVisitor(props.id1);
-                dbGetData();
-                
+                dbRemoveVisitor(props.id1);             
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
