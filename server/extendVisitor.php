@@ -21,8 +21,8 @@ $_POST = json_decode(file_get_contents("php://input"), true);
 // ---- data receiving from client ----
 
         //     data: {
-        //         id: 1,
-        //         extendhour: "3:00:00"
+        //         id: 1
+        //         extendhour: 3
         //     }
         // }
         
@@ -37,7 +37,7 @@ $extendhour = $visitor['extendhour'];
 function extendVisitor($id, $extendhour){
     $sql=
     "UPDATE visitors 
-    SET end_time = addtime(end_time, '$extendhour')
+    SET end_time = TIMESTAMPADD(HOUR, $extendhour,end_time)
     WHERE id=$id
     ";
     runQuery($sql);
