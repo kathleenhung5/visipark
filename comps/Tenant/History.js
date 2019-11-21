@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, TextInput, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View, 
+  Text, 
+  TextInput, 
+  Image, 
+  TouchableOpacity, 
+  ScrollView,
+  Keyboard,
+  TouchableWithoutFeedback
+} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 import styles from '../../styles/CompsStyles/HistoryStyles';
-
-
-// var data = [
-//   {name:"Dora", plate:"Wowho"},
-//   {name:"Kathleen", plate:"Haha"},
-//   {name:"Elias", plate:"Yoyo"},
-//   {name:"Nicole", plate:"Diedie"},
-//   {name:"Loki", plate:"Meow"}
-
-// ];
-//var data = props.PinnedVisitors;
-
 
 
 
@@ -36,6 +33,8 @@ function History(props){
 
 
     return(
+      <TouchableWithoutFeedback onPress = 
+        {Keyboard.dismiss}>
         <View style={styles.container}> 
 {/*  Header */}
             <View>
@@ -86,7 +85,22 @@ function History(props){
 
                     <TouchableOpacity 
                     style={styles.visiBtn}
-                    onPress={() => {props.showPop('AddVisitor');props.setName1(obj.name);props.setPlate1(obj.plate);
+                    onPress={() => {
+                      props.showPop('AddVisitor');
+                      // if there no visitor
+                      if(props.card1 == false){
+                        props.setName1(obj.name);
+                        props.setPlate1(obj.plate);
+                      }
+                      // if there's 1 visitor already
+                      if(props.card1 ==  true && props.card2 == false){
+                        props.setName2(obj.name);
+                        props.setPlate2(obj.plate);
+                      }
+                      // if there's 2 visitors already
+                      if(props.card1 == true && props.card2 == true){
+                        props.showPop('Full');
+                      }
                   
                     }}>
                     <Text style={[Texts.BodyBold,{color: Colors.Purple}]}>
@@ -104,6 +118,7 @@ function History(props){
 
 
         </View>
+      </TouchableWithoutFeedback>
     )
 
 

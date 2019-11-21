@@ -94,7 +94,7 @@ var styles = StyleSheet.create({
     carIcon:{
         position: "absolute",
         top: "14%",
-        right: "25%",
+        right: "26%",
         width: "15%",
         height: "27%"
     },
@@ -156,7 +156,7 @@ var styles = StyleSheet.create({
         alignItems:'center',
         position: "absolute",
         bottom: 20,
-        right:30
+        right:30,
     },
     extendButton: {
         position: "absolute",
@@ -171,8 +171,20 @@ var styles = StyleSheet.create({
         alignItems:'center',
         borderColor: Colors.Purple,
         borderRadius: 23,
-        
-        
+    },
+    extendButtonGrey: {
+        position: "absolute",
+        bottom:20,
+        left:30,
+        height: 45,
+        //height: "30%",
+        width: "38%",
+        backgroundColor: 'grey',
+        borderWidth: 2,
+        justifyContent:'center',
+        alignItems:'center',
+        borderColor: 'darkgrey',
+        borderRadius: 23,
     }
     
 

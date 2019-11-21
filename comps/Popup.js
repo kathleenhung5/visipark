@@ -26,12 +26,27 @@ function Popup(props){
   const [strk1, setStrk1] = useState(0);
   const [strk2, setStrk2] = useState(0);
 
+
+  let time1= props.dur1
+  var Hours1 = Math.floor(time1 /60)
+  var minutes1 = time1 % 60
+
+ let time2= props.dur2
+ var Hours2 = Math.floor(time2 /60)
+ var minutes2 = time2 % 60
+
+
+
+
   var dbGetData = async()=>{
     var resp = await fetch('http://localhost:8888/visipark/getData.php');
     var data = await resp.json();
     setDbUnits(data.data.units);
     setDbVisitors(data.data.visitors);
     setDbReports(data.data.reports);
+
+
+    
 }
   
   
@@ -44,7 +59,8 @@ function Popup(props){
      button = (
        <TouchableOpacity 
        style = {styles.button}
-       onPress = {()=>{props.showPop('')}}>
+       onPress = {()=>{props.showPop('');
+       }}>
        <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
      </TouchableOpacity>
      )
@@ -243,12 +259,9 @@ function Popup(props){
     // Extend visitor function (Backend)
     const dbExtendVisitor = async(id, extendhour)=>{
       var visitor = {
-          // the following is an exmaple of what to put in the obj "data" to send to the server for extending a visitor 
           data: {
               id: id,
               extendhour: extendhour
-
-              // here add your own data, make sure use the same property name and same data type for value 
           }
       }
       var data = await fetch('http://localhost:8888/visipark/extendVisitor.php',{
@@ -266,8 +279,7 @@ function Popup(props){
 
 //front end function
   var exthr = [];
-  // dur to be changed later
-  for(var i=1;i<=(24-props.dur1);i++){
+  for(var i=1;i<=(24-props.reg1);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
@@ -281,6 +293,7 @@ function Popup(props){
       <TouchableOpacity 
       style = {styles.button}
       onPress = {()=>{props.showPop('');
+      props.setDur1(extendhr1+props.dur1);
       dbExtendVisitor(props.id1, extendhr1);
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
@@ -291,7 +304,10 @@ function Popup(props){
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
-        <Text style={Texts.Body}>You've registered: {props.dur1}hr</Text>
+        <Text style={Texts.Body}>You've registered: {props.reg1}hr</Text>
+
+        {/* <Text style={Texts.Body}>You've registered: {Hours1}:{minutes1}hr(s)</Text> */}
+
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <Picker 
@@ -312,7 +328,7 @@ function Popup(props){
 
   //Extend Parking Card 2
   var exthr = [];
-  for(var i=1;i<=(24-props.dur2);i++){
+  for(var i=1;i<=(24-props.reg2);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
@@ -327,8 +343,8 @@ function Popup(props){
       <TouchableOpacity 
       style = {styles.button}
       onPress = {()=>{props.showPop('');
+      props.setDur2 (extendhr2+props.dur2);
       dbExtendVisitor(props.id2, extendhr2);
-
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
@@ -337,8 +353,9 @@ function Popup(props){
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
+        <Text style={Texts.Body}>You've registered: {props.reg2}hr</Text>
 
-        <Text style={Texts.Body}>You've registered: {props.dur2}hr</Text>
+        {/* <Text style={Texts.Body}>You've registered: {Hours2}:{minutes2}hr(s)</Text> */}
 
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
         <View style={{flexDirection:'row',alignItems:'center'}}>
@@ -462,7 +479,8 @@ function Popup(props){
 
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed ____ successfully!</Text>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.name1} successfully!</Text>
+
       </View>
     );
   }
@@ -485,7 +503,7 @@ function Popup(props){
   
       content = (
         <View>
-          <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.name2} successfully!</Text>
+          <Text style={[Texts.Body,{paddingBottom: 20}]}>Your visitor has been successfully removed.</Text>
         </View>
       );
     }
@@ -513,6 +531,30 @@ function Popup(props){
     );
   }
 
+  // ---- Revisit Fail ----
+  if(props.pop == 'Full'){
+    title = "Can't Add Visitors";
+    btnTxt = 'Okay';
+
+    button = (
+      <TouchableOpacity 
+              style={styles.button}
+              onPress={()=>{
+                props.showPop('');
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            </TouchableOpacity>
+      )
+
+    
+    content = (
+      <View>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>Each unit is allowed to have only 2 visitors.
+        </Text>
+      </View>
+    );
+  }
+
   return(
     // This is dark background
   <View style={styles.bg}>
@@ -526,7 +568,7 @@ function Popup(props){
         {/* Close Button */}
           <TouchableOpacity 
             onPress = {()=>{props.showPop('')}}
-            style={[styles.closeBut,{display:(props.pop=='AddVisitor'||props.pop=='ExtendParking'||props.pop=='Remove')?'flex':'none'}]} 
+            style={[styles.closeBut,{display:(props.pop=='AddVisitor'||props.pop=='ExtendParking1'||props.pop=='ExtendParking2'||props.pop=='Remove1'||props.pop=='Remove2')?'flex':'none'}]} 
           >
               <Image 
                   source={require('../img/cross.png')}
