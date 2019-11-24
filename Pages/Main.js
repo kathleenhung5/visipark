@@ -297,6 +297,8 @@ function Main(props){
                  setDur1 ={setDur1}
                  dur2 = {dur2}
                  setDur2 ={setDur2}
+                 reg1 = {reg1}
+                 reg2 = {reg2}
                  id1 = {id1}
                  id2 = {id2}
                  // spots
