@@ -26,35 +26,19 @@ function Popup(props){
   const [strk1, setStrk1] = useState(0);
   const [strk2, setStrk2] = useState(0);
 
-
-  let time1= props.dur1
-  var Hours1 = Math.floor(time1 /60)
-  var minutes1 = time1 % 60
-
- let time2= props.dur2
- var Hours2 = Math.floor(time2 /60)
- var minutes2 = time2 % 60
-
-
-
-
   var dbGetData = async()=>{
     var resp = await fetch('http://localhost:8888/visipark/getData.php');
     var data = await resp.json();
     setDbUnits(data.data.units);
     setDbVisitors(data.data.visitors);
     setDbReports(data.data.reports);
-
-
-    
 }
-  
   
   // Conditions for deciding what to show in popup 
   // ---- Visitor Parking Policy ----
   if (props.pop == 'VisitorParkingPolicy'){
     title = 'Visitor Parking Policy';
-    btnTxt = 'Okay';
+    btnTxt = 'I Agree';
     
      button = (
        <TouchableOpacity 
@@ -68,13 +52,12 @@ function Popup(props){
     content = (
       <View>
         <Text style={[Texts.Body,{marginBottom:10}]}>
-          1. Each apartment is allowed to have maximum 2 visitor vehicles parked in the visitor parking lot at the same time. 
+          1. Each apartment is allowed to have <Text style={{fontWeight:"bold"}}>maximum 2 visitor vehicles </Text>parked in the visitor parking lot at the same time. 
         </Text>
         <Text style={[Texts.Body,{marginBottom:10}]}>
-          2. Each visitor’s vehicle is allowed to park in visitor parking for a consecutive duration of 24 hours.
-        </Text>
+          2. Each visitor’s vehicle is allowed to park in visitor parking for a consecutive duration of <Text style={{fontWeight:"bold"}}>24 hours.</Text></Text>
         <Text style={Texts.Body}>
-          3. If visitors park over 24 hours, vehicles will be towed at owner's expense.
+          3. If visitors park over 24 hours, <Text style={{fontWeight:"bold"}}>vehicles will be towed at owner's expense.</Text>
         </Text>
       </View>
     );
@@ -118,10 +101,19 @@ function Popup(props){
     title  = 'Add Visitor';
     btnTxt = 'Add';
 
-  
+    if (props.name1 == '' || props.plate1 == ''){
     button = (
     <TouchableOpacity style={styles.button}
-
+            onPress={()=>{
+              props.showPop('MissingFields')
+            }}>
+            <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            
+      </TouchableOpacity>
+    )
+          } else {
+            button = (
+            <TouchableOpacity style={styles.button}
             onPress={()=>{
               // activate card1, close popup
               dbAddVisitor(props.unit, props.name1, props.plate1, props.dur1);
@@ -132,7 +124,8 @@ function Popup(props){
             <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             
       </TouchableOpacity>
-    )
+            )
+          }
     
     content = (
       <View>
@@ -192,19 +185,31 @@ function Popup(props){
     title = 'Add Visitor';
     btnTxt = 'Add';
 
-    button = (
-    <TouchableOpacity 
-            style={styles.button}
-            onPress={()=>{
-              dbAddVisitor(props.unit, props.name2, props.plate2, props.dur2);
-              props.setCard2(true);
-              props.showPop('');
-              props.setCont('Visitors');
-            }}>
-
-            <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
-          </TouchableOpacity>
-    )
+    if (props.name2 == '' || props.plate2 == ''){
+      button = (
+      <TouchableOpacity style={styles.button}
+              onPress={()=>{
+                props.showPop('MissingFields')
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+              
+        </TouchableOpacity>
+      )
+            } else {
+              button = (
+              <TouchableOpacity style={styles.button}
+              onPress={()=>{
+                // activate card1, close popup
+                dbAddVisitor(props.unit, props.name2, props.plate2, props.dur2);
+                props.setCard1(true);
+                props.showPop('');
+                props.setCont('Visitors');
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+              
+        </TouchableOpacity>
+              )
+            }
 
     content = (
       <View>
@@ -253,9 +258,6 @@ function Popup(props){
 
 
   //Extend Parking Card 1
-
-  
-
     // Extend visitor function (Backend)
     const dbExtendVisitor = async(id, extendhour)=>{
       var visitor = {
@@ -304,7 +306,9 @@ function Popup(props){
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
-        <Text style={Texts.Body}>You've registered: {props.reg1}hr</Text>
+        <Text style={Texts.Body}>You've registered: 
+        <Text style={{fontWeight:"bold"}}> {props.reg1}hr</Text>
+        </Text>
 
         {/* <Text style={Texts.Body}>You've registered: {Hours1}:{minutes1}hr(s)</Text> */}
 
@@ -353,8 +357,9 @@ function Popup(props){
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
-        <Text style={Texts.Body}>You've registered: {props.reg2}hr</Text>
-
+        <Text style={Texts.Body}>You've registered: 
+        <Text style={{fontWeight:"bold"}}> {props.reg2}hr</Text>
+        </Text>
         {/* <Text style={Texts.Body}>You've registered: {Hours2}:{minutes2}hr(s)</Text> */}
 
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
@@ -424,7 +429,9 @@ function Popup(props){
     content = (
       <View>
 
-        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove {props.name1}?</Text>
+        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove
+        <Text style={{fontWeight:"bold"}}> {props.name1}</Text>
+        ?</Text>
 
       </View>
     );
@@ -453,14 +460,16 @@ function Popup(props){
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
       )
-    content = (
-      <View>
-        <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove {props.name2}?</Text>
-      </View>
-    );
-  }
-
-
+      content = (
+        <View>
+  
+          <Text style={[Texts.Body,{marginBottom: 30}]}>Are you sure you want to remove
+          <Text style={{fontWeight:"bold"}}> {props.name2}</Text>
+          ?</Text>
+  
+        </View>
+      );
+    }
 
   //----- Removed Successfully ---- 1
   if (props.pop == 'RemovedSuccessfully1'){
@@ -513,6 +522,8 @@ function Popup(props){
     title = 'Reported Successfully';
     btnTxt = 'Okay';
 
+
+
     button = (
       <TouchableOpacity 
               style={styles.button}
@@ -550,6 +561,52 @@ function Popup(props){
     content = (
       <View>
         <Text style={[Texts.Body,{paddingBottom: 20}]}>Each unit is allowed to have only 2 visitors.
+        </Text>
+      </View>
+    );
+  }
+
+  if(props.pop == 'MissingFields'){
+    title = "Missing Fields";
+    btnTxt = 'Okay';
+
+    button = (
+      <TouchableOpacity 
+              style={styles.button}
+              onPress={()=>{
+                props.showPop('AddVisitor');
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            </TouchableOpacity>
+      )
+
+    
+    content = (
+      <View>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>Please fill in both Visitor name and Visitor Plate Number.
+        </Text>
+      </View>
+    );
+  }
+
+  if(props.pop == 'MissingFields1'){
+    title = "Missing Fields";
+    btnTxt = 'Okay';
+
+    button = (
+      <TouchableOpacity 
+              style={styles.button}
+              onPress={()=>{
+                props.showPop('');
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            </TouchableOpacity>
+      )
+
+    
+    content = (
+      <View>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>Please fill in both Subject and Message fields.
         </Text>
       </View>
     );

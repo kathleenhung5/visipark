@@ -78,7 +78,7 @@ function History(props){
                     </TouchableOpacity>
 
                     <View style={styles.List}>
-                      <Text style={[Texts.BodyBold, styles.name]}>{obj.name}</Text>
+                      <Text style={[Texts.BodyBold, styles.name]} numberOfLines={1}>{obj.name}</Text>
                       <Text style={Texts.BodyLight}>{obj.plate}</Text>
                     </View>
                   

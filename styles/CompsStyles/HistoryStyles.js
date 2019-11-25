@@ -61,11 +61,8 @@ var styles = StyleSheet.create({
         height: 40,
         //marginRight: 5,
         marginLeft:25
-       
-       
-        
-
     },
+    
     visiBtn:{
         borderWidth:2,
         borderRadius:25,
@@ -95,6 +92,7 @@ var styles = StyleSheet.create({
     },
     name:{
        // backgroundColor: "#fab"
+       width: 170
     }
 
 
