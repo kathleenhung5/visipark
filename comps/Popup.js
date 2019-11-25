@@ -43,7 +43,7 @@ function Popup(props){
     setDbUnits(data.data.units);
     setDbVisitors(data.data.visitors);
     setDbReports(data.data.reports);
-
+  }
   
   // Conditions for deciding what to show in popup 
 
@@ -210,7 +210,7 @@ function Popup(props){
               
         </TouchableOpacity>
       )
-            } else {
+      } else {
               button = (
               <TouchableOpacity style={styles.button}
               onPress={()=>{
@@ -367,8 +367,8 @@ function Popup(props){
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
     </TouchableOpacity>
-
     )
+    
     content = (
       <View>
         <Text style={Texts.Body}>Max parking time allowed: 24hr</Text>
@@ -501,7 +501,6 @@ function Popup(props){
     content = (
       <View>
         <Text style={[Texts.Body,{paddingBottom: 20}]}>You have removed {props.name1} successfully!</Text>
-
       </View>
     );
   }
@@ -532,9 +531,6 @@ function Popup(props){
   if(props.pop == 'ReportedSuccessfully'){
     title = 'Reported Successfully';
     btnTxt = 'Okay';
-
-
-
     button = (
       <TouchableOpacity 
               style={styles.button}
@@ -544,8 +540,6 @@ function Popup(props){
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
             </TouchableOpacity>
       )
-
-    
     content = (
       <View>
         <Text style={[Texts.Body,{paddingBottom: 20}]}>Thank you! You reported successfully!</Text>
@@ -609,8 +603,8 @@ function Popup(props){
                 props.showPop('');
                 props.showPop('AddVisitor');
               }}>
-              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
-            </TouchableOpacity>
+          <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+      </TouchableOpacity>
       )
 
     content = (
@@ -679,7 +673,7 @@ function Popup(props){
     </KeyboardAvoidingView>
   </View>
   )
-}
 
+}
 
 export default Popup;
