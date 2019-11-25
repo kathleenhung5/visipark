@@ -3,15 +3,22 @@ import {Colors} from '../Colors';
 
 var styles = StyleSheet.create({
     container:{
-        paddingTop: 60,
-        paddingLeft: 20,
-        paddingRight: 20,
-        width:"100%",
+        // paddingTop: 60,
+        // paddingLeft: 20,
+        // paddingRight: 20,
+        // width:"100%",
         //height: "90%"
         flex: 1,
         marginBottom: 70
 
-    },    
+    }, 
+    content:{
+        paddingTop: 60,
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 40,
+
+    },  
     SectionStyle:{
         flexDirection: 'row',
         justifyContent: 'center',
@@ -44,16 +51,15 @@ var styles = StyleSheet.create({
         marginRight:1,
         paddingTop:20,
         paddingBottom:20,
-        shadowColor: Colors.Purple,
-        shadowOffset: {width: 0, height: 0},
-        shadowOpacity: 0.13,
-        shadowRadius: 3,
-        borderRadius: 23,
+        // shadowColor: Colors.Purple,
+        // shadowOffset: {width: 0, height: 0},
+        // shadowOpacity: 0.13,
+        // shadowRadius: 3,
+        // borderRadius: 23,
         marginTop: 10,
         flexDirection: 'row',
         justifyContent:"space-between",
-       // borderWidth:1
-        
+       // borderWidth:1,       
         //justifyContent:"flex-start"
     },
     pinImg:{
@@ -61,11 +67,8 @@ var styles = StyleSheet.create({
         height: 40,
         //marginRight: 5,
         marginLeft:25
-       
-       
-        
-
     },
+    
     visiBtn:{
         borderWidth:2,
         borderRadius:25,
@@ -95,6 +98,7 @@ var styles = StyleSheet.create({
     },
     name:{
        // backgroundColor: "#fab"
+       width: 170
     }
 
 

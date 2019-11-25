@@ -6,9 +6,6 @@ import styles from '../../styles/CompsStyles/VisitorStyles';
 
 function Visitors(props){
 
-
-
-
   //Function 1
   // time left = start + duration - now
   // count time in mili seconds
@@ -20,7 +17,6 @@ function Visitors(props){
 //    var parkingseconds = 3600;
 //   var timepassed = Date.parse(now)-Date.parse(stime);
  //   console.log(parkingseconds, timepassed/1000);
-
 //  },[]);
 
   // UI Variables
@@ -30,7 +26,7 @@ function Visitors(props){
   var button1 = null;
   var button2 = null;
 
-  //time convert
+  //hours converted to hours + minutes
   let time1= props.dur1
   var Hours1 = Math.floor(time1 /60)
   var minutes1 = time1 % 60
@@ -39,7 +35,9 @@ function Visitors(props){
  var Hours2 = Math.floor(time2 /60)
  var minutes2 = time2 % 60
 
-    if (Hours1 >= 24){
+
+//Conditions to disable Extend button 
+    if (props.reg1 >= 23){
       button1 = 
       <TouchableOpacity style={styles.extendButtonGrey} >
       <Text style={[Texts.HeadS,{color:'lightgrey'}]}>Extend</Text>
@@ -51,7 +49,7 @@ function Visitors(props){
       </TouchableOpacity>
     }
 
-    if (Hours2 >= 24){
+    if (props.reg2 >= 23){
       button2 = 
       <TouchableOpacity style={styles.extendButtonGrey}>
       <Text style={[Texts.HeadS,{color:'lightgrey'}]}>Extend</Text>
@@ -66,7 +64,6 @@ function Visitors(props){
 
   //Visitor card 1 function
   if (props.card1 == false && props.card2 == false){
-
     cardtop =
     null;
   } 
@@ -84,18 +81,12 @@ function Visitors(props){
   if (props.card1 == true){
     cardtop =
             <View style={styles.activeBox} >
-              <Text style={styles.visitorName}>{props.name1}</Text>
+              <Text style={styles.visitorName} numberOfLines={1}>{props.name1}</Text>
               <Text style={styles.plateText}>{props.plate1}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              {/* <Text style={styles.time}>{Hours1}:{minutes1}</Text> */}
-              <Text style={styles.time}>{Hours1}</Text>
-              <Text style={styles.timeHr}>hr</Text>
-              <Text style={styles.leftText}>left</Text>
-
-
+              <Text style={styles.time}>{Hours1}:{minutes1}</Text>
+              <Text style={styles.leftText}>hr left</Text>
               {button1}
-
-
               <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove1')}}>
               <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
               </TouchableOpacity>
@@ -116,16 +107,12 @@ function Visitors(props){
   if (props.card2 == true){
     cardbot =
               <View style={styles.activeBox2} >
-              <Text style={styles.visitorName}>{props.name2}</Text>
+              <Text style={styles.visitorName} numberOfLines={1}>{props.name2}</Text>
               <Text style={styles.plateText}>{props.plate2}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              {/* <Text style={styles.time}>{Hours2}:{minutes2}</Text> */}
-              <Text style={styles.time}>{Hours2}</Text>
-              <Text style={styles.timeHr}>hr</Text>
-              <Text style={styles.leftText}>left</Text>
-
+              <Text style={styles.time}>{Hours2}:{minutes2}</Text>
+              <Text style={styles.leftText}>hr left</Text>
               {button2}
-
               <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove2')}}>
               <Text style={[Texts.HeadS,{color:'#fff'}]}>Remove</Text>
               </TouchableOpacity>
@@ -157,7 +144,7 @@ function Visitors(props){
 
           <Text style={Texts.HeadL}>Unit {props.unit}
           </Text>
-          <Text style={Texts.BodyLight}>Estimated spots left: {props.spots}</Text>
+          <Text style={Texts.BodyLight}>Parking Lot: {props.spots} spots left</Text>
 
       <View style={{height:"100%", paddingTop:20}}>
         
