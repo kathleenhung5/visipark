@@ -152,10 +152,11 @@ function Main(props){
     }
 
     // Pin Visitor function 
-    const dbPinVisitor = async(id)=>{
+    const dbPinVisitor = async(unit,id)=>{
         var visitor = {
             // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
             data: {
+                unit_num: unit,
                 id: id
                 // here add your own data, make sure use the same property name and same data type for value 
             }
@@ -170,17 +171,16 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data sent to server to pin a visitor",JSON.parse(visitordata)); 
-        await dbGetHistory();
-        await dbGetData();
+        await dbGetHistory(unit);
+        // await dbGetData();
     }
 
     // Unpin Visitor function 
-    const dbUnpinVisitor = async(id)=>{
+    const dbUnpinVisitor = async(unit,id)=>{
         var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
             data: {
+                unit_num: unit,
                 id: id
-                // here add your own data, make sure use the same property name and same data type for value 
             }
         }
         var data = await fetch('http://localhost:8888/visipark/unpinVisitor.php',{
@@ -193,8 +193,8 @@ function Main(props){
         })
         let visitordata = await data.text();
         console.log("Data sent to server to Unpin a visitor",JSON.parse(visitordata)); 
-        await dbGetHistory();
-        await dbGetData();
+        await dbGetHistory(unit);
+        // await dbGetData();
     }
 
     // get spots left function 

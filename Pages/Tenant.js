@@ -58,6 +58,7 @@ function Tenant(props){
     console.log("setup history ")
     console.log(props.UnpinnedVisitors)
     Content = <History 
+    unit = {props.unit}
     pop={props.pop} 
     showPop={props.showPop}
     card1 = {props.card1}

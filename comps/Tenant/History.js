@@ -73,8 +73,9 @@ function History(props){
                 
                   <View style={[styles.card, DropShadows.shadow]}>
                     <TouchableOpacity onPress={()=>{
+                      console.log('pin/unpin a visitor unit', props.unit,'id',obj.id);
                       // do if else statement to pin or unpined
-                      pin===0 ? props.dbPinVisitor(obj.id) : props.dbUnpinVisitor(obj.id);
+                      pin===0 ? props.dbPinVisitor(props.unit,obj.id) : props.dbUnpinVisitor(props.unit,obj.id);
                     }}>
                       
                     <Image
