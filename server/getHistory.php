@@ -29,7 +29,7 @@ $_POST = json_decode(file_get_contents("php://input"), true);
 
 //---- Function to get pinned and unpinned past visitors for an apartment unit ----
 
-// select distinct plate, name, pin, id from visitors where pin=1
+// select distinct plate, name, pin, id, date(end_time) as date,pin_time from visitors where unit_num = 101 and pin = 1 order by pin_time desc;
 // select plate, name, pin, id from visitors where removed=1 and pin<>1 and (plate not in (select plate from visitors where pin=1) or name not in (select name from visitors where pin=1))
 
 $visitors = $_POST['data'];
@@ -37,17 +37,17 @@ $unit_num = $visitors['unit_num'];
 
 function getPinned($unit_num){
     $sql = "
-    SELECT DISTINCT plate, name, pin, id 
+    SELECT DISTINCT plate, name, pin, id, DATE(end_time) as date, pin_time 
     FROM visitors 
-    WHERE unit_num = $unit_num and pin=1
-    ORDER BY name
+    WHERE unit_num = $unit_num and pin = 1
+    ORDER BY pin_time DESC
     ";
     return runQuery($sql);
 }
 
 function getNotPinned($unit_num){
     $sql = "
-    SELECT plate, name, pin, id 
+    SELECT plate, name, pin, id, DATE(end_time) as date 
     FROM visitors 
     WHERE unit_num = $unit_num AND removed=1 AND pin<>1 AND 
     (plate not in (select plate from visitors where pin=1) OR name not in (select name from visitors where pin=1))

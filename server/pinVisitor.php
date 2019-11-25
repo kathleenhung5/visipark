@@ -38,7 +38,7 @@ $id = $visitor['id'];
 function pinVisitor($id){
     $sql = "
     UPDATE visitors  
-    SET pin=1 
+    SET pin=1, pin_time = now()
     WHERE id=$id
     ";
     runQuery($sql);
