@@ -38,23 +38,21 @@ function Popup(props){
 
 
 
-  var dbGetData = async()=>{
-    var resp = await fetch('http://localhost:8888/visipark/getData.php');
-    var data = await resp.json();
-    setDbUnits(data.data.units);
-    setDbVisitors(data.data.visitors);
-    setDbReports(data.data.reports);
-
-
-    
-}
+//   var dbGetData = async()=>{
+//     var resp = await fetch('http://localhost:8888/visipark/getData.php');
+//     var data = await resp.json();
+//     setDbUnits(data.data.units);
+//     setDbVisitors(data.data.visitors);
+//     setDbReports(data.data.reports);
+// }
   
   
   // Conditions for deciding what to show in popup 
+
   // ---- Visitor Parking Policy ----
   if (props.pop == 'VisitorParkingPolicy'){
     title = 'Visitor Parking Policy';
-    btnTxt = 'Okay';
+    btnTxt = 'I agree';
     
      button = (
        <TouchableOpacity 
@@ -80,7 +78,7 @@ function Popup(props){
     );
   }
 
-// ------- Card 1 Add Visitor ---------
+  // ------- Card 1 Add Visitor ---------
   // Add visitor to database Function
   const dbAddVisitor = async(unit, name, plate, duration)=>{
     var visitor = {
@@ -118,19 +116,21 @@ function Popup(props){
     title  = 'Add Visitor';
     btnTxt = 'Add';
 
-  
     button = (
     <TouchableOpacity style={styles.button}
-
             onPress={()=>{
-              // activate card1, close popup
+              //add visitor to database
               dbAddVisitor(props.unit, props.name1, props.plate1, props.dur1);
               props.setCard1(true);
               props.showPop('');
+              // go back to Visitor page if on History page
               props.setCont('Visitors');
+              // after adding a second visitor show limit reached 
+              if(props.card2==true){
+                props.showPop('Max');
+              }
             }}>
-            <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
-            
+            <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>      
       </TouchableOpacity>
     )
     
@@ -157,7 +157,7 @@ function Popup(props){
           value = {props.plate1}
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
-          maxLength = {7}
+          maxLength = {6}
           value={props.plate1}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
@@ -167,13 +167,13 @@ function Popup(props){
 
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
 
-        <View style={{flexDirection:'row',alignItems:'center'}}>
+        <View style={{flexDirection:'row',alignItems:'center', justifyContent: 'center'}}>
           
           <Picker 
             style={{width: 130, marginRight: 20}}
             selectedValue = {props.dur1}
             value={props.dur1}
-            itemStyle={{height:90}}
+            itemStyle={{height:125}}
             onValueChange = {(val, ind)=>{
               props.setDur1(val);
             }}
@@ -200,6 +200,9 @@ function Popup(props){
               props.setCard2(true);
               props.showPop('');
               props.setCont('Visitors');
+              if(props.card1==true){
+                props.showPop('Max');
+              }
             }}>
 
             <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
@@ -225,7 +228,7 @@ function Popup(props){
           value = {props.plate2}
           style={[styles.input,Texts.FormText,{borderWidth: strk2}]}
           clearButtonMode = 'always'
-          maxLength = {7}
+          maxLength = {6}
           autoCapitalize = "characters"
           onFocus = {()=>{setStrk2(2)}}
           onBlur = {()=>{setStrk2(0)}}
@@ -234,11 +237,11 @@ function Popup(props){
           />
         <Text style={Texts.Body}>Parking duration (max 24hr):</Text>
 
-        <View style={{flexDirection:'row',alignItems:'center'}}>
+        <View style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}}>
           <Picker 
             style={{width: 130, marginRight: 20}}
             selectedValue = {props.dur2}
-            itemStyle={{height:90}}
+            itemStyle={{height:125}}
             onValueChange = {(val, ind)=>{
             props.setDur2(val);
             }}
@@ -252,9 +255,7 @@ function Popup(props){
    } 
 
 
-  //Extend Parking Card 1
-
-  
+  // Extend Parking Card 
 
     // Extend visitor function (Backend)
     const dbExtendVisitor = async(id, extendhour)=>{
@@ -277,7 +278,7 @@ function Popup(props){
       props.dbGetCurrentVisitors(props.unit);
   }
 
-//front end function
+  // Extend Parking Care 1
   var exthr = [];
   for(var i=1;i<=(24-props.reg1);i++){
     exthr.push(
@@ -309,11 +310,11 @@ function Popup(props){
         {/* <Text style={Texts.Body}>You've registered: {Hours1}:{minutes1}hr(s)</Text> */}
 
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
-        <View style={{flexDirection:'row',alignItems:'center'}}>
+        <View style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}}>
           <Picker 
             style={{width: 130, marginRight: 20}}
             selectedValue = {extendhr1}
-            itemStyle={{height:90}}
+            itemStyle={{height:125}}
             onValueChange = {(val,ind)=>{
               setExtendhr1(val);
           }}
@@ -326,14 +327,13 @@ function Popup(props){
     );
   }
 
-  //Extend Parking Card 2
+  // Extend Parking Card 2
   var exthr = [];
   for(var i=1;i<=(24-props.reg2);i++){
     exthr.push(
     <Picker.Item key={i} label={i.toString()} value={i} />
     );
   }
-
   const [extendhr2, setExtendhr2] = useState(1);
   if (props.pop == 'ExtendParking2'){
     title = 'Extend Parking';
@@ -358,11 +358,11 @@ function Popup(props){
         {/* <Text style={Texts.Body}>You've registered: {Hours2}:{minutes2}hr(s)</Text> */}
 
         <Text style={[Texts.BodyBold,{marginTop: 20}]}>You would like to extend:</Text>
-        <View style={{flexDirection:'row',alignItems:'center'}}>
+        <View style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}}>
           <Picker 
             style={{width: 130, marginRight: 20}}
             selectedValue = {extendhr2}
-            itemStyle={{height:90}}
+            itemStyle={{height:125}}
             onValueChange = {(val,ind)=>{
               setExtendhr2(val);
               }}
@@ -375,13 +375,12 @@ function Popup(props){
     );
   }
   
-
-  // ---- Remove ---- //if card2 is false (if theres no 2nd visitor it will remove card1 which is the first slot)
+  // ---- Remove ---- 
+  //if card2 is false (if theres no 2nd visitor it will remove card1 which is the first slot)
 
     // Remove visitor function (backend)
     const dbRemoveVisitor = async(id)=>{
       var visitor = {
-
         data: {
                id: id              
           }
@@ -398,8 +397,7 @@ function Popup(props){
       console.log("Data that server received for removing visitor",visitordata); 
   }
 
-//front end function
-
+  // Remove card 1
   if (props.pop == 'Remove1'){
     title = 'Remove';
     btnTxt = 'Yes';
@@ -430,8 +428,7 @@ function Popup(props){
     );
   }
 
-
-//Remove slot 2
+  //Remove card 2
   if (props.pop == 'Remove2'){
     title = 'Remove';
     btnTxt = 'Yes';
@@ -460,8 +457,6 @@ function Popup(props){
     );
   }
 
-
-
   //----- Removed Successfully ---- 1
   if (props.pop == 'RemovedSuccessfully1'){
     title = 'Removed Successfully';
@@ -485,8 +480,7 @@ function Popup(props){
     );
   }
 
-
-    //----- Removed Successfully ---- 2
+  //----- Removed Successfully ---- 2
     if (props.pop == 'RemovedSuccessfully2'){
       title = 'Removed Successfully';
       btnTxt = 'Okay';
@@ -533,7 +527,7 @@ function Popup(props){
 
   // ---- Revisit Fail ----
   if(props.pop == 'Full'){
-    title = "Can't Add Visitors";
+    title = "Visitor limit reached";
     btnTxt = 'Okay';
 
     button = (
@@ -546,19 +540,44 @@ function Popup(props){
             </TouchableOpacity>
       )
 
-    
     content = (
       <View>
-        <Text style={[Texts.Body,{paddingBottom: 20}]}>Each unit is allowed to have only 2 visitors.
+        <Text style={[Texts.Body,{paddingBottom: 20}]}>Visitor limit (maximum 2 visitors) has already been reached. You won't be able to add another visitor until one has been removed.
         </Text>
       </View>
     );
   }
 
+  // ----- Reached Max # of visitor ----
+  if(props.pop == 'Max'){
+    title = "Visitor limit reached";
+    btnTxt = 'Okay';
+
+    button = (
+      <TouchableOpacity 
+              style={styles.button}
+              onPress={()=>{
+                props.showPop('');
+              }}>
+              <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
+            </TouchableOpacity>
+      )
+
+    content = (
+      <View>
+        <Text style={[Texts.Body,{paddingBottom: 20}]}> 
+        You have added 2 visitors. You won't be able to add another visitor until one has been removed.   
+        </Text>
+      </View>
+    );
+  }
+
+
   return(
     // This is dark background
   <View style={styles.bg}>
-
+  <View style={styles.darkbox1}></View>
+  <View style={styles.darkbox2}></View>
       {/* This is popup area */}
     <KeyboardAvoidingView 
         behavior = "position"
