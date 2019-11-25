@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
+import DropShadows from '../../styles/DropShadows';
 import styles from '../../styles/CompsStyles/HistoryStyles';
 
 
@@ -39,7 +40,8 @@ function History(props){
       //   {Keyboard.dismiss}>
         <View style={styles.container}> 
 {/*  Header */}
-            <View>
+          <ScrollView>
+            <View style={styles. content} >
               <Text style={Texts.SecHead}>History</Text>
               <Text style={Texts.Body}>
               Your recent visitors. You can pin a visitor to keep the profile on the top.
@@ -59,17 +61,17 @@ function History(props){
                     resizeMode = "contain"
                     style={styles.ImageStyle}
                     />  
-                    </View>       
-                </View>
+            </View>       
+               
 {/* history Card  */}
         
-            <ScrollView>
+            
               { filteredData.length>0 ?
                 (filteredData.map((obj, index)=>{
                   var pin = parseInt(obj.pin);
                   return (
                 
-                  <View style={styles.card}>
+                  <View style={[styles.card, DropShadows.shadow]}>
                     <TouchableOpacity onPress={()=>{
                       // do if else statement to pin or unpined
                       pin===0 ? props.dbPinVisitor(obj.id) : props.dbUnpinVisitor(obj.id);
@@ -124,6 +126,7 @@ function History(props){
                   </View>
                 )
               }
+               </View>
              </ScrollView>  
        
 

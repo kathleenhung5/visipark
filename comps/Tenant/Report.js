@@ -10,6 +10,7 @@ import {
   ScrollView
 } from 'react-native';
 import Texts from '../../styles/Texts';
+import DropShadows from '../../styles/DropShadows';
 import styles from '../../styles/CompsStyles/ReportStyles';
 
 
@@ -36,7 +37,7 @@ const [msg, setMsg] = useState('');
   <KeyboardAvoidingView behavior='position'>
     <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
       
-      <View style={styles.card}>
+      <View style={[styles.card, DropShadows.shadow]}>
           <View style={styles.title}>
             <Text style={Texts.HeadL}>Your message</Text>
           </View>
