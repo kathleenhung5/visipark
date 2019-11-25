@@ -17,7 +17,7 @@ import BMform from '../comps/Manager/BMform';
 
 function Login(props){
   
-
+   
   // functions created for login page
   const [showTenantPage, setShowTenantPage] = useState(false);
   const [showBMPage, setShowBMPage] = useState(false);
@@ -31,6 +31,7 @@ function Login(props){
       unit = {props.unit}
       setUnit = {props.setUnit}
       showTenantPage = {showTenantPage}
+      getUnit = {props.getUnit}
       />);
   } else {
     TenantPage = null;

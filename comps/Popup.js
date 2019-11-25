@@ -63,13 +63,13 @@ function Popup(props){
 
     content = (
       <View>
-        <Text style={[Texts.Body,{marginBottom:10}]}>
-          1. Each apartment is allowed to have <Text style={{fontWeight:"bold"}}>maximum 2 visitor vehicles </Text>parked in the visitor parking lot at the same time. 
+        <Text style={[Texts.Body,{marginBottom:20}]}>
+          1. Each apartment is allowed to have <Text style={Texts.BodyBold}>maximum 2 visitor vehicles </Text>parked in the visitor parking lot at the same time. 
         </Text>
-        <Text style={[Texts.Body,{marginBottom:10}]}>
-          2. Each visitor’s vehicle is allowed to park in visitor parking for a consecutive duration of <Text style={{fontWeight:"bold"}}>24 hours.</Text></Text>
+        <Text style={[Texts.Body,{marginBottom:20}]}>
+          2. Each visitor’s vehicle is allowed to park in visitor parking for a consecutive duration of <Text style={Texts.BodyBold}>24 hours.</Text></Text>
         <Text style={Texts.Body}>
-          3. If visitors park over 24 hours, <Text style={{fontWeight:"bold"}}>vehicles will be towed at owner's expense.</Text>
+          3. If visitors park over 24 hours, <Text style={Texts.BodyBold}>vehicles will be towed at owner's expense.</Text>
         </Text>
       </View>
     );
@@ -83,7 +83,7 @@ function Popup(props){
             unit_num: unit,
             name: name,
             plate: plate,
-            duration: duration//'3:00:00'
+            duration: duration
         }
     }
     var data = await fetch('http://localhost:8888/visipark/addVisitor.php',{
@@ -112,14 +112,14 @@ function Popup(props){
   if (props.pop == 'AddVisitor' && props.card1 == false){
     title  = 'Add Visitor';
     btnTxt = 'Add';
+    
     if (props.name1 == '' || props.plate1 == ''){
     button = (
     <TouchableOpacity style={styles.button}
             onPress={()=>{
               props.showPop('MissingFields')
             }}>
-            <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
-            
+            <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>      
       </TouchableOpacity>
     )
           } else {
@@ -133,7 +133,7 @@ function Popup(props){
               // go back to Visitor page if on History page
               props.setCont('Visitors');
               // after adding a second visitor show limit reached 
-              if(props.card2==true){
+              if(props.card1 == true && props.card2==true){
                 props.showPop('Max');
               }
             }}>
@@ -216,9 +216,13 @@ function Popup(props){
               onPress={()=>{
                 // activate card1, close popup
                 dbAddVisitor(props.unit, props.name2, props.plate2, props.dur2);
-                props.setCard1(true);
+                props.setCard2(true);
                 props.showPop('');
                 props.setCont('Visitors');
+                // after adding a second visitor show limit reached 
+                if(props.card1 == true && props.card2==true){
+                  props.showPop('Max');
+                }
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
               
@@ -573,12 +577,12 @@ function Popup(props){
   // ----- Reached Max # of visitor ----
   if(props.pop == 'Max'){
     title = "Visitor limit reached";
+    btnTxt = "Okay"
     button = (
       <TouchableOpacity 
               style={styles.button}
               onPress={()=>{
                 props.showPop('');
-                props.showPop('AddVisitor');
               }}>
               <Text style={[Texts.HeadS,{color: "#fff"}]}>{btnTxt}</Text>
        </TouchableOpacity>

@@ -128,13 +128,10 @@ function Main(props){
     // Get History function 
     const [PinnedVisitors, setPinnedVisitors] = useState([]);
     const [UnpinnedVisitors, setUnpinnedVisitors] = useState([]);
-    const dbGetHistory = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for getting all pinned and not pinned visitors in History page 
+    const dbGetHistory = async(unit)=>{
+        var visitor = { 
             data: {
-                unit_num: 101
-
-                // here add your own data, make sure use the same property name and same data type for value 
+                unit_num: unit
             }
         }
         var data = await fetch('http://localhost:8888/visipark/getHistory.php',{
@@ -239,16 +236,19 @@ function Main(props){
    const [unit, setUnit] = useState();
    var getUnit = async()=>{
        var localunit = await AsyncStorage.getItem('unit');
-       console.log('your unit', localunit);
-       
        if(localunit !== null && localunit !==''){
            // if there IS unit number stored in local storage
-           // run get current visitor
+           // run get current visitor 
+           console.log(localunit);
            await dbGetCurrentVisitors(localunit);
+           await dbGetHistory(localunit);
            setUnit(localunit);
            setShowpage('Tenant');
+           console.log('Logged in unit', localunit);
          } else {
-           setShowpage('Login');
+            // if there ISN'T unit number stored in local storage
+            setShowpage('Login');
+            console.log('Unit has not logged in');
          }
      }
     
@@ -304,6 +304,8 @@ function Main(props){
                  id2 = {id2}
                  // spots
                  spots = {spots}
+                 // async function 
+                 getUnit = {getUnit}
                  // History Page
                  UnpinnedVisitors = {UnpinnedVisitors}
                  PinnedVisitors = {PinnedVisitors}
@@ -369,15 +371,8 @@ function Main(props){
 
     useEffect(()=>{
         getUnit();
-        dbGetHistory();
         dbGetSpots();
-
-        //dbUnpinVisitor();
-        //dbPinVisitor();
-        // dbExtendVisitor();
-        // dbRemoveVisitor();
-        // dbAddVisitor();
-
+        
 
         // timer for auto remove
 
