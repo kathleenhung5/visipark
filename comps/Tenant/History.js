@@ -11,33 +11,37 @@ import {
 } from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
+import DropShadows from '../../styles/DropShadows';
 import styles from '../../styles/CompsStyles/HistoryStyles';
 
 
 
 function History(props){
 
-   // const [showPin, setShowPin] = useState(true);
     const [searchKey, setSearchKey] = useState('');
+    //const [searchResult, setSearchResult] = useState('');
     let PinnedVisitors = props;
-    console.log("passed" +PinnedVisitors);
+    console.log("passed" + PinnedVisitors);
     data = [...props.PinnedVisitors, ...props.UnpinnedVisitors ];
 
 
     const filteredData = data.filter((obj)=>{
-    return obj.name.indexOf(searchKey) >= 0 ||
-            obj.plate.indexOf(searchKey) >= 0 
+    return obj.name.toLowerCase().indexOf(searchKey) >= 0 ||
+            obj.plate.toLowerCase().indexOf(searchKey) >= 0 ||
+            obj.name.indexOf(searchKey) >= 0 ||
+            obj.plate.indexOf(searchKey) >= 0
   })
 
 
 
 
     return(
-      <TouchableWithoutFeedback onPress = 
-        {Keyboard.dismiss}>
+      // <TouchableWithoutFeedback onPress = 
+      //   {Keyboard.dismiss}>
         <View style={styles.container}> 
 {/*  Header */}
-            <View>
+          <ScrollView>
+            <View style={styles. content} >
               <Text style={Texts.SecHead}>History</Text>
               <Text style={Texts.Body}>
               Your recent visitors. You can pin a visitor to keep the profile on the top.
@@ -49,23 +53,25 @@ function History(props){
                         placeholder="search"
                         style={[styles.searchBar,Texts.FormText]}
                         onChangeText={(value)=>setSearchKey(value)}
-                        
+                        autoCapitalize = 'none'
+                     
                     />
                     <Image 
                     source={require('../../img/search-grey.png')}
                     resizeMode = "contain"
                     style={styles.ImageStyle}
                     />  
-                    </View>       
-                </View>
+            </View>       
+               
 {/* history Card  */}
-        {/* //<View style={{flex:1}}> */}
-            <ScrollView style={{flex:1}}>
-                {filteredData.map((obj, index)=>{
+        
+            
+              { filteredData.length>0 ?
+                (filteredData.map((obj, index)=>{
                   var pin = parseInt(obj.pin);
                   return (
                 
-                  <View style={styles.card}>
+                  <View style={[styles.card, DropShadows.shadow]}>
                     <TouchableOpacity onPress={()=>{
                       // do if else statement to pin or unpined
                       pin===0 ? props.dbPinVisitor(obj.id) : props.dbUnpinVisitor(obj.id);
@@ -112,13 +118,21 @@ function History(props){
                   </View>               
                   )
               
-                })}
+                })) : 
+                (
+                  <View style={ {paddingLeft:10}}>
+
+                    <Text style={[Texts.BodyLight,{color: Colors.Darkgrey}]}>No results found</Text>
+                  </View>
+                )
+              }
+               </View>
              </ScrollView>  
-        {/* </View> */}
+       
 
 
         </View>
-      </TouchableWithoutFeedback>
+      
     )
 
 

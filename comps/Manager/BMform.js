@@ -29,7 +29,7 @@ function BMform(props){
       keyboardType = "numeric"
       maxLength = {6}
       style={[Texts.FormText,{ padding: 13, borderColor: 'white', borderWidth: 2, borderRadius: 25 , height: 45,  color:'white', margin:20,width:'90%',textAlign: 'center'}]}
-      placeholder="password"
+      placeholder="Password"
       placeholderTextColor="#bea9c9"
       
       />

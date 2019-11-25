@@ -10,12 +10,12 @@ var styles = StyleSheet.create({
     },
     card:{
         backgroundColor: '#fff',
-        padding:30,
-        shadowColor: Colors.Purple,
-        shadowOffset: {width: 0, height: 0},
-        shadowOpacity: 0.13,
-        borderRadius: 23,
+        // shadowColor: Colors.Purple,
+        // shadowOffset: {width: 0, height: 0},
+        // shadowOpacity: 0.13,
+        // borderRadius: 23,
         marginTop: 40,
+        padding:30,
       
     },
     title:{

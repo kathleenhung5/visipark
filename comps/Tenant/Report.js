@@ -10,6 +10,7 @@ import {
   ScrollView
 } from 'react-native';
 import Texts from '../../styles/Texts';
+import DropShadows from '../../styles/DropShadows';
 import styles from '../../styles/CompsStyles/ReportStyles';
 
 
@@ -66,7 +67,7 @@ onPress = {()=>{
   <KeyboardAvoidingView behavior='position'>
     <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
       
-      <View style={styles.card}>
+      <View style={[styles.card, DropShadows.shadow]}>
           <View style={styles.title}>
             <Text style={Texts.HeadL}>Your message</Text>
           </View>
@@ -87,7 +88,7 @@ onPress = {()=>{
           <TextInput
             value = {msg}
             onChangeText={text => setMsg(text)}
-            style={[styles.input,Texts.FormText,{height:100, borderWidth:strk2, paddingTop:10, paddingBottom: 10}]}
+            style={[styles.input,Texts.FormText,{height:200, borderWidth:strk2, paddingTop:10, paddingBottom: 10}]}
             onFocus = {()=>{setStrk2(2)}}
             onBlur = {()=>{setStrk2(0)}}
             multiline = {true}
