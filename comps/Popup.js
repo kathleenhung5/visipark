@@ -43,7 +43,7 @@ function Popup(props){
     setDbUnits(data.data.units);
     setDbVisitors(data.data.visitors);
     setDbReports(data.data.reports);
-
+  }
   
   // Conditions for deciding what to show in popup 
 
@@ -680,6 +680,7 @@ function Popup(props){
   </View>
   )
 }
+
 
 
 export default Popup;

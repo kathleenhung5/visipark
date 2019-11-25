@@ -50,7 +50,6 @@ var styles = StyleSheet.create({
         shadowRadius: 13,
         alignItems: "center",
         justifyContent: "center",
-
         height: 180,
         borderRadius: 23,
         backgroundColor: "#fafafa",
