@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react';
-import {View, Text, AsyncStorage} from 'react-native';
+import {View, Text, SafeAreaView,AsyncStorage} from 'react-native';
 import styles from '../styles/PagesStyles/MainStyles';
 import Tenant from '../Pages/Tenant';
 import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
+import Colors from '../styles/Colors';
 
 var timer = null;
 function Main(props){
@@ -253,7 +254,7 @@ function Main(props){
     
 // ------------------ Pages ---------------------
     // state variable to show and hide pages and variables hold pages. 
-    const [showpage, setShowpage] = useState('');
+    const [showpage, setShowpage] = useState('');   
     var mpopup = null;
     var page = null;
     
@@ -267,9 +268,9 @@ function Main(props){
                 unit = {unit}
                 setUnit = {setUnit}
                 />;
-        props.setSafebg(false);
     }
     if(showpage == 'Tenant'){
+        props.setSafebg("#fff");
         page = <Tenant 
                 // pop up
                  pop = {pop} 
@@ -309,14 +310,12 @@ function Main(props){
                  dbPinVisitor={dbPinVisitor}
                  dbUnpinVisitor={dbUnpinVisitor}
                 />;
-        props.setSafebg(true);
     }
     if(showpage == 'Manager'){
         page = <Manager 
                  pop = {pop} 
                  showPop = {showPop}
                 />;
-        props.setSafebg(true);
     }
 
      // Conditions to show Popup
@@ -403,13 +402,15 @@ function Main(props){
 
 
 
-    
+      
     // -------------- UI ------------------
 return (
+    <SafeAreaView style={[styles.container, {backgroundColor: props.safebg, opacity: 1}]}>
         <View style={styles.container}>
            {mpopup} 
            {page}
         </View>
+    </SafeAreaView>
     )
 }
 

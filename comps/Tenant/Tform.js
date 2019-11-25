@@ -36,7 +36,7 @@ function Tform(props){
 
     <Animated.View style={{opacity: op, width: "90%", marginTop: 10, alignItems:"center"}}> 
       <TextInput
-          placeholder="unit number"
+          placeholder="Unit Number"
           onChangeText = {(txt)=>{
             props.setUnit(txt)}}
           maxLength={3}

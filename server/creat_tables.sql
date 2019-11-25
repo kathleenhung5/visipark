@@ -21,6 +21,7 @@ start_time TIMESTAMP,
 end_time VARCHAR(255),
 removed BOOLEAN,
 pin BOOLEAN,
+pin_time VARCHAR(255) DEFAULT NULL,
 PRIMARY KEY (id)
 );
 

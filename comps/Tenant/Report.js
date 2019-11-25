@@ -10,6 +10,7 @@ import {
   ScrollView
 } from 'react-native';
 import Texts from '../../styles/Texts';
+import DropShadows from '../../styles/DropShadows';
 import styles from '../../styles/CompsStyles/ReportStyles';
 
 
@@ -20,6 +21,36 @@ const [strk1, setStrk1] = useState(0);
 const [strk2, setStrk2] = useState(0);
 const [sub,setSub] = useState('');
 const [msg, setMsg] = useState('');
+var sendButton = null;
+
+
+if (sub == '' || msg == ''){
+sendButton = (
+<TouchableOpacity
+style={styles.button}
+onPress = {()=>{
+  props.showPop('MissingFields1');
+
+}}
+>
+<Text style={[Texts.HeadS,{color:'#fff'}]}>Send</Text>
+</TouchableOpacity>
+)  
+} else {
+  sendButton = (
+  <TouchableOpacity
+  style={styles.button}
+  onPress = {()=>{
+    props.showPop('ReportedSuccessfully');
+    setSub('');
+    setMsg('');
+  }}
+>
+  <Text style={[Texts.HeadS,{color:'#fff'}]}>Send</Text>
+</TouchableOpacity> 
+  )  
+} 
+
 
 
   return(
@@ -36,7 +67,7 @@ const [msg, setMsg] = useState('');
   <KeyboardAvoidingView behavior='position'>
     <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
       
-      <View style={styles.card}>
+      <View style={[styles.card, DropShadows.shadow]}>
           <View style={styles.title}>
             <Text style={Texts.HeadL}>Your message</Text>
           </View>
@@ -57,22 +88,13 @@ const [msg, setMsg] = useState('');
           <TextInput
             value = {msg}
             onChangeText={text => setMsg(text)}
-            style={[styles.input,Texts.FormText,{height:100, borderWidth:strk2, paddingTop:10, paddingBottom: 10}]}
+            style={[styles.input,Texts.FormText,{height:200, borderWidth:strk2, paddingTop:10, paddingBottom: 10}]}
             onFocus = {()=>{setStrk2(2)}}
             onBlur = {()=>{setStrk2(0)}}
             multiline = {true}
           />
           {/* Send Button */}
-          <TouchableOpacity
-            style={styles.button}
-            onPress = {()=>{
-              props.showPop('ReportedSuccessfully');
-              setSub('');
-              setMsg('');
-            }}
-          >
-            <Text style={[Texts.HeadS,{color:'#fff'}]}>Send</Text>
-          </TouchableOpacity>   
+        {sendButton}
       </View>
 
 

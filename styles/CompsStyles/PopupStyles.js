@@ -8,10 +8,26 @@ var styles = StyleSheet.create({
         left: 0,
         width: "100%",
         height: "100%",
-        backgroundColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: 'rgba(0,0,0,0.3)', 
         zIndex: 1,
         padding: 20,
         justifyContent: "center"
+    },
+    darkbox1:{
+        width: "150%",
+        height: 50,
+        position: 'absolute',
+        backgroundColor: 'rgba(0,0,0,0.3)', 
+        left: 0,
+        top: -50
+    },
+    darkbox2:{
+        width: "150%",
+        height: 50,
+        position: 'absolute',
+        backgroundColor: 'rgba(0,0,0,0.3)', 
+        left: 0,
+        bottom: -50
     },
     poparea:{
         width: "100%",
