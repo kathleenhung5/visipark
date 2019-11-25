@@ -57,7 +57,7 @@ const [msg, setMsg] = useState('');
           <TextInput
             value = {msg}
             onChangeText={text => setMsg(text)}
-            style={[styles.input,Texts.FormText,{height:100, borderWidth:strk2, paddingTop:10, paddingBottom: 10}]}
+            style={[styles.input,Texts.FormText,{height:200, borderWidth:strk2, paddingTop:10, paddingBottom: 10}]}
             onFocus = {()=>{setStrk2(2)}}
             onBlur = {()=>{setStrk2(0)}}
             multiline = {true}

@@ -17,24 +17,26 @@ import styles from '../../styles/CompsStyles/HistoryStyles';
 
 function History(props){
 
-   // const [showPin, setShowPin] = useState(true);
     const [searchKey, setSearchKey] = useState('');
+    //const [searchResult, setSearchResult] = useState('');
     let PinnedVisitors = props;
-    console.log("passed" +PinnedVisitors);
+    console.log("passed" + PinnedVisitors);
     data = [...props.PinnedVisitors, ...props.UnpinnedVisitors ];
 
 
     const filteredData = data.filter((obj)=>{
-    return obj.name.indexOf(searchKey) >= 0 ||
-            obj.plate.indexOf(searchKey) >= 0 
+    return obj.name.toLowerCase().indexOf(searchKey) >= 0 ||
+            obj.plate.toLowerCase().indexOf(searchKey) >= 0 ||
+            obj.name.indexOf(searchKey) >= 0 ||
+            obj.plate.indexOf(searchKey) >= 0
   })
 
 
 
 
     return(
-      <TouchableWithoutFeedback onPress = 
-        {Keyboard.dismiss}>
+      // <TouchableWithoutFeedback onPress = 
+      //   {Keyboard.dismiss}>
         <View style={styles.container}> 
 {/*  Header */}
             <View>
@@ -49,7 +51,8 @@ function History(props){
                         placeholder="search"
                         style={[styles.searchBar,Texts.FormText]}
                         onChangeText={(value)=>setSearchKey(value)}
-                        
+                        autoCapitalize = 'none'
+                     
                     />
                     <Image 
                     source={require('../../img/search-grey.png')}
@@ -59,9 +62,10 @@ function History(props){
                     </View>       
                 </View>
 {/* history Card  */}
-        {/* //<View style={{flex:1}}> */}
-            <ScrollView style={{flex:1}}>
-                {filteredData.map((obj, index)=>{
+        
+            <ScrollView>
+              { filteredData.length>0 ?
+                (filteredData.map((obj, index)=>{
                   var pin = parseInt(obj.pin);
                   return (
                 
@@ -112,13 +116,20 @@ function History(props){
                   </View>               
                   )
               
-                })}
+                })) : 
+                (
+                  <View style={ {paddingLeft:10}}>
+
+                    <Text style={[Texts.BodyLight,{color: Colors.Darkgrey}]}>No results found</Text>
+                  </View>
+                )
+              }
              </ScrollView>  
-        {/* </View> */}
+       
 
 
         </View>
-      </TouchableWithoutFeedback>
+      
     )
 
 
