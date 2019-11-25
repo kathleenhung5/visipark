@@ -20,6 +20,36 @@ const [strk1, setStrk1] = useState(0);
 const [strk2, setStrk2] = useState(0);
 const [sub,setSub] = useState('');
 const [msg, setMsg] = useState('');
+var sendButton = null;
+
+
+if (sub == '' || msg == ''){
+sendButton = (
+<TouchableOpacity
+style={styles.button}
+onPress = {()=>{
+  props.showPop('MissingFields1');
+
+}}
+>
+<Text style={[Texts.HeadS,{color:'#fff'}]}>Send</Text>
+</TouchableOpacity>
+)  
+} else {
+  sendButton = (
+  <TouchableOpacity
+  style={styles.button}
+  onPress = {()=>{
+    props.showPop('ReportedSuccessfully');
+    setSub('');
+    setMsg('');
+  }}
+>
+  <Text style={[Texts.HeadS,{color:'#fff'}]}>Send</Text>
+</TouchableOpacity> 
+  )  
+} 
+
 
 
   return(
@@ -63,16 +93,7 @@ const [msg, setMsg] = useState('');
             multiline = {true}
           />
           {/* Send Button */}
-          <TouchableOpacity
-            style={styles.button}
-            onPress = {()=>{
-              props.showPop('ReportedSuccessfully');
-              setSub('');
-              setMsg('');
-            }}
-          >
-            <Text style={[Texts.HeadS,{color:'#fff'}]}>Send</Text>
-          </TouchableOpacity>   
+        {sendButton}
       </View>
 
 

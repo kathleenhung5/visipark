@@ -4,52 +4,47 @@ import {Colors} from '../Colors';
 var styles = StyleSheet.create({
     
     Bottom:{
-        //flex:1,
-        //adding more padding here streches other components out
         paddingTop: 15,
         alignItems: "center",
         justifyContent: "center",
-
-
     },
 
     Middle:{
-
         paddingLeft: 20,
         paddingRight: 20,
         flex: 1,
-
     },
+
     Top: {
         paddingTop: 60,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 40,
     },
+
     scrollview:{
         flex: 1,
         backgroundColor: "#fab",
         overflow: "scroll"
-
     },
+
     Box:{
         marginTop:10,
         alignItems: "center",
         justifyContent: "center",
         height: 180,
         borderRadius: 23,
-        backgroundColor: "#fafafa",
         borderStyle: "dashed",
         borderColor: "#CAB2E8",
         borderWidth: 3.1,
     },
+
     Box2:{
-        marginTop: 25,
+        marginTop: 15,
         alignItems: "center",
         justifyContent: "center",
         height: 180,
         borderRadius: 23,
-        backgroundColor: "#fafafa",
         borderStyle: "dashed",
         borderColor: "#CAB2E8",
         borderWidth: 3.1,
@@ -62,13 +57,12 @@ var styles = StyleSheet.create({
         shadowRadius: 13,
         alignItems: "center",
         justifyContent: "center",
-
         height: 180,
         borderRadius: 23,
-        backgroundColor: "#fafafa",
         borderColor: "#CAB2E8",
         borderWidth: .2,
     },
+
     activeBox2:{
         shadowColor: Colors.Purple,
         shadowOffset: {width: 0, height: 0},
@@ -76,14 +70,13 @@ var styles = StyleSheet.create({
         shadowRadius: 13,
         alignItems: "center",
         justifyContent: "center",
-
         height: 180,
         borderRadius: 23,
-        backgroundColor: "#fafafa",
         borderColor: "#CAB2E8",
         borderWidth: .2,
         marginTop: 20,
     },
+
     Img:{
         width: 60,
         height: "55%",
@@ -98,25 +91,17 @@ var styles = StyleSheet.create({
         width: "15%",
         height: "27%"
     },
+
     time: {
         position: "absolute",
         top: "13%",
-        right: "17%",
+        right: "9.5%",
         fontFamily:'Poppins-SemiBold',
         fontSize:20,
         color: Colors.Purple,
         letterSpacing: 1
     },
-    timeHr: {
-        position: "absolute",
-        top: "13%",
-        right: "10%",
-        fontFamily:'Poppins-SemiBold',
-        fontSize:20,
-        color: Colors.Black,
-        letterSpacing: 1,
 
-    },
     visitorName: {
         position: "absolute",
         top: "14%",
@@ -124,8 +109,11 @@ var styles = StyleSheet.create({
         fontFamily:'Poppins-SemiBold',
         fontSize:20,
         color: Colors.Black,
-        letterSpacing: 1
+        letterSpacing: 1,
+        width: 180,
+        
     },
+
     leftText:{
         fontFamily:'OpenSans-Regular',
         fontSize:16,
@@ -136,6 +124,7 @@ var styles = StyleSheet.create({
         top: "29%",
         right: "10%",
     },
+
     plateText:{
         fontFamily:'OpenSans-Regular',
         fontSize:16,
@@ -146,6 +135,7 @@ var styles = StyleSheet.create({
         top: "29%",
         left: "10%",
     },
+
     removeButton:{
         backgroundColor: Colors.Purple,
         borderRadius: 23,
@@ -158,6 +148,7 @@ var styles = StyleSheet.create({
         bottom: 20,
         right:30,
     },
+
     extendButton: {
         position: "absolute",
         bottom:20,
@@ -165,13 +156,13 @@ var styles = StyleSheet.create({
         height: 45,
         //height: "30%",
         width: "38%",
-        // backgroundColor: Colors.Lightgrey,
         borderWidth: 2,
         justifyContent:'center',
         alignItems:'center',
         borderColor: Colors.Purple,
         borderRadius: 23,
     },
+
     extendButtonGrey: {
         position: "absolute",
         bottom:20,
@@ -182,13 +173,9 @@ var styles = StyleSheet.create({
         borderWidth: 2,
         justifyContent:'center',
         alignItems:'center',
-        borderColor: Colors.Darkgrey,
+        borderColor: 'lightgrey',
         borderRadius: 23,
     }
-    
-
-
-
 })
 
 export default styles;
