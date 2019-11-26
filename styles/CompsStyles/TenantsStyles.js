@@ -40,9 +40,11 @@ var styles = StyleSheet.create({
 
     card:{
         backgroundColor: '#fff',
+        paddingLeft: 30,
+        paddingRight: 30,
 
-        paddingTop:20,
-        paddingBottom:20,
+        paddingTop:10,
+        paddingBottom:10,
         shadowColor: Colors.Purple,
         shadowOffset: {width:0, height: 0},
         shadowOpacity: 0.13,
@@ -65,17 +67,13 @@ var styles = StyleSheet.create({
     },
 
     tenantUnit:{
-        position: "absolute",
-        paddingTop:20,
-        paddingBottom:20,
-        left: 30
+
+
 
 
     },
     tenantSwitch:{
-        marginTop:15,
-        position: "absolute",
-        right: 30
+
 
     },
     
