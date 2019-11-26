@@ -87,7 +87,7 @@ function History(props){
                     <View style={styles.List}>
                       <Text style={[Texts.BodyBold, styles.name]} numberOfLines={1}>{obj.name}</Text>
                       <Text style={Texts.BodyLight}>{obj.plate}</Text>
-                      <Text style={[Texts.BodyLight, {marginLeft: -4}]}> {obj.date}</Text>
+                      <Text style={[Texts.HistoryDate, {marginLeft: -4}]}> {obj.date}</Text>
                     </View>
                   
 

@@ -59,6 +59,7 @@ var styles = StyleSheet.create({
         marginTop: 10,
         flexDirection: 'row',
         justifyContent:"space-between",
+        alignItems:"center",
         height: 100
        // borderWidth:1,       
         //justifyContent:"flex-start"
@@ -92,8 +93,7 @@ var styles = StyleSheet.create({
        width: "60%",
        marginLeft: 70,
        marginTop: 18,
-       alignItems:"flex-start",
-       // borderWidth:1
+       alignItems:"flex-start"
     },
     name:{
        // backgroundColor: "#fab"
