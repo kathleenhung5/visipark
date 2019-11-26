@@ -82,6 +82,7 @@ var styles = StyleSheet.create({
         marginBottom: 20,
         marginLeft: 20,
         marginRight: 20,
+        marginTop: 20,
     },
     searchBar:{
         flex:1,

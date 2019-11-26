@@ -11,9 +11,6 @@ import Texts from '../../styles/Texts';
 import styles from '../../styles/CompsStyles/TenantsStyles';
 import DropShadows from '../../styles/DropShadows';
 
-
-
-
 function Tenants(props){
     var data = [
 
@@ -31,11 +28,8 @@ function Tenants(props){
 
 const [searchKey, setSearchKey] = useState('');
 const filteredData = data.filter((obj)=>{
-  return obj.unit.indexOf(searchKey) >= 0
-          
+  return obj.unit.indexOf(searchKey) >= 0          
 })
-
-
 
     return(
         <View style={styles.container}>
