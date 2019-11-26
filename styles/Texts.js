@@ -67,6 +67,14 @@ var Texts = StyleSheet.create({
         letterSpacing: 0.3,
         lineHeight: 23
     },
+    // history date
+    HistoryDate:{
+        fontFamily:'OpenSans-Regular',
+        fontSize:12,
+        color: Colors.Darkgrey,
+        letterSpacing: 0.3,
+        lineHeight: 23
+    },
 
     // Form Text
     FormText:{

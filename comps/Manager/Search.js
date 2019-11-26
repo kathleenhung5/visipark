@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import {View, Text, TextInput, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
-//import styles from '../../styles/CompsStyles/SearchStyles';
-
+import DropShadows from '../../styles/DropShadows';
 import styles from '../../styles/CompsStyles/SearchStyles';
 
 
@@ -28,6 +27,7 @@ function Search(){
     return(
         <View style={styles.container}> 
         {/*  Header */}
+        <ScrollView>
             <View>
               <Text style={Texts.SecHead}>Search</Text>
               <Text style={Texts.Body}>
@@ -49,21 +49,34 @@ function Search(){
                 />  
               </View>       
             </View>
-{/* history Card  */}
-            <ScrollView>
+{/* history Card tenant */}
+<View style={[styles.card, DropShadows.shadow]}>
+
+    <View style={styles.List}>
+      <Text style={Texts.HeadS}>DT359J</Text>
+      <Text style={Texts.BodyLight}>unit 202</Text>
+    </View>
+
+    <View> 
+      <Text style={[Texts.BodyBold,styles.Status]}>tenant
+      </Text>
+    </View> 
+
+</View>
+            
                 {filteredData.map((item, index)=>{
                   return (
                 
-                  <View style={styles.card}>
+                  <View style={[styles.card, DropShadows.shadow]}>
 
                     <View style={styles.List}>
-                      <Text style={[Texts.HeadS, styles.name]}>{item.plate}</Text>
+                      <Text style={Texts.HeadS}>{item.plate}</Text>
                       <Text style={Texts.BodyLight}>unit{item.unit}</Text>
                     </View>
                     
 
                     <View> 
-                      <Text style={[Texts.BodyBold,{color: Colors.Purple}]}>visitor
+                      <Text style={[Texts.BodyBold,styles.Status]}>visitor
                       </Text>
                     </View> 
 

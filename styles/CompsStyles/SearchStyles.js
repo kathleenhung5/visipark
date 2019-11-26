@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {Colors} from '../Colors';
-import Texts from '../Texts'
+import Texts from '../Texts';
 
 var styles = StyleSheet.create({
     container:{
@@ -38,7 +38,44 @@ var styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingLeft: 20
 
-    }   
+    },
+    card:{
+        backgroundColor: '#fff',
+        marginLeft:1,
+        marginRight:1,
+        paddingTop:20,
+        paddingBottom:20,
+        // shadowColor: Colors.Purple,
+        // shadowOffset: {width: 0, height: 0},
+        // shadowOpacity: 0.13,
+        // shadowRadius: 3,
+        // borderRadius: 23,
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent:"space-between",
+        alignItems:"center",
+        height: 100
+       // borderWidth:1,       
+        //justifyContent:"flex-start"
+    }, 
+    List:{
+       
+        //borderWidth:1,
+        position:"absolute",
+        width: "60%",
+        marginLeft: 45,
+        marginTop: 18,
+        alignItems:"flex-start"
+     },
+     Status:{
+        color:Colors.Purple,
+        marginRight: 25,
+        alignItems: 'center',
+        justifyContent:"center",
+        paddingLeft: 250,
+        //paddingRight: 15,
+     },
+     
     
 });
 

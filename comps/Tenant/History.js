@@ -29,7 +29,8 @@ function History(props){
     return obj.name.toLowerCase().indexOf(searchKey) >= 0 ||
             obj.plate.toLowerCase().indexOf(searchKey) >= 0 ||
             obj.name.indexOf(searchKey) >= 0 ||
-            obj.plate.indexOf(searchKey) >= 0
+            obj.plate.indexOf(searchKey) >= 0 ||
+            obj.date.indexOf(searchKey) >= 0
   })
 
 
@@ -87,6 +88,7 @@ function History(props){
                     <View style={styles.List}>
                       <Text style={[Texts.BodyBold, styles.name]} numberOfLines={1}>{obj.name}</Text>
                       <Text style={Texts.BodyLight}>{obj.plate}</Text>
+                      <Text style={[Texts.HistoryDate, {marginLeft: -4}]}> {obj.date}</Text>
                     </View>
                   
 
