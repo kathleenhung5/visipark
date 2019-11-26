@@ -4,6 +4,7 @@ import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 import DropShadows from '../../styles/DropShadows';
 import styles from '../../styles/CompsStyles/VisitorStyles';
+import DropShadows from '../../styles/DropShadows';
 
 function Visitors(props){
 
@@ -81,7 +82,7 @@ function Visitors(props){
   //if visitor is added state = true 
   if (props.card1 == true){
     cardtop =
-            <View style={styles.activeBox} >
+            <View style={[styles.activeBox, DropShadows.shadow]} >
               <Text style={styles.visitorName} numberOfLines={1}>{props.name1}</Text>
               <Text style={styles.plateText}>{props.plate1}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
@@ -107,7 +108,7 @@ function Visitors(props){
 
   if (props.card2 == true){
     cardbot =
-              <View style={styles.activeBox2} >
+              <View style={[styles.activeBox2, DropShadows.shadow]} >
               <Text style={styles.visitorName} numberOfLines={1}>{props.name2}</Text>
               <Text style={styles.plateText}>{props.plate2}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
