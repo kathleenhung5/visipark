@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import {Colors} from '../../styles/Colors';
 import Texts from '../../styles/Texts';
 import styles from '../../styles/CompsStyles/VisitorStyles';
+import DropShadows from '../../styles/DropShadows';
 
 function Visitors(props){
 
