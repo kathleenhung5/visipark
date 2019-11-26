@@ -21,7 +21,6 @@ var styles = StyleSheet.create({
     },
 
     input:{
- 
         height: 45,
         paddingLeft: 15,
         paddingRight: 15,
@@ -33,7 +32,6 @@ var styles = StyleSheet.create({
         marginRight: 20,
         marginLeft: 20,
     },
-    
 
     subHeader:{
         flexDirection:"row",
@@ -48,58 +46,28 @@ var styles = StyleSheet.create({
         paddingRight: 30,
         marginLeft:20,
         marginRight:20,
-        marginTop: 15,
+        marginTop: 10,
         paddingTop:10,
         paddingBottom:10,
         flexDirection: "row",
-        justifyContent: "center"
-        
+        alignItems:"center",
+        justifyContent: "space-between"
     },
 
     subUnit:{
         position: "absolute",
         left: 50
-
     },
+
     subActive:{
         position: "absolute",
         right: 50
-
     },
 
-    tenantUnit:{
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        position: "relative",
-        left: -60
-    },
-
-
-    tenantSwitch:{
-        marginTop: 7,
-
-        marginLeft: 30,
-        marginRight: 30,
-        position: "relative",
-        right: -65
-
-    },
-    tenantPlate:{
-        paddingTop: 10,
-        paddingBottom: 10,
-
-
-    },
-    
     ImageStyle: {
         paddingRight: 30,
         margin: 10,
-        //height: 36,
         width: 28,
-       // alignSelf: 'flex-end',
-        
     },
 
     SectionStyle:{
@@ -120,13 +88,7 @@ var styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingLeft: 20
 
-    }   
-
-
-
-
-
-    
+    }     
     
 });
 

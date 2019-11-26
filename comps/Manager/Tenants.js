@@ -12,40 +12,27 @@ import styles from '../../styles/CompsStyles/TenantsStyles';
 import DropShadows from '../../styles/DropShadows';
 
 
-var data = [
-    {plate:"kk123", unit:"101", },
-    {plate:"aa234", unit:"102"},
-    {plate:"cc789", unit:"103"},
-    {plate:"dd456", unit:"104"},
-    {plate:"ee789", unit:"105"},
-    {plate:"ee789", unit:"106"},
-    {plate:"ee789", unit:"107"},
-    {plate:"ee789", unit:"108"},
-    {plate:"ee789", unit:"109"},
-  
-  ];
+
 
 function Tenants(props){
-    var tUnit = "101"
-    var tPlate = "ABC 123"
+    var data = [
 
-    //Tenant List Cards
-    var tenantList = 
-
-    <View style={[styles.card,DropShadows.shadow ]}>
-
-
-        <Text style={[Texts.BodyBold, styles.tenantUnit]}>{tUnit}</Text>
-        <Text style={[Texts.BodyBold]}>{tPlate}</Text>
-        <Switch style={styles.tenantSwitch}></Switch>
-
-     </View>
-
+        {plate:"kk123", unit:"101", active: true},
+        {plate:"aa234", unit:"102", active: false},
+        {plate:"cc789", unit:"103", active: true},
+        {plate:"dd456", unit:"104", active: false},
+        {plate:"ee789", unit:"105", active: false},
+        {plate:"ee789", unit:"106", active: false},
+        {plate:"ee789", unit:"107", active: true},
+        {plate:"ee789", unit:"108", active: true},
+        {plate:"ee789", unit:"109", active: false},
+      
+      ];
 
 const [searchKey, setSearchKey] = useState('');
 const filteredData = data.filter((obj)=>{
-  return obj.plate.indexOf(searchKey) >= 0 ||
-          obj.unit.indexOf(searchKey) >= 0 
+  return obj.unit.indexOf(searchKey) >= 0
+          
 })
 
 
@@ -82,17 +69,25 @@ const filteredData = data.filter((obj)=>{
             </View>
 
         {/* tenants list starts here */}
-        <ScrollView style={{marginBottom:72}}>
+        <ScrollView style={{marginBottom:72, marginTop:5}}>
                 {filteredData.map((item, index)=>{
+                const [val, setVal] = useState(item.active);
                   return (
-                
+                <TouchableOpacity onPress={()=>props.showPop("UnitProfile")}>
                   <View style={[styles.card, DropShadows.shadow]}>
 
                     <Text style={[Texts.BodyBold, styles.tenantUnit]}>{item.unit}</Text>
                     <Text style={[Texts.BodyBold,styles.tenantPlate]}>{item.plate}</Text>
-                    <Switch style={styles.tenantSwitch}></Switch>
-
-                  </View>             
+                    
+                    <Switch style={styles.tenantSwitch} 
+                      onValueChange={(val, ind) => {
+                      setVal(val);
+                    }}
+                  trackColor={{true: Colors.Purple, false: 'grey'}}
+                  value={val}
+                    ></Switch>
+                  </View> 
+                  </TouchableOpacity>           
                   )
                 })}
              </ScrollView>  

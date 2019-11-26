@@ -10,7 +10,7 @@ var styles = StyleSheet.create({
     },
 
     headerDesc:{
-        marginBottom: 50,
+        marginBottom: 30,
         paddingLeft: 20,
         paddingRight: 20,
     },
@@ -27,7 +27,7 @@ var styles = StyleSheet.create({
         paddingRight: 30,
         paddingTop:20,
         paddingBottom:20,
-        marginTop: 10,
+        marginTop: 20,
         justifyContent: "center",
         marginLeft: 20,
         marginRight: 20,
