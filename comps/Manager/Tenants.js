@@ -65,6 +65,7 @@ const filteredData = data.filter((obj)=>{
           placeholder = "Search Room Number"
           clearButtonMode = 'always'
           maxLength = {3}
+          onChangeText={(value)=>{setSearchKey(value)}}
             />          
 
             <Image 
