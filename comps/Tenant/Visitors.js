@@ -37,7 +37,7 @@ function Visitors(props){
 
 
 //Conditions to disable Extend button 
-    if (props.reg1 >= 23){
+    if (props.reg1 > 23){
       button1 = 
       <TouchableOpacity style={styles.extendButtonGrey} >
       <Text style={[Texts.HeadS,{color:'lightgrey'}]}>Extend</Text>
@@ -84,7 +84,7 @@ function Visitors(props){
               <Text style={styles.visitorName} numberOfLines={1}>{props.name1}</Text>
               <Text style={styles.plateText}>{props.plate1}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              <Text style={styles.time}>{Hours1}:{minutes1}</Text>
+              <Text style={styles.time}>{props.dur1}</Text>
               <Text style={styles.leftText}>hr left</Text>
               {button1}
               <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove1')}}>
@@ -110,7 +110,7 @@ function Visitors(props){
               <Text style={styles.visitorName} numberOfLines={1}>{props.name2}</Text>
               <Text style={styles.plateText}>{props.plate2}</Text>
               <Image resizeMode='contain' source={require('../../img/car.png')} style={styles.carIcon} />
-              <Text style={styles.time}>{Hours2}:{minutes2}</Text>
+              <Text style={styles.time}>{props.dur2}</Text>
               <Text style={styles.leftText}>hr left</Text>
               {button2}
               <TouchableOpacity style={styles.removeButton} onPress={() => {props.showPop('Remove2')}}>

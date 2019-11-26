@@ -315,7 +315,7 @@ function Popup(props){
       <TouchableOpacity 
       style = {styles.button}
       onPress = {()=>{props.showPop('');
-      props.setDur1(extendhr1+props.dur1);
+      //props.setDur1(extendhr1+props.dur1);
       dbExtendVisitor(props.id1, extendhr1);
       }}>
       <Text style={[Texts.HeadS,{color:'#fff'}]}>{btnTxt}</Text>
