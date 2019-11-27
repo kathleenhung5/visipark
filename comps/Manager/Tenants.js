@@ -11,22 +11,53 @@ import Texts from '../../styles/Texts';
 import styles from '../../styles/CompsStyles/TenantsStyles';
 import DropShadows from '../../styles/DropShadows';
 
+function tenantCard(){
+
+  const [val, setVal] = useState(item.active);
+
+  return(
+
+    <TouchableOpacity onPress={()=>props.showPop("UnitProfile")}>
+    <View style={[styles.card, DropShadows.shadow]}>
+
+      <Text style={[Texts.BodyBold, styles.tenantUnit]}>{item.unit}</Text>
+      <Text style={[Texts.BodyBold,styles.tenantPlate]}>{item.plate}</Text>
+      
+      <Switch style={styles.tenantSwitch} 
+        onValueChange={(val, ind) => {
+        setVal(val);
+      }}
+    trackColor={{true: Colors.Purple, false: 'grey'}}
+    value={val}>
+
+    </Switch>
+    </View> 
+    </TouchableOpacity> 
+
+  )
+
+  
+}
+
 function Tenants(props){
-    var data = [
-        {plate:"kk123", unit:"101", active: true},
-        {plate:"aa234", unit:"102", active: false},
-        {plate:"cc789", unit:"103", active: true},
-        {plate:"dd456", unit:"104", active: false},
-        {plate:"ee789", unit:"105", active: false},
-        {plate:"ee789", unit:"106", active: false},
-        {plate:"ee789", unit:"107", active: true},
-        {plate:"ee789", unit:"108", active: true},
-        {plate:"ee789", unit:"109", active: false},
-      ];
+
+  var data = [
+    {plate:"kk123", unit:"101", active: true},
+    {plate:"aa234", unit:"102", active: false},
+    {plate:"cc789", unit:"103", active: true},
+    {plate:"dd456", unit:"104", active: false},
+    {plate:"ee789", unit:"105", active: false},
+    {plate:"ee789", unit:"106", active: false},
+    {plate:"ee789", unit:"107", active: true},
+    {plate:"ee789", unit:"108", active: true},
+    {plate:"ee789", unit:"109", active: false},
+  ];
+
 
 const [searchKey, setSearchKey] = useState('');
 const filteredData = data.filter((obj)=>{
-  return obj.unit.indexOf(searchKey) >= 0          
+  return obj.unit.indexOf(searchKey) >= 0 
+
 })
 
     return(
@@ -61,28 +92,17 @@ const filteredData = data.filter((obj)=>{
             </View>
 
         {/* tenants list starts here */}
-        <ScrollView style={{marginBottom:72, marginTop:5}}>
-                {filteredData.map((item, index)=>{
-                const [val, setVal] = useState(item.active);
-                  return (
-                <TouchableOpacity onPress={()=>props.showPop("UnitProfile")}>
-                  <View style={[styles.card, DropShadows.shadow]}>
 
-                    <Text style={[Texts.BodyBold, styles.tenantUnit]}>{item.unit}</Text>
-                    <Text style={[Texts.BodyBold,styles.tenantPlate]}>{item.plate}</Text>
-                    
-                    <Switch style={styles.tenantSwitch} 
-                      onValueChange={(val, ind) => {
-                      setVal(val);
-                    }}
-                  trackColor={{true: Colors.Purple, false: 'grey'}}
-                  value={val}
-                    ></Switch>
-                  </View> 
-                  </TouchableOpacity>           
-                  )
-                })}
-             </ScrollView>  
+        <ScrollView style={{marginBottom:72, marginTop:5}}>
+        {filteredData.map((item, index)=>{
+
+        return (
+          <tenantCard />
+        )
+      })}
+
+          </ScrollView>
+ 
 
             
     </View>
