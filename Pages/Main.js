@@ -1,14 +1,14 @@
+
 import React,{useState,useEffect} from 'react';
-import {View, Text, SafeAreaView,AsyncStorage} from 'react-native';
+import {View, Text} from 'react-native';
 import styles from '../styles/PagesStyles/MainStyles';
 import Tenant from '../Pages/Tenant';
 import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
-import Colors from '../styles/Colors';
 import Fetch from '../comps/Fetch';
 
-var timer = null;
+
 function Main(props){
     // --------- Variables ------------
     // Across the app
@@ -123,8 +123,7 @@ function Main(props){
             setId2(currentVisitors[1].id);
             setCard2(true);
         }
-    }
-
+        
     const setHistory = async(unit)=>{
         var History = await Fetch('getHistory',{unit_num:unit},null);
         setPinnedVisitors(History.pinned);
@@ -145,22 +144,13 @@ function Main(props){
                 />;
     }
     if(showpage == 'Tenant'){
-        props.setSafebg("#fff");
         page = <Tenant 
-                // pop up
                  pop = {pop} 
                  showPop = {showPop}
-                // content 
-                cont = {cont}
-                setCont = {setCont}
-                 // cards
                  card1 = {card1}
                  setCard1 = {setCard1}
                  card2 = {card2}
                  setCard2 = {setCard2}
-                 // unit info
-                 unit = {unit}
-                 // visitors info
                  name1 = {name1}
                  setName1 ={setName1}
                  name2 = {name2}
@@ -186,12 +176,20 @@ function Main(props){
                  UnpinnedVisitors = {UnpinnedVisitors}
                  PinnedVisitors = {PinnedVisitors}
                 />;
+        props.setSafebg(true);
     }
     if(showpage == 'Manager'){
         page = <Manager 
                  pop = {pop} 
                  showPop = {showPop}
+                 visiName = {visiName}
+                 setVisiName = {setVisiName}
+                 visiPlate ={visiPlate} 
+                 setVisiPlate = {setVisiPlate}
+                 visiDur = {visiDur} 
+                 setVisiDur = {setVisiDur}
                 />;
+        props.setSafebg(true);
     }
 
      // Conditions to show Popup
@@ -236,7 +234,6 @@ function Main(props){
 
 
 
-
 // Fetch data when the app loads and update every second
     
     useEffect(()=>{
@@ -263,18 +260,17 @@ function Main(props){
                 timer = null;
             }
         }
-
         
     },[]);
       
+
+
     // -------------- UI ------------------
 return (
-    <SafeAreaView style={[styles.container, {backgroundColor: props.safebg, opacity: 1}]}>
         <View style={styles.container}>
            {mpopup} 
            {page}
         </View>
-    </SafeAreaView>
     )
 }
 
