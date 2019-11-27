@@ -6,240 +6,142 @@ import Tenant from '../Pages/Tenant';
 import Login from '../Pages/Login';
 import Popup from '../comps/Popup';
 import Manager from '../Pages/Manager';
-
-
-
+import Fetch from '../comps/Fetch';
 
 
 function Main(props){
-// ---------- Communicate with DB -----------
-    // These are the variables holding information sent from the db
-    const [dbUnits, setDbUnits] = useState([]);
-    const [dbVisitors, setDbVisitors] = useState([]);
-    const [dbReports, setDbReports] = useState([]);
-
-    // getData Function
-    var dbGetData = async()=>{
-        var resp = await fetch('http://localhost:8888/visipark/getData.php');
-        var data = await resp.json();
-        setDbUnits(data.data.units);
-        setDbVisitors(data.data.visitors);
-        setDbReports(data.data.reports);
-    }
-    
-     // Get Current Visitor Function
-     const dbGetCurrentVisitors = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for adding a visitor 
-            data: {
-                unit_num: 101
-
-                // here add your own data, make sure use the same property name and same data type for value 
-
-            }
-        }
-        var data = await fetch('http://localhost:8888/visipark/getCurrentVisitors.php',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(visitor)
-        })
-        let visitordata = await data.text();
-        console.log("Data received from server for showing current visitors of a unit",JSON.parse(visitordata)); 
-        dbGetData();
-    }
-    
-    // Add visitor Function
-    const dbAddVisitor = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for adding a visitor 
-            data: {
-                // unit_num: 102,
-                // name: "Elias",
-                // plate: "abd 456",
-                // duration: '3:00:00'
-
-                // here add your own data, make sure use the same property name and same data type for value 
-
-            }
-        }
-        var data = await fetch('http://localhost:8888/visipark/addVisitor.php',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(visitor)
-        })
-        let visitordata = await data.text();
-        console.log("Data that server received for adding visitor",visitordata); 
-        dbGetData();
-    }
-    
-    // Remove visitor function 
-    const dbRemoveVisitor = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for removing a visitor 
-            data: {
-                // id: 5
-
-                // here add your own data, make sure use the same property name and same data type for value 
-            }
-        }
-        var data = await fetch('http://localhost:8888/visipark/removeVisitor.php',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(visitor)
-        })
-        let visitordata = await data.text();
-        console.log("Data that server received for removing visitor",visitordata); 
-        dbGetData();
-    }
-
-    // Extend visitor function 
-    const dbExtendVisitor = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for extending a visitor 
-            data: {
-                // id: 8,
-                // extendhour: "3:00:00"
-
-                // here add your own data, make sure use the same property name and same data type for value 
-            }
-        }
-        var data = await fetch('http://localhost:8888/visipark/extendVisitor.php',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(visitor)
-        })
-        let visitordata = await data.text();
-        console.log("Data that server received for extending visitor",visitordata); 
-        dbGetData();
-    }
-
-    // Get History function 
-    const dbGetHistory = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for getting all pinned and not pinned visitors in History page 
-            data: {
-                unit_num: 101
-
-                // here add your own data, make sure use the same property name and same data type for value 
-            }
-        }
-        var data = await fetch('http://localhost:8888/visipark/getHistory.php',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(visitor)
-        })
-        let visitordata = await data.text();
-        console.log("Data received from server for History page",JSON.parse(visitordata)); 
-    }
-
-    // Pin Visitor function 
-    const dbPinVisitor = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
-            data: {
-                id: 5
-                // here add your own data, make sure use the same property name and same data type for value 
-            }
-        }
-        var data = await fetch('http://localhost:8888/visipark/pinVisitor.php',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(visitor)
-        })
-        let visitordata = await data.text();
-        console.log("Data sent to server to pin a visitor",JSON.parse(visitordata)); 
-        dbGetHistory();
-        dbGetData();
-    }
-
-    // Unpin Visitor function 
-    const dbUnpinVisitor = async()=>{
-        var visitor = {
-            // the following is an exmaple of what to put in the obj "data" to send to the server for pinning a visitor in History page 
-            data: {
-                id: 5
-                // here add your own data, make sure use the same property name and same data type for value 
-            }
-        }
-        var data = await fetch('http://localhost:8888/visipark/unpinVisitor.php',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(visitor)
-        })
-        let visitordata = await data.text();
-        console.log("Data sent to server to Unpin a visitor",JSON.parse(visitordata)); 
-        dbGetHistory();
-        dbGetData();
-    }
-
-
-
-    // ------------- functions that run when the app loads ----------------
-    useEffect(()=>{
-        dbGetCurrentVisitors();
-        // dbUnpinVisitor();
-        // dbPinVisitor();
-        // dbGetHistory();
-        // dbGetData();
-        // dbExtendVisitor();
-        // dbRemoveVisitor();
-        // dbAddVisitor();
-    },[]);
-    console.log(dbUnits,dbVisitors,dbReports);
-
-// ------------- Pop up -----------------
-    // Function for Popup
-    // Call showPop('YourPopupTitle') in your button to show the corresponding Popup.
-    // Example: Your Popup title is 'Add Visitor', call showPop('AddVisitor') in your onPress.
-    // !! IMPORTANT !! To close Popup, call showPop('').
-
-    const [pop, showPop] = useState(''); 
-    const [showpage, setShowpage] = useState('Login');
-    // visitor info
-     const [visiName, setVisiName] = useState('');
-     const [visiPlate, setVisiPlate] = useState('');
-     const [visiDur, setVisiDur] = useState(0);
-
+    // --------- Variables ------------
+    // Across the app
     var mpopup = null;
     var page = null;
-
-    //--------- Kathleen ----------
-    // I added them here, and pass them in popup and in Tenant
-    // functions to set visitor cards
-    const [card1, setCard1] = useState(false);
+    const [showpage, setShowpage] = useState(''); 
+    const [pop, showPop] = useState(''); 
+    const [cont, setCont] = useState('Visitors');
+    // Tenant - Visitors
+    const [unit, setUnit] = useState();
+    const [spots,setSpots] = useState();
+    const [card1, setCard1] = useState(false);     
     const [card2, setCard2] = useState(false);
     const [name1, setName1] = useState('');
     const [name2, setName2] = useState('');
     const [plate1, setPlate1] = useState('');
     const [plate2, setPlate2] = useState('');
-    const [dur1, setDur1] = useState(1);
+    const [dur1, setDur1] = useState(1); // time left in UI
     const [dur2, setDur2] = useState(1);
+    const [reg1, setReg1] = useState();
+    const [reg2, setReg2] = useState();
+    const [id1,setId1] = useState();
+    const [id2,setId2] = useState();
+    // Tenant - History  
+    const [PinnedVisitors, setPinnedVisitors] = useState([]);
+    const [UnpinnedVisitors, setUnpinnedVisitors] = useState([]);
+
+    // --------------- Communicate with DB ----------------
     
-    // Conditions to show {page}
+    // Fetch() for getting and posting
+    // Variable = await Fetch("filename", data, "console_log_message");
+    // write "null" instead of "data" for GET 
+
+    // Show all tables 
+            // Fetch('getData',null,'get all tables');
+
+    // Auto-remove expired visitors 
+            // Fetch('autoRemove',null,null);
+
+    // Get History data
+            // Fetch('getHistory',{unit_num:unit},'Data for History');
+
+    // Get Spots
+            // Fetch('getSpots',null,'Spots left');
+
+    // Get Current Visitor 
+            // Fetch('getCurrentVisitors',{unit_num:unit},'Fetch Current Visitors');
+
+    // Add a visitor
+            // Fetch('addVisitor',{unit_num:unit, name:name,plate:plate, duration:duration},"Added a visitor");
+
+    // Remove a visitor
+            // Fetch('removeVisitor',{id: id},'Removed a visitor');
+
+    // Extend a visitor
+            // Fetch('extendVisitor',{id: id, extendhour: extendhour},'Extended a visitor');
+
+    // Pin a visitor 
+            // Fetch('pinVisitor',{unit_num:unit,id:id},'Pinned a visitor');
+
+    // Unpin a visitor 
+            // Fetch('unpinVisitor',{unit_num:unit,id:id},'Unpinned a visitor');
+
+    const getSpots = async()=>{
+        var spotnum = await Fetch('getSpots',null,null);
+        setSpots(spotnum);
+    }
+
+    const getUnit = async()=>{ 
+        var localunit = parseInt(await AsyncStorage.getItem('unit'),10);
+        if(localunit !== null && localunit !==''){
+            // if there IS unit number stored in local storage
+            // run get current visitor 
+            console.log('You are in unit',localunit);
+            setUnit(localunit);
+            getSpots();
+            setCurrentVisitors(localunit);
+            setHistory(localunit);
+            setShowpage('Tenant');
+            console.log('Logged in unit', localunit);
+        } else {
+            // if there ISN'T unit number stored in local storage
+            setShowpage('Login');
+            console.log('Unit has not logged in');
+        }
+    }
+
+    const setCurrentVisitors = async(unit)=>{
+        var currentVisitors = await Fetch('getCurrentVisitors',{unit_num:unit},null);
+        // set visitor1 and visitor2 with current visitors info
+        if (currentVisitors.length == 1){
+            // console.log('there is 1 current visitor');
+            setName1(currentVisitors[0].name);
+            setPlate1(currentVisitors[0].plate);
+            setDur1(currentVisitors[0].time_left);
+            setReg1(currentVisitors[0].regtime);
+            setId1(currentVisitors[0].id);
+            setCard1(true);
+        }
+        if (currentVisitors.length == 2){
+            // console.log('there are 2 current visitors');
+            setName1(currentVisitors[0].name);
+            setPlate1(currentVisitors[0].plate);
+            setDur1(currentVisitors[0].time_left);
+            setReg1(currentVisitors[0].regtime);
+            setId1(currentVisitors[0].id);
+            setCard1(true);
+            setName2(currentVisitors[1].name);
+            setPlate2(currentVisitors[1].plate);
+            setDur2(currentVisitors[1].time_left);
+            setReg2(currentVisitors[1].regtime);
+            setId2(currentVisitors[1].id);
+            setCard2(true);
+        }
+        
+    const setHistory = async(unit)=>{
+        var History = await Fetch('getHistory',{unit_num:unit},null);
+        setPinnedVisitors(History.pinned);
+        setUnpinnedVisitors(History.notpinned);
+    }
+    
+
+    // conditions to show and hide pages
     if(showpage == 'Login'){
-        page = <Login showpage={showpage} setShowpage={setShowpage} />;
-        props.setSafebg(false);
+        page = <Login 
+                // show Login, Tenant or Manager page
+                showpage={showpage}    
+                setShowpage={setShowpage} 
+                // unit info
+                unit = {unit}
+                setUnit = {setUnit}
+                getUnit = {getUnit}
+                />;
     }
     if(showpage == 'Tenant'){
         page = <Tenant 
@@ -261,6 +163,18 @@ function Main(props){
                  setDur1 ={setDur1}
                  dur2 = {dur2}
                  setDur2 ={setDur2}
+                 reg1 = {reg1}
+                 reg2 = {reg2}
+                 id1 = {id1}
+                 id2 = {id2}
+                 // spots
+                 spots = {spots}
+                 // async function 
+                 getUnit = {getUnit}
+                 // History Page
+                 setHistory = {setHistory}
+                 UnpinnedVisitors = {UnpinnedVisitors}
+                 PinnedVisitors = {PinnedVisitors}
                 />;
         props.setSafebg(true);
     }
@@ -278,42 +192,79 @@ function Main(props){
         props.setSafebg(true);
     }
 
-    // Conditions to show Popup
-    if (pop == ''){
-       mpopup = null;
-    } else {
-        mpopup = <Popup 
-                    pop = {pop} 
-                    showPop = {showPop} 
+     // Conditions to show Popup
+     if (pop == ''){
+        mpopup = null;
+     } else {
+         mpopup = <Popup 
+                     // popup
+                     pop = {pop} 
+                     showPop = {showPop} 
+                     // show page
+                     setShowpage = {setShowpage}
+                     // set content on Tenant page
+                     cont = {cont}
+                     setCont = {setCont}
+                     // cards
+                     card1 = {card1}
+                     setCard1 = {setCard1}
+                     card2 = {card2}
+                     setCard2 = {setCard2}
+                     // unit
+                     unit = {unit}
+                     // visitors info
+                     name1 = {name1}
+                     setName1 ={setName1}
+                     name2 = {name2}
+                     setName2 ={setName2}
+                     plate1 = {plate1}
+                     setPlate1 ={setPlate1}
+                     plate2 = {plate2}
+                     setPlate2 ={setPlate2}
+                     dur1 = {dur1}
+                     setDur1 ={setDur1}
+                     dur2 = {dur2}
+                     setDur2 ={setDur2}
+                     reg1 = {reg1}
+                     reg2 = {reg2}
+                     id1 = {id1}
+                     id2 = {id2}
+                     />;                 
+             }
 
-//                    visiName = {visiName}
-//                     setVisiName = {setVisiName}
-//                     visiPlate ={visiPlate} 
-//                     setVisiPlate = {setVisiPlate}
-//                     visiDur = {visiDur} 
-//                     setVisiDur = {setVisiDur}
 
-                    card1 = {card1}
-                    setCard1 = {setCard1}
-                    card2 = {card2}
-                    setCard2 = {setCard2}
-                    name1 = {name1}
-                    setName1 ={setName1}
-                    name2 = {name2}
-                    setName2 ={setName2}
-                    plate1 = {plate1}
-                    setPlate1 ={setPlate1}
-                    plate2 = {plate2}
-                    setPlate2 ={setPlate2}
-                    dur1 = {dur1}
-                    setDur1 ={setDur1}
-                    dur2 = {dur2}
-                    setDur2 ={setDur2}
 
-                />;
-                
-            }
+// Fetch data when the app loads and update every second
     
+    useEffect(()=>{
+        // when the app loads
+        // Fetch('getCurrentVisitors',{unit_num:101},'Current Visitors');
+        // Fetch('getHistory',{unit_num:101},'Data for History');
+        // Fetch('getSpots',null,'Spots left');
+        getUnit();
+        
+        // update every second
+        if(timer === null){
+            timer = setInterval(()=>{
+                console.log("timer");
+                //auto remove 
+                Fetch('autoRemove',null,null);
+                setCurrentVisitors(unit);
+                getSpots();
+                setHistory(unit);
+            }, 1000)
+        }
+        return ()=>{
+            if(timer){
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+        
+    },[]);
+      
+
+
     // -------------- UI ------------------
 return (
         <View style={styles.container}>
