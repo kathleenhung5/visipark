@@ -24,7 +24,7 @@ function Reports(props){
         <View style={styles.container}>
 
         <Text style={[Texts.SecHead, styles.header]}>Reports</Text>
-        <Text style={[Texts.Body, styles.headerDesc]}>Read or delete reports submitted by tenants regarding visitor parkng.</Text>
+        <Text style={[Texts.Body, styles.headerDesc]}>Read or delete reports submitted by tenants regarding visitor parking.</Text>
 
 {/* tenants reports starts here */}
 

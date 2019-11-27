@@ -13,7 +13,6 @@ import DropShadows from '../../styles/DropShadows';
 
 function Tenants(props){
     var data = [
-
         {plate:"kk123", unit:"101", active: true},
         {plate:"aa234", unit:"102", active: false},
         {plate:"cc789", unit:"103", active: true},
@@ -23,7 +22,6 @@ function Tenants(props){
         {plate:"ee789", unit:"107", active: true},
         {plate:"ee789", unit:"108", active: true},
         {plate:"ee789", unit:"109", active: false},
-      
       ];
 
 const [searchKey, setSearchKey] = useState('');
